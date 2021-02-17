@@ -18,6 +18,9 @@ Load libraries
 ```{r, message = FALSE}
 library("ggplot2")
 library("tidyverse")
+library("betareg")
+library("emmeans")
+library("dplyr")
 ```
 
 Import the data
@@ -48,31 +51,41 @@ show(total_counts_per_sample)
 Calculate % at each stage
 ```{r}
 normalized_cleavage_counts <- total_counts_per_sample %>%
-  mutate(percent_one_cell = (One_cell/total_counts_per_sample)*100) %>% 
-  mutate(percent_two_cell = (Two_cell/total_counts_per_sample)*100) %>%
-  mutate(percent_four_cell = (Four_cell/total_counts_per_sample)*100) %>%
-  mutate(percent_greater_than_four_cell = (Greater_than_4_cell/total_counts_per_sample)*100)
+  mutate(percent_one_cell = (One_cell/total_counts_per_sample)) %>% 
+  mutate(percent_two_cell = (Two_cell/total_counts_per_sample)) %>%
+  mutate(percent_four_cell = (Four_cell/total_counts_per_sample)) %>%
+  mutate(percent_greater_than_four_cell = (Greater_than_4_cell/total_counts_per_sample))
 
 show(normalized_cleavage_counts)
 str(normalized_cleavage_counts)
 
 gathered_cleavage_counts <- normalized_cleavage_counts %>% 
   select(sample_ID, treatment, percent_one_cell:percent_greater_than_four_cell) %>% 
-  gather(cleavage_stage, percent, -sample_ID, -treatment, convert = FALSE, na.rm = TRUE, factor_key = TRUE)
+  gather(cleavage_stage, proportion, -sample_ID, -treatment, convert = FALSE, na.rm = TRUE, factor_key = TRUE)
 
 show(gathered_cleavage_counts)
 ```
 
-### 2-Way ANOVA with Cleavage Nested within Treatment
+### Use beta regression model to analyze variation in the proportion of cells at each cleavage stage and treatment
+
+Beta regression models are suggested for proportional data instead of t-tests and anovas because the data is often not normally distributed and homoscedastic. Here, we use a beta regression test (as described by S. S. Mangiafico in the RCompanion Handbook chapter, [Beta Regression for Percent and Proportion Data](https://rcompanion.org/handbook/J_02.html)).
 ```{r}
-cell_cleavage_anova <- aov(percent ~ cleavage_stage/treatment, data = gathered_cleavage_counts)
-summary(cell_cleavage_anova)
-TukeyHSD(cell_cleavage_anova)
+model = betareg(proportion ~ cleavage_stage + treatment + cleavage_stage:treatment,
+                data = gathered_cleavage_counts) #Make the model
+joint_tests(model) #do the test
+summary(model) #examine the results
+plot(model) #Diagnostic plots
 ```
+*In summary, we have significant differences in the proportion of cells at different cleavage stages within a treatment, but there is not significant variation in the proportion of cells at different cleavage stages between treatments.*
+
+## Plot cleavage stage
 
 Calculate stats for cleavage stage and treatment categories
 ```{r}
 ##Just treatment
+gathered_cleavage_counts$proportion <- (gathered_cleavage_counts$proportion)*100 #data had to be proportions for the statistical test but we want them to be plotted as percentages. We do that here.
+gathered_cleavage_counts <- rename(gathered_cleavage_counts, percent=proportion)
+
 #Mean for all treatments should be 25 because 100/4=25. Standard dev may vary.
 clvgstats <- select(gathered_cleavage_counts, treatment:percent)
 clvgstats.amb <- clvgstats %>% filter(treatment=="AMB") %>% 
@@ -139,7 +152,7 @@ show(treatmentstage.clvgstats)
 ```
 
 
-### Plot mean_percent_cleavage
+#### Plot mean_percent_cleavage
 
 Calculate means at each stage 
 ```{r}
