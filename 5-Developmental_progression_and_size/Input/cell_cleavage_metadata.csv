@@ -1,0 +1,10 @@
+﻿sample_ID,Timeseries_Seq,Photo_ID,time_point,TIME,coral,treatment,num_of_larvea_um,date_tube_collected,TANK_NUM,day_of_spawning,BIN,TIME,purpose,surviving,One_cell,Two_cell,Four_cell,Greater_than_4_cell,Total
+144,,20190408_144,cleavage_zifix,2:04,montipora,AMB,50,6/13/18,1,6/13/18,,2:04,,,72,31,32,18,153
+145,,20190408_145,cleavage_zifix,2:05,montipora,AMB,50,6/13/18,2,6/13/18,,2:05,,,47,35,37,92,211
+146,,20190408_146,cleavage_zifix,2:06,montipora,l,50,6/13/18,3,6/13/18,,2:06,,,80,85,65,18,248
+147,,20190408_147,cleavage_zifix,2:07,montipora,xl,50,6/13/18,4,6/13/18,,2:07,,,18,17,34,13,82
+148,,20190408_148,cleavage_zifix,2:08,montipora,xl,50,6/13/18,5,6/13/18,,2:08,,,98,58,14,2,172
+149,,20190408_149,cleavage_zifix,2:09,montipora,l,50,6/13/18,6,6/13/18,,2:09,,,43,37,9,2,91
+150,,20190408_150,cleavage_zifix,2:09,montipora,AMB,50,6/13/18,7,6/13/18,,2:09,,,220,5,8,4,237
+151,,20190408_151,cleavage_zifix,2:10,montipora,l,50,6/13/18,8,6/13/18,,2:10,,,124,85,58,15,282
+152,,20190408_152,cleavage_zifix,2:11,montipora,xl,50,6/13/18,9,6/13/18,,2:11,,,91,95,41,10,237
