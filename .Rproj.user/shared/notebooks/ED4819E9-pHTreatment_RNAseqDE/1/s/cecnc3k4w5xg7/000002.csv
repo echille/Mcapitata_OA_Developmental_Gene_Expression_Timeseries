@@ -1,2 +1,0 @@
-"0","treatmentinfo_clvg$treatment <- factor(treatmentinfo_clvg$treatment, levels = c(""amb"",""l"", ""xl""))"
-"0","head(treatmentinfo_clvg)"

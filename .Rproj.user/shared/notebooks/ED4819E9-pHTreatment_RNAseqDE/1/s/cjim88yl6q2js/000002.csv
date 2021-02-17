@@ -1,5 +1,0 @@
-"0","calc.kmeans <- kmeans(matpln, 2)"
-"0","cluster_res <- data.frame(gene_id = names(calc.kmeans$cluster), cluster = calc.kmeans$cluster)"
-"0",""
-"0","pln_DEGs_all <- merge(pln_DEGs_all, cluster_res, by = ""gene_id"")"
-"0","write.csv(pln_DEGs_all, file=""2-Differential-Gene-Expression-Analysis/Output/pln_DEGs_all.csv"")"

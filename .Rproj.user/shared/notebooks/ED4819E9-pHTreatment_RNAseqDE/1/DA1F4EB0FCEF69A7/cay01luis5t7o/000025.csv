@@ -1,4 +1,0 @@
-"0","gcount.t <- t(gcount) 
-gcount.t$sample_id <- rownames(gcount.t)
-"
-"2","Coercing LHS to a list"

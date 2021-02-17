@@ -1,1 +1,0 @@
-"0","treatmentinfo_fe$treatment <- factor(treatmentinfo_fe$treatment, levels = c(""amb"",""l"", ""xl""))"

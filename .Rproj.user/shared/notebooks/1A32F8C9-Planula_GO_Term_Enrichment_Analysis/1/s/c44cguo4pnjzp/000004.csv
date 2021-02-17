@@ -1,2 +1,0 @@
-"0","NAs.ontology <- C2.GO.05 %>% subset(is.na(term))"
-"0","print(NAs.ontology)"

@@ -1,4 +1,0 @@
-"0","#treatmentinfo"
-"0","treatmentinfo <- read.csv(""Sample_Info/RNAseq_data.csv"", header = TRUE, sep = "","")"
-"0","treatmentinfo <-  filter(treatmentinfo, time_point != ""Adult"")"
-"0","head(treatmentinfo)"

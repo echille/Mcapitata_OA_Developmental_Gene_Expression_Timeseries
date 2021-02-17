@@ -1,5 +1,0 @@
-"0","rm(list=ls()) # removes all prior objects"
-"0","library(tidyverse)"
-"0","library(org.Hs.eg.db)"
-"0","library(simplifyEnrichment)"
-"0","library(magick)"

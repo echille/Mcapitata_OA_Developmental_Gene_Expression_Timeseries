@@ -1,4 +1,0 @@
-"0","#Set DESeq2 design"
-"0","gdds_pc <- DESeqDataSetFromMatrix(countData = gcount_filt_pc,"
-"0","                              colData = treatmentinfo_pc,"
-"0","                              design = ~treatment)"

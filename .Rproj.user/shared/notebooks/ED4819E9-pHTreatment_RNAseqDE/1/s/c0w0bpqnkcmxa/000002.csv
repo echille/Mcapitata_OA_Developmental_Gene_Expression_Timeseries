@@ -1,4 +1,0 @@
-"0","# nb <- NbClust(matpln, distance = ""euclidean"", min.nc = 2,"
-"0","#         max.nc = 10, method = ""kmeans"")"
-"0","# "
-"0","# fviz_nbclust(nb)"
