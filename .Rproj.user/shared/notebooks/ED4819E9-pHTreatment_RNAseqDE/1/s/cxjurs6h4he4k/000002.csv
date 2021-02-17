@@ -1,0 +1,2 @@
+"0","matpln <- assay(pln_DEGvst)#[pln_topVarGenes, ] #make an expression object"
+"0","matpln <- matpln - rowMeans(matpln) #difference in expression compared to average across all samples"

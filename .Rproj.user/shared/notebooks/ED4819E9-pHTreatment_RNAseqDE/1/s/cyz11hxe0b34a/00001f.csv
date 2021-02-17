@@ -1,0 +1,7 @@
+"0","treatmentinfo$treatment <- as.factor(treatmentinfo$treatment)"
+"0","treatmentinfo$time_point <- as.factor(treatmentinfo$time_point)"
+"0",""
+"0","#Set DESeq2 design"
+"0","gdds <- DESeqDataSetFromMatrix(countData = gcount_filt,"
+"0","                              colData = treatmentinfo,"
+"0","                              design = ~time_point)"

@@ -1,0 +1,5 @@
+"0","GO.annot <- select(annot, gene_id, GO_IDs)"
+"0","splitted <- strsplit(as.character(GO.annot$GO_IDs), "";"") #split into multiple GO ids"
+"0","GO.terms <- data.frame(v1 = rep.int(GO.annot$gene_id, sapply(splitted, length)), v2 = unlist(splitted)) #list all genes with each of their GO terms in a single row"
+"0","colnames(GO.terms) <- c(""gene_id"", ""GO.ID"")"
+"0","head(GO.terms)"

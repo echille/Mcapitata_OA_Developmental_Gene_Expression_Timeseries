@@ -1,0 +1,920 @@
+Loading necessary programs Fri Oct 30 18:58:23 EDT 2020
+Aligning paired end reads to the reference genome Fri Oct 30 18:58:23 EDT 2020
+HISAT2 PE 1101_R1_001.clean.fastq.gz Fri Oct 30 18:58:23 EDT 2020
+16961235 reads; of these:
+  16961235 (100.00%) were paired; of these:
+    12977802 (76.51%) aligned concordantly 0 times
+    3379259 (19.92%) aligned concordantly exactly 1 time
+    604174 (3.56%) aligned concordantly >1 times
+    ----
+    12977802 pairs aligned concordantly 0 times; of these:
+      5956093 (45.89%) aligned discordantly 1 time
+    ----
+    7021709 pairs aligned 0 times concordantly or discordantly; of these:
+      14043418 mates make up the pairs; of these:
+        6785273 (48.32%) aligned 0 times
+        4793934 (34.14%) aligned exactly 1 time
+        2464211 (17.55%) aligned >1 times
+80.00% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+1101_R1_001.clean.fastq.gz bam-ified! Fri Oct 30 20:55:56 EDT 2020
+HISAT2 PE 119_R1_001.clean.fastq.gz Fri Oct 30 20:55:56 EDT 2020
+15735471 reads; of these:
+  15735471 (100.00%) were paired; of these:
+    9735409 (61.87%) aligned concordantly 0 times
+    4502190 (28.61%) aligned concordantly exactly 1 time
+    1497872 (9.52%) aligned concordantly >1 times
+    ----
+    9735409 pairs aligned concordantly 0 times; of these:
+      4060021 (41.70%) aligned discordantly 1 time
+    ----
+    5675388 pairs aligned 0 times concordantly or discordantly; of these:
+      11350776 mates make up the pairs; of these:
+        5984390 (52.72%) aligned 0 times
+        3618815 (31.88%) aligned exactly 1 time
+        1747571 (15.40%) aligned >1 times
+80.98% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+119_R1_001.clean.fastq.gz bam-ified! Fri Oct 30 22:58:15 EDT 2020
+HISAT2 PE 120_R1_001.clean.fastq.gz Fri Oct 30 22:58:15 EDT 2020
+16746988 reads; of these:
+  16746988 (100.00%) were paired; of these:
+    9483817 (56.63%) aligned concordantly 0 times
+    5347922 (31.93%) aligned concordantly exactly 1 time
+    1915249 (11.44%) aligned concordantly >1 times
+    ----
+    9483817 pairs aligned concordantly 0 times; of these:
+      3184475 (33.58%) aligned discordantly 1 time
+    ----
+    6299342 pairs aligned 0 times concordantly or discordantly; of these:
+      12598684 mates make up the pairs; of these:
+        8306227 (65.93%) aligned 0 times
+        2978674 (23.64%) aligned exactly 1 time
+        1313783 (10.43%) aligned >1 times
+75.20% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+120_R1_001.clean.fastq.gz bam-ified! Sat Oct 31 01:17:15 EDT 2020
+HISAT2 PE 121_R1_001.clean.fastq.gz Sat Oct 31 01:17:15 EDT 2020
+14738013 reads; of these:
+  14738013 (100.00%) were paired; of these:
+    10177820 (69.06%) aligned concordantly 0 times
+    3474462 (23.57%) aligned concordantly exactly 1 time
+    1085731 (7.37%) aligned concordantly >1 times
+    ----
+    10177820 pairs aligned concordantly 0 times; of these:
+      2976281 (29.24%) aligned discordantly 1 time
+    ----
+    7201539 pairs aligned 0 times concordantly or discordantly; of these:
+      14403078 mates make up the pairs; of these:
+        10567607 (73.37%) aligned 0 times
+        2595861 (18.02%) aligned exactly 1 time
+        1239610 (8.61%) aligned >1 times
+64.15% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+121_R1_001.clean.fastq.gz bam-ified! Sat Oct 31 03:02:14 EDT 2020
+HISAT2 PE 127_R1_001.clean.fastq.gz Sat Oct 31 03:02:14 EDT 2020
+16571299 reads; of these:
+  16571299 (100.00%) were paired; of these:
+    11488921 (69.33%) aligned concordantly 0 times
+    3656736 (22.07%) aligned concordantly exactly 1 time
+    1425642 (8.60%) aligned concordantly >1 times
+    ----
+    11488921 pairs aligned concordantly 0 times; of these:
+      2489161 (21.67%) aligned discordantly 1 time
+    ----
+    8999760 pairs aligned 0 times concordantly or discordantly; of these:
+      17999520 mates make up the pairs; of these:
+        14765582 (82.03%) aligned 0 times
+        2206049 (12.26%) aligned exactly 1 time
+        1027889 (5.71%) aligned >1 times
+55.45% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+127_R1_001.clean.fastq.gz bam-ified! Sat Oct 31 05:05:27 EDT 2020
+HISAT2 PE 128_R1_001.clean.fastq.gz Sat Oct 31 05:05:27 EDT 2020
+13859037 reads; of these:
+  13859037 (100.00%) were paired; of these:
+    9595095 (69.23%) aligned concordantly 0 times
+    3170992 (22.88%) aligned concordantly exactly 1 time
+    1092950 (7.89%) aligned concordantly >1 times
+    ----
+    9595095 pairs aligned concordantly 0 times; of these:
+      2605847 (27.16%) aligned discordantly 1 time
+    ----
+    6989248 pairs aligned 0 times concordantly or discordantly; of these:
+      13978496 mates make up the pairs; of these:
+        10717906 (76.67%) aligned 0 times
+        2199278 (15.73%) aligned exactly 1 time
+        1061312 (7.59%) aligned >1 times
+61.33% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+128_R1_001.clean.fastq.gz bam-ified! Sat Oct 31 06:48:13 EDT 2020
+HISAT2 PE 129_R1_001.clean.fastq.gz Sat Oct 31 06:48:13 EDT 2020
+13206196 reads; of these:
+  13206196 (100.00%) were paired; of these:
+    9106746 (68.96%) aligned concordantly 0 times
+    3058689 (23.16%) aligned concordantly exactly 1 time
+    1040761 (7.88%) aligned concordantly >1 times
+    ----
+    9106746 pairs aligned concordantly 0 times; of these:
+      2451089 (26.92%) aligned discordantly 1 time
+    ----
+    6655657 pairs aligned 0 times concordantly or discordantly; of these:
+      13311314 mates make up the pairs; of these:
+        10205689 (76.67%) aligned 0 times
+        2097714 (15.76%) aligned exactly 1 time
+        1007911 (7.57%) aligned >1 times
+61.36% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+129_R1_001.clean.fastq.gz bam-ified! Sat Oct 31 08:14:18 EDT 2020
+HISAT2 PE 130_R1_001.clean.fastq.gz Sat Oct 31 08:14:18 EDT 2020
+14162329 reads; of these:
+  14162329 (100.00%) were paired; of these:
+    6603990 (46.63%) aligned concordantly 0 times
+    5355968 (37.82%) aligned concordantly exactly 1 time
+    2202371 (15.55%) aligned concordantly >1 times
+    ----
+    6603990 pairs aligned concordantly 0 times; of these:
+      3282893 (49.71%) aligned discordantly 1 time
+    ----
+    3321097 pairs aligned 0 times concordantly or discordantly; of these:
+      6642194 mates make up the pairs; of these:
+        2138455 (32.20%) aligned 0 times
+        3062564 (46.11%) aligned exactly 1 time
+        1441175 (21.70%) aligned >1 times
+92.45% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+130_R1_001.clean.fastq.gz bam-ified! Sat Oct 31 10:00:57 EDT 2020
+HISAT2 PE 131_R1_001.clean.fastq.gz Sat Oct 31 10:00:57 EDT 2020
+13293825 reads; of these:
+  13293825 (100.00%) were paired; of these:
+    9739909 (73.27%) aligned concordantly 0 times
+    2482682 (18.68%) aligned concordantly exactly 1 time
+    1071234 (8.06%) aligned concordantly >1 times
+    ----
+    9739909 pairs aligned concordantly 0 times; of these:
+      1502180 (15.42%) aligned discordantly 1 time
+    ----
+    8237729 pairs aligned 0 times concordantly or discordantly; of these:
+      16475458 mates make up the pairs; of these:
+        14467231 (87.81%) aligned 0 times
+        1359326 (8.25%) aligned exactly 1 time
+        648901 (3.94%) aligned >1 times
+45.59% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+131_R1_001.clean.fastq.gz bam-ified! Sat Oct 31 11:30:06 EDT 2020
+HISAT2 PE 132_R1_001.clean.fastq.gz Sat Oct 31 11:30:06 EDT 2020
+13809914 reads; of these:
+  13809914 (100.00%) were paired; of these:
+    10642239 (77.06%) aligned concordantly 0 times
+    2573654 (18.64%) aligned concordantly exactly 1 time
+    594021 (4.30%) aligned concordantly >1 times
+    ----
+    10642239 pairs aligned concordantly 0 times; of these:
+      2216350 (20.83%) aligned discordantly 1 time
+    ----
+    8425889 pairs aligned 0 times concordantly or discordantly; of these:
+      16851778 mates make up the pairs; of these:
+        14181303 (84.15%) aligned 0 times
+        1804726 (10.71%) aligned exactly 1 time
+        865749 (5.14%) aligned >1 times
+48.66% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+132_R1_001.clean.fastq.gz bam-ified! Sat Oct 31 12:59:51 EDT 2020
+HISAT2 PE 133_R1_001.clean.fastq.gz Sat Oct 31 12:59:51 EDT 2020
+14505821 reads; of these:
+  14505821 (100.00%) were paired; of these:
+    7514392 (51.80%) aligned concordantly 0 times
+    5082007 (35.03%) aligned concordantly exactly 1 time
+    1909422 (13.16%) aligned concordantly >1 times
+    ----
+    7514392 pairs aligned concordantly 0 times; of these:
+      3269676 (43.51%) aligned discordantly 1 time
+    ----
+    4244716 pairs aligned 0 times concordantly or discordantly; of these:
+      8489432 mates make up the pairs; of these:
+        4008953 (47.22%) aligned 0 times
+        3093353 (36.44%) aligned exactly 1 time
+        1387126 (16.34%) aligned >1 times
+86.18% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+133_R1_001.clean.fastq.gz bam-ified! Sat Oct 31 14:52:54 EDT 2020
+HISAT2 PE 134_R1_001.clean.fastq.gz Sat Oct 31 14:52:54 EDT 2020
+13596112 reads; of these:
+  13596112 (100.00%) were paired; of these:
+    10399548 (76.49%) aligned concordantly 0 times
+    2414636 (17.76%) aligned concordantly exactly 1 time
+    781928 (5.75%) aligned concordantly >1 times
+    ----
+    10399548 pairs aligned concordantly 0 times; of these:
+      1865446 (17.94%) aligned discordantly 1 time
+    ----
+    8534102 pairs aligned 0 times concordantly or discordantly; of these:
+      17068204 mates make up the pairs; of these:
+        14665064 (85.92%) aligned 0 times
+        1643153 (9.63%) aligned exactly 1 time
+        759987 (4.45%) aligned >1 times
+46.07% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+134_R1_001.clean.fastq.gz bam-ified! Sat Oct 31 16:23:30 EDT 2020
+HISAT2 PE 153_R1_001.clean.fastq.gz Sat Oct 31 16:23:30 EDT 2020
+13186807 reads; of these:
+  13186807 (100.00%) were paired; of these:
+    6889445 (52.24%) aligned concordantly 0 times
+    4582231 (34.75%) aligned concordantly exactly 1 time
+    1715131 (13.01%) aligned concordantly >1 times
+    ----
+    6889445 pairs aligned concordantly 0 times; of these:
+      3440984 (49.95%) aligned discordantly 1 time
+    ----
+    3448461 pairs aligned 0 times concordantly or discordantly; of these:
+      6896922 mates make up the pairs; of these:
+        2551877 (37.00%) aligned 0 times
+        2938430 (42.60%) aligned exactly 1 time
+        1406615 (20.39%) aligned >1 times
+90.32% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+153_R1_001.clean.fastq.gz bam-ified! Sat Oct 31 18:04:16 EDT 2020
+HISAT2 PE 1548_R1_001.clean.fastq.gz Sat Oct 31 18:04:16 EDT 2020
+13570117 reads; of these:
+  13570117 (100.00%) were paired; of these:
+    10991312 (81.00%) aligned concordantly 0 times
+    2186107 (16.11%) aligned concordantly exactly 1 time
+    392698 (2.89%) aligned concordantly >1 times
+    ----
+    10991312 pairs aligned concordantly 0 times; of these:
+      4157878 (37.83%) aligned discordantly 1 time
+    ----
+    6833434 pairs aligned 0 times concordantly or discordantly; of these:
+      13666868 mates make up the pairs; of these:
+        8710348 (63.73%) aligned 0 times
+        3263730 (23.88%) aligned exactly 1 time
+        1692790 (12.39%) aligned >1 times
+67.91% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+1548_R1_001.clean.fastq.gz bam-ified! Sat Oct 31 19:31:43 EDT 2020
+HISAT2 PE 154_R1_001.clean.fastq.gz Sat Oct 31 19:31:43 EDT 2020
+18637363 reads; of these:
+  18637363 (100.00%) were paired; of these:
+    11116531 (59.65%) aligned concordantly 0 times
+    6062480 (32.53%) aligned concordantly exactly 1 time
+    1458352 (7.82%) aligned concordantly >1 times
+    ----
+    11116531 pairs aligned concordantly 0 times; of these:
+      5875407 (52.85%) aligned discordantly 1 time
+    ----
+    5241124 pairs aligned 0 times concordantly or discordantly; of these:
+      10482248 mates make up the pairs; of these:
+        3431399 (32.74%) aligned 0 times
+        4713315 (44.96%) aligned exactly 1 time
+        2337534 (22.30%) aligned >1 times
+90.79% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+154_R1_001.clean.fastq.gz bam-ified! Sat Oct 31 21:36:42 EDT 2020
+HISAT2 PE 155_R1_001.clean.fastq.gz Sat Oct 31 21:36:42 EDT 2020
+16751962 reads; of these:
+  16751962 (100.00%) were paired; of these:
+    8951976 (53.44%) aligned concordantly 0 times
+    5837706 (34.85%) aligned concordantly exactly 1 time
+    1962280 (11.71%) aligned concordantly >1 times
+    ----
+    8951976 pairs aligned concordantly 0 times; of these:
+      4521356 (50.51%) aligned discordantly 1 time
+    ----
+    4430620 pairs aligned 0 times concordantly or discordantly; of these:
+      8861240 mates make up the pairs; of these:
+        3008565 (33.95%) aligned 0 times
+        3961697 (44.71%) aligned exactly 1 time
+        1890978 (21.34%) aligned >1 times
+91.02% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+155_R1_001.clean.fastq.gz bam-ified! Sat Oct 31 23:46:35 EDT 2020
+HISAT2 PE 156_R1_001.clean.fastq.gz Sat Oct 31 23:46:35 EDT 2020
+16717897 reads; of these:
+  16717897 (100.00%) were paired; of these:
+    8781766 (52.53%) aligned concordantly 0 times
+    6080944 (36.37%) aligned concordantly exactly 1 time
+    1855187 (11.10%) aligned concordantly >1 times
+    ----
+    8781766 pairs aligned concordantly 0 times; of these:
+      4221962 (48.08%) aligned discordantly 1 time
+    ----
+    4559804 pairs aligned 0 times concordantly or discordantly; of these:
+      9119608 mates make up the pairs; of these:
+        3891005 (42.67%) aligned 0 times
+        3500896 (38.39%) aligned exactly 1 time
+        1727707 (18.94%) aligned >1 times
+88.36% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+156_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 01:12:22 EDT 2020
+HISAT2 PE 157_R1_001.clean.fastq.gz Sun Nov 1 01:12:22 EDT 2020
+13851434 reads; of these:
+  13851434 (100.00%) were paired; of these:
+    10699809 (77.25%) aligned concordantly 0 times
+    2530409 (18.27%) aligned concordantly exactly 1 time
+    621216 (4.48%) aligned concordantly >1 times
+    ----
+    10699809 pairs aligned concordantly 0 times; of these:
+      2429499 (22.71%) aligned discordantly 1 time
+    ----
+    8270310 pairs aligned 0 times concordantly or discordantly; of these:
+      16540620 mates make up the pairs; of these:
+        13650693 (82.53%) aligned 0 times
+        1928892 (11.66%) aligned exactly 1 time
+        961035 (5.81%) aligned >1 times
+50.72% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+157_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 01:11:36 EST 2020
+HISAT2 PE 158_R1_001.clean.fastq.gz Sun Nov 1 01:11:36 EST 2020
+13354481 reads; of these:
+  13354481 (100.00%) were paired; of these:
+    6000837 (44.94%) aligned concordantly 0 times
+    5003183 (37.46%) aligned concordantly exactly 1 time
+    2350461 (17.60%) aligned concordantly >1 times
+    ----
+    6000837 pairs aligned concordantly 0 times; of these:
+      2634475 (43.90%) aligned discordantly 1 time
+    ----
+    3366362 pairs aligned 0 times concordantly or discordantly; of these:
+      6732724 mates make up the pairs; of these:
+        3099675 (46.04%) aligned 0 times
+        2502165 (37.16%) aligned exactly 1 time
+        1130884 (16.80%) aligned >1 times
+88.39% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+158_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 02:19:24 EST 2020
+HISAT2 PE 159_R1_001.clean.fastq.gz Sun Nov 1 02:19:24 EST 2020
+14457629 reads; of these:
+  14457629 (100.00%) were paired; of these:
+    9910642 (68.55%) aligned concordantly 0 times
+    3463335 (23.96%) aligned concordantly exactly 1 time
+    1083652 (7.50%) aligned concordantly >1 times
+    ----
+    9910642 pairs aligned concordantly 0 times; of these:
+      2997276 (30.24%) aligned discordantly 1 time
+    ----
+    6913366 pairs aligned 0 times concordantly or discordantly; of these:
+      13826732 mates make up the pairs; of these:
+        10099610 (73.04%) aligned 0 times
+        2523235 (18.25%) aligned exactly 1 time
+        1203887 (8.71%) aligned >1 times
+65.07% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+159_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 03:24:30 EST 2020
+HISAT2 PE 160_R1_001.clean.fastq.gz Sun Nov 1 03:24:30 EST 2020
+14489484 reads; of these:
+  14489484 (100.00%) were paired; of these:
+    8947092 (61.75%) aligned concordantly 0 times
+    4395053 (30.33%) aligned concordantly exactly 1 time
+    1147339 (7.92%) aligned concordantly >1 times
+    ----
+    8947092 pairs aligned concordantly 0 times; of these:
+      4339673 (48.50%) aligned discordantly 1 time
+    ----
+    4607419 pairs aligned 0 times concordantly or discordantly; of these:
+      9214838 mates make up the pairs; of these:
+        3959740 (42.97%) aligned 0 times
+        3516803 (38.16%) aligned exactly 1 time
+        1738295 (18.86%) aligned >1 times
+86.34% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+160_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 04:33:33 EST 2020
+HISAT2 PE 1628_R1_001.clean.fastq.gz Sun Nov 1 04:33:33 EST 2020
+16640766 reads; of these:
+  16640766 (100.00%) were paired; of these:
+    12757776 (76.67%) aligned concordantly 0 times
+    3282623 (19.73%) aligned concordantly exactly 1 time
+    600367 (3.61%) aligned concordantly >1 times
+    ----
+    12757776 pairs aligned concordantly 0 times; of these:
+      5630198 (44.13%) aligned discordantly 1 time
+    ----
+    7127578 pairs aligned 0 times concordantly or discordantly; of these:
+      14255156 mates make up the pairs; of these:
+        7416112 (52.02%) aligned 0 times
+        4501698 (31.58%) aligned exactly 1 time
+        2337346 (16.40%) aligned >1 times
+77.72% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+1628_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 05:44:17 EST 2020
+HISAT2 PE 162_R1_001.clean.fastq.gz Sun Nov 1 05:44:17 EST 2020
+14700108 reads; of these:
+  14700108 (100.00%) were paired; of these:
+    8780121 (59.73%) aligned concordantly 0 times
+    4709751 (32.04%) aligned concordantly exactly 1 time
+    1210236 (8.23%) aligned concordantly >1 times
+    ----
+    8780121 pairs aligned concordantly 0 times; of these:
+      3712252 (42.28%) aligned discordantly 1 time
+    ----
+    5067869 pairs aligned 0 times concordantly or discordantly; of these:
+      10135738 mates make up the pairs; of these:
+        5340290 (52.69%) aligned 0 times
+        3195529 (31.53%) aligned exactly 1 time
+        1599919 (15.78%) aligned >1 times
+81.84% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+162_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 06:54:44 EST 2020
+HISAT2 PE 163_R1_001.clean.fastq.gz Sun Nov 1 06:54:44 EST 2020
+13185051 reads; of these:
+  13185051 (100.00%) were paired; of these:
+    8363972 (63.44%) aligned concordantly 0 times
+    3968932 (30.10%) aligned concordantly exactly 1 time
+    852147 (6.46%) aligned concordantly >1 times
+    ----
+    8363972 pairs aligned concordantly 0 times; of these:
+      4238723 (50.68%) aligned discordantly 1 time
+    ----
+    4125249 pairs aligned 0 times concordantly or discordantly; of these:
+      8250498 mates make up the pairs; of these:
+        3061221 (37.10%) aligned 0 times
+        3429234 (41.56%) aligned exactly 1 time
+        1760043 (21.33%) aligned >1 times
+88.39% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+163_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 07:53:36 EST 2020
+HISAT2 PE 164_R1_001.clean.fastq.gz Sun Nov 1 07:53:36 EST 2020
+12773001 reads; of these:
+  12773001 (100.00%) were paired; of these:
+    7863206 (61.56%) aligned concordantly 0 times
+    4059783 (31.78%) aligned concordantly exactly 1 time
+    850012 (6.65%) aligned concordantly >1 times
+    ----
+    7863206 pairs aligned concordantly 0 times; of these:
+      4103963 (52.19%) aligned discordantly 1 time
+    ----
+    3759243 pairs aligned 0 times concordantly or discordantly; of these:
+      7518486 mates make up the pairs; of these:
+        2506448 (33.34%) aligned 0 times
+        3298574 (43.87%) aligned exactly 1 time
+        1713464 (22.79%) aligned >1 times
+90.19% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+164_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 08:52:11 EST 2020
+HISAT2 PE 165_R1_001.clean.fastq.gz Sun Nov 1 08:52:11 EST 2020
+16091087 reads; of these:
+  16091087 (100.00%) were paired; of these:
+    9643364 (59.93%) aligned concordantly 0 times
+    5316567 (33.04%) aligned concordantly exactly 1 time
+    1131156 (7.03%) aligned concordantly >1 times
+    ----
+    9643364 pairs aligned concordantly 0 times; of these:
+      4937352 (51.20%) aligned discordantly 1 time
+    ----
+    4706012 pairs aligned 0 times concordantly or discordantly; of these:
+      9412024 mates make up the pairs; of these:
+        3351721 (35.61%) aligned 0 times
+        4003412 (42.54%) aligned exactly 1 time
+        2056891 (21.85%) aligned >1 times
+89.59% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+165_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 10:05:29 EST 2020
+HISAT2 PE 166_R1_001.clean.fastq.gz Sun Nov 1 10:05:29 EST 2020
+14487569 reads; of these:
+  14487569 (100.00%) were paired; of these:
+    9005163 (62.16%) aligned concordantly 0 times
+    4507959 (31.12%) aligned concordantly exactly 1 time
+    974447 (6.73%) aligned concordantly >1 times
+    ----
+    9005163 pairs aligned concordantly 0 times; of these:
+      4466023 (49.59%) aligned discordantly 1 time
+    ----
+    4539140 pairs aligned 0 times concordantly or discordantly; of these:
+      9078280 mates make up the pairs; of these:
+        3694013 (40.69%) aligned 0 times
+        3553186 (39.14%) aligned exactly 1 time
+        1831081 (20.17%) aligned >1 times
+87.25% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+166_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 11:11:19 EST 2020
+HISAT2 PE 167_R1_001.clean.fastq.gz Sun Nov 1 11:11:19 EST 2020
+14479586 reads; of these:
+  14479586 (100.00%) were paired; of these:
+    9575451 (66.13%) aligned concordantly 0 times
+    4091937 (28.26%) aligned concordantly exactly 1 time
+    812198 (5.61%) aligned concordantly >1 times
+    ----
+    9575451 pairs aligned concordantly 0 times; of these:
+      4278337 (44.68%) aligned discordantly 1 time
+    ----
+    5297114 pairs aligned 0 times concordantly or discordantly; of these:
+      10594228 mates make up the pairs; of these:
+        5392189 (50.90%) aligned 0 times
+        3453739 (32.60%) aligned exactly 1 time
+        1748300 (16.50%) aligned >1 times
+81.38% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+167_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 12:16:09 EST 2020
+HISAT2 PE 168_R1_001.clean.fastq.gz Sun Nov 1 12:16:09 EST 2020
+14473684 reads; of these:
+  14473684 (100.00%) were paired; of these:
+    9102928 (62.89%) aligned concordantly 0 times
+    4349819 (30.05%) aligned concordantly exactly 1 time
+    1020937 (7.05%) aligned concordantly >1 times
+    ----
+    9102928 pairs aligned concordantly 0 times; of these:
+      3656334 (40.17%) aligned discordantly 1 time
+    ----
+    5446594 pairs aligned 0 times concordantly or discordantly; of these:
+      10893188 mates make up the pairs; of these:
+        6500066 (59.67%) aligned 0 times
+        2919386 (26.80%) aligned exactly 1 time
+        1473736 (13.53%) aligned >1 times
+77.55% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+168_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 13:21:33 EST 2020
+HISAT2 PE 169_R1_001.clean.fastq.gz Sun Nov 1 13:21:33 EST 2020
+11824893 reads; of these:
+  11824893 (100.00%) were paired; of these:
+    6386486 (54.01%) aligned concordantly 0 times
+    4340642 (36.71%) aligned concordantly exactly 1 time
+    1097765 (9.28%) aligned concordantly >1 times
+    ----
+    6386486 pairs aligned concordantly 0 times; of these:
+      3265731 (51.14%) aligned discordantly 1 time
+    ----
+    3120755 pairs aligned 0 times concordantly or discordantly; of these:
+      6241510 mates make up the pairs; of these:
+        2252194 (36.08%) aligned 0 times
+        2680246 (42.94%) aligned exactly 1 time
+        1309070 (20.97%) aligned >1 times
+90.48% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+169_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 14:16:52 EST 2020
+HISAT2 PE 179_R1_001.clean.fastq.gz Sun Nov 1 14:16:52 EST 2020
+12913165 reads; of these:
+  12913165 (100.00%) were paired; of these:
+    8856163 (68.58%) aligned concordantly 0 times
+    3291251 (25.49%) aligned concordantly exactly 1 time
+    765751 (5.93%) aligned concordantly >1 times
+    ----
+    8856163 pairs aligned concordantly 0 times; of these:
+      3121458 (35.25%) aligned discordantly 1 time
+    ----
+    5734705 pairs aligned 0 times concordantly or discordantly; of these:
+      11469410 mates make up the pairs; of these:
+        7626590 (66.50%) aligned 0 times
+        2504435 (21.84%) aligned exactly 1 time
+        1338385 (11.67%) aligned >1 times
+70.47% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+179_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 15:14:05 EST 2020
+HISAT2 PE 180_R1_001.clean.fastq.gz Sun Nov 1 15:14:05 EST 2020
+11919642 reads; of these:
+  11919642 (100.00%) were paired; of these:
+    8672371 (72.76%) aligned concordantly 0 times
+    2671060 (22.41%) aligned concordantly exactly 1 time
+    576211 (4.83%) aligned concordantly >1 times
+    ----
+    8672371 pairs aligned concordantly 0 times; of these:
+      2669007 (30.78%) aligned discordantly 1 time
+    ----
+    6003364 pairs aligned 0 times concordantly or discordantly; of these:
+      12006728 mates make up the pairs; of these:
+        8777849 (73.11%) aligned 0 times
+        2107969 (17.56%) aligned exactly 1 time
+        1120910 (9.34%) aligned >1 times
+63.18% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+180_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 16:07:00 EST 2020
+HISAT2 PE 181_R1_001.clean.fastq.gz Sun Nov 1 16:07:00 EST 2020
+11187477 reads; of these:
+  11187477 (100.00%) were paired; of these:
+    6613026 (59.11%) aligned concordantly 0 times
+    3681012 (32.90%) aligned concordantly exactly 1 time
+    893439 (7.99%) aligned concordantly >1 times
+    ----
+    6613026 pairs aligned concordantly 0 times; of these:
+      3179540 (48.08%) aligned discordantly 1 time
+    ----
+    3433486 pairs aligned 0 times concordantly or discordantly; of these:
+      6866972 mates make up the pairs; of these:
+        2973769 (43.31%) aligned 0 times
+        2517445 (36.66%) aligned exactly 1 time
+        1375758 (20.03%) aligned >1 times
+86.71% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+181_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 16:59:12 EST 2020
+HISAT2 PE 182_R1_001.clean.fastq.gz Sun Nov 1 16:59:12 EST 2020
+17048929 reads; of these:
+  17048929 (100.00%) were paired; of these:
+    9934487 (58.27%) aligned concordantly 0 times
+    5863718 (34.39%) aligned concordantly exactly 1 time
+    1250724 (7.34%) aligned concordantly >1 times
+    ----
+    9934487 pairs aligned concordantly 0 times; of these:
+      5008413 (50.41%) aligned discordantly 1 time
+    ----
+    4926074 pairs aligned 0 times concordantly or discordantly; of these:
+      9852148 mates make up the pairs; of these:
+        3654305 (37.09%) aligned 0 times
+        4033966 (40.95%) aligned exactly 1 time
+        2163877 (21.96%) aligned >1 times
+89.28% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+182_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 18:16:30 EST 2020
+HISAT2 PE 183_R1_001.clean.fastq.gz Sun Nov 1 18:16:30 EST 2020
+11526429 reads; of these:
+  11526429 (100.00%) were paired; of these:
+    6779964 (58.82%) aligned concordantly 0 times
+    3833545 (33.26%) aligned concordantly exactly 1 time
+    912920 (7.92%) aligned concordantly >1 times
+    ----
+    6779964 pairs aligned concordantly 0 times; of these:
+      3375087 (49.78%) aligned discordantly 1 time
+    ----
+    3404877 pairs aligned 0 times concordantly or discordantly; of these:
+      6809754 mates make up the pairs; of these:
+        2686513 (39.45%) aligned 0 times
+        2675727 (39.29%) aligned exactly 1 time
+        1447514 (21.26%) aligned >1 times
+88.35% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+183_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 19:09:39 EST 2020
+HISAT2 PE 184_R1_001.clean.fastq.gz Sun Nov 1 19:09:39 EST 2020
+12030136 reads; of these:
+  12030136 (100.00%) were paired; of these:
+    8414976 (69.95%) aligned concordantly 0 times
+    3011784 (25.04%) aligned concordantly exactly 1 time
+    603376 (5.02%) aligned concordantly >1 times
+    ----
+    8414976 pairs aligned concordantly 0 times; of these:
+      3045906 (36.20%) aligned discordantly 1 time
+    ----
+    5369070 pairs aligned 0 times concordantly or discordantly; of these:
+      10738140 mates make up the pairs; of these:
+        7085681 (65.99%) aligned 0 times
+        2365593 (22.03%) aligned exactly 1 time
+        1286866 (11.98%) aligned >1 times
+70.55% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+184_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 20:03:09 EST 2020
+HISAT2 PE 185_R1_001.clean.fastq.gz Sun Nov 1 20:03:09 EST 2020
+11744187 reads; of these:
+  11744187 (100.00%) were paired; of these:
+    7237331 (61.62%) aligned concordantly 0 times
+    3581638 (30.50%) aligned concordantly exactly 1 time
+    925218 (7.88%) aligned concordantly >1 times
+    ----
+    7237331 pairs aligned concordantly 0 times; of these:
+      2831556 (39.12%) aligned discordantly 1 time
+    ----
+    4405775 pairs aligned 0 times concordantly or discordantly; of these:
+      8811550 mates make up the pairs; of these:
+        5266765 (59.77%) aligned 0 times
+        2314911 (26.27%) aligned exactly 1 time
+        1229874 (13.96%) aligned >1 times
+77.58% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+185_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 20:57:35 EST 2020
+HISAT2 PE 186_R1_001.clean.fastq.gz Sun Nov 1 20:57:35 EST 2020
+13327721 reads; of these:
+  13327721 (100.00%) were paired; of these:
+    8886350 (66.68%) aligned concordantly 0 times
+    3605682 (27.05%) aligned concordantly exactly 1 time
+    835689 (6.27%) aligned concordantly >1 times
+    ----
+    8886350 pairs aligned concordantly 0 times; of these:
+      3652183 (41.10%) aligned discordantly 1 time
+    ----
+    5234167 pairs aligned 0 times concordantly or discordantly; of these:
+      10468334 mates make up the pairs; of these:
+        5965430 (56.99%) aligned 0 times
+        2963480 (28.31%) aligned exactly 1 time
+        1539424 (14.71%) aligned >1 times
+77.62% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+186_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 21:56:22 EST 2020
+HISAT2 PE 212_R1_001.clean.fastq.gz Sun Nov 1 21:56:22 EST 2020
+13858209 reads; of these:
+  13858209 (100.00%) were paired; of these:
+    9398388 (67.82%) aligned concordantly 0 times
+    3701692 (26.71%) aligned concordantly exactly 1 time
+    758129 (5.47%) aligned concordantly >1 times
+    ----
+    9398388 pairs aligned concordantly 0 times; of these:
+      3791008 (40.34%) aligned discordantly 1 time
+    ----
+    5607380 pairs aligned 0 times concordantly or discordantly; of these:
+      11214760 mates make up the pairs; of these:
+        6496469 (57.93%) aligned 0 times
+        3115770 (27.78%) aligned exactly 1 time
+        1602521 (14.29%) aligned >1 times
+76.56% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+212_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 22:56:18 EST 2020
+HISAT2 PE 215_R1_001.clean.fastq.gz Sun Nov 1 22:56:18 EST 2020
+12766725 reads; of these:
+  12766725 (100.00%) were paired; of these:
+    9403257 (73.65%) aligned concordantly 0 times
+    2763469 (21.65%) aligned concordantly exactly 1 time
+    599999 (4.70%) aligned concordantly >1 times
+    ----
+    9403257 pairs aligned concordantly 0 times; of these:
+      2738420 (29.12%) aligned discordantly 1 time
+    ----
+    6664837 pairs aligned 0 times concordantly or discordantly; of these:
+      13329674 mates make up the pairs; of these:
+        9963065 (74.74%) aligned 0 times
+        2188585 (16.42%) aligned exactly 1 time
+        1178024 (8.84%) aligned >1 times
+60.98% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+215_R1_001.clean.fastq.gz bam-ified! Sun Nov 1 23:52:31 EST 2020
+HISAT2 PE 218_R1_001.clean.fastq.gz Sun Nov 1 23:52:31 EST 2020
+15156983 reads; of these:
+  15156983 (100.00%) were paired; of these:
+    9048459 (59.70%) aligned concordantly 0 times
+    5068429 (33.44%) aligned concordantly exactly 1 time
+    1040095 (6.86%) aligned concordantly >1 times
+    ----
+    9048459 pairs aligned concordantly 0 times; of these:
+      4690062 (51.83%) aligned discordantly 1 time
+    ----
+    4358397 pairs aligned 0 times concordantly or discordantly; of these:
+      8716794 mates make up the pairs; of these:
+        2678799 (30.73%) aligned 0 times
+        3983498 (45.70%) aligned exactly 1 time
+        2054497 (23.57%) aligned >1 times
+91.16% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+218_R1_001.clean.fastq.gz bam-ified! Mon Nov 2 00:59:15 EST 2020
+HISAT2 PE 221_R1_001.clean.fastq.gz Mon Nov 2 00:59:15 EST 2020
+13847948 reads; of these:
+  13847948 (100.00%) were paired; of these:
+    8797388 (63.53%) aligned concordantly 0 times
+    4264277 (30.79%) aligned concordantly exactly 1 time
+    786283 (5.68%) aligned concordantly >1 times
+    ----
+    8797388 pairs aligned concordantly 0 times; of these:
+      4557268 (51.80%) aligned discordantly 1 time
+    ----
+    4240120 pairs aligned 0 times concordantly or discordantly; of these:
+      8480240 mates make up the pairs; of these:
+        2679144 (31.59%) aligned 0 times
+        3846204 (45.35%) aligned exactly 1 time
+        1954892 (23.05%) aligned >1 times
+90.33% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+221_R1_001.clean.fastq.gz bam-ified! Mon Nov 2 01:58:30 EST 2020
+HISAT2 PE 359_R1_001.clean.fastq.gz Mon Nov 2 01:58:30 EST 2020
+14742426 reads; of these:
+  14742426 (100.00%) were paired; of these:
+    9697221 (65.78%) aligned concordantly 0 times
+    4260771 (28.90%) aligned concordantly exactly 1 time
+    784434 (5.32%) aligned concordantly >1 times
+    ----
+    9697221 pairs aligned concordantly 0 times; of these:
+      5178762 (53.40%) aligned discordantly 1 time
+    ----
+    4518459 pairs aligned 0 times concordantly or discordantly; of these:
+      9036918 mates make up the pairs; of these:
+        2701153 (29.89%) aligned 0 times
+        4149791 (45.92%) aligned exactly 1 time
+        2185974 (24.19%) aligned >1 times
+90.84% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+359_R1_001.clean.fastq.gz bam-ified! Mon Nov 2 03:02:39 EST 2020
+HISAT2 PE 361_R1_001.clean.fastq.gz Mon Nov 2 03:02:39 EST 2020
+14274364 reads; of these:
+  14274364 (100.00%) were paired; of these:
+    9063000 (63.49%) aligned concordantly 0 times
+    4400177 (30.83%) aligned concordantly exactly 1 time
+    811187 (5.68%) aligned concordantly >1 times
+    ----
+    9063000 pairs aligned concordantly 0 times; of these:
+      4858463 (53.61%) aligned discordantly 1 time
+    ----
+    4204537 pairs aligned 0 times concordantly or discordantly; of these:
+      8409074 mates make up the pairs; of these:
+        2409011 (28.65%) aligned 0 times
+        3947026 (46.94%) aligned exactly 1 time
+        2053037 (24.41%) aligned >1 times
+91.56% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+361_R1_001.clean.fastq.gz bam-ified! Mon Nov 2 04:03:58 EST 2020
+HISAT2 PE 363_R1_001.clean.fastq.gz Mon Nov 2 04:03:58 EST 2020
+17167695 reads; of these:
+  17167695 (100.00%) were paired; of these:
+    10412678 (60.65%) aligned concordantly 0 times
+    5606164 (32.66%) aligned concordantly exactly 1 time
+    1148853 (6.69%) aligned concordantly >1 times
+    ----
+    10412678 pairs aligned concordantly 0 times; of these:
+      5349601 (51.38%) aligned discordantly 1 time
+    ----
+    5063077 pairs aligned 0 times concordantly or discordantly; of these:
+      10126154 mates make up the pairs; of these:
+        3391427 (33.49%) aligned 0 times
+        4414312 (43.59%) aligned exactly 1 time
+        2320415 (22.92%) aligned >1 times
+90.12% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+363_R1_001.clean.fastq.gz bam-ified! Mon Nov 2 05:18:12 EST 2020
+HISAT2 PE 365_R1_001.clean.fastq.gz Mon Nov 2 05:18:12 EST 2020
+15092858 reads; of these:
+  15092858 (100.00%) were paired; of these:
+    9225695 (61.13%) aligned concordantly 0 times
+    4876469 (32.31%) aligned concordantly exactly 1 time
+    990694 (6.56%) aligned concordantly >1 times
+    ----
+    9225695 pairs aligned concordantly 0 times; of these:
+      4891800 (53.02%) aligned discordantly 1 time
+    ----
+    4333895 pairs aligned 0 times concordantly or discordantly; of these:
+      8667790 mates make up the pairs; of these:
+        2538955 (29.29%) aligned 0 times
+        4024825 (46.43%) aligned exactly 1 time
+        2104010 (24.27%) aligned >1 times
+91.59% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+365_R1_001.clean.fastq.gz bam-ified! Mon Nov 2 06:25:37 EST 2020
+HISAT2 PE 367_R1_001.clean.fastq.gz Mon Nov 2 06:25:37 EST 2020
+13882376 reads; of these:
+  13882376 (100.00%) were paired; of these:
+    8587308 (61.86%) aligned concordantly 0 times
+    4396798 (31.67%) aligned concordantly exactly 1 time
+    898270 (6.47%) aligned concordantly >1 times
+    ----
+    8587308 pairs aligned concordantly 0 times; of these:
+      4553422 (53.03%) aligned discordantly 1 time
+    ----
+    4033886 pairs aligned 0 times concordantly or discordantly; of these:
+      8067772 mates make up the pairs; of these:
+        2450735 (30.38%) aligned 0 times
+        3696105 (45.81%) aligned exactly 1 time
+        1920932 (23.81%) aligned >1 times
+91.17% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+367_R1_001.clean.fastq.gz bam-ified! Mon Nov 2 07:26:23 EST 2020
+HISAT2 PE 371_R1_001.clean.fastq.gz Mon Nov 2 07:26:23 EST 2020
+14862977 reads; of these:
+  14862977 (100.00%) were paired; of these:
+    9146633 (61.54%) aligned concordantly 0 times
+    4801189 (32.30%) aligned concordantly exactly 1 time
+    915155 (6.16%) aligned concordantly >1 times
+    ----
+    9146633 pairs aligned concordantly 0 times; of these:
+      4964836 (54.28%) aligned discordantly 1 time
+    ----
+    4181797 pairs aligned 0 times concordantly or discordantly; of these:
+      8363594 mates make up the pairs; of these:
+        2297913 (27.48%) aligned 0 times
+        3980342 (47.59%) aligned exactly 1 time
+        2085339 (24.93%) aligned >1 times
+92.27% overall alignment rate
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+371_R1_001.clean.fastq.gz bam-ified! Mon Nov 2 08:31:33 EST 2020
+HISAT2 PE 373_R1_001.clean.fastq.gz Mon Nov 2 08:31:33 EST 2020
+11650596 reads; of these:
+  11650596 (100.00%) were paired; of these:
+    7012474 (60.19%) aligned concordantly 0 times
+    3908032 (33.54%) aligned concordantly exactly 1 time
+    730090 (6.27%) aligned concordantly >1 times
+    ----
+    7012474 pairs aligned concordantly 0 times; of these:
+      3650367 (52.06%) aligned discordantly 1 time
+    ----
+    3362107 pairs aligned 0 times concordantly or discordantly; of these:
+      6724214 mates make up the pairs; of these:
+        2279650 (33.90%) aligned 0 times
+        2910090 (43.28%) aligned exactly 1 time
+        1534474 (22.82%) aligned >1 times
+90.22% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+373_R1_001.clean.fastq.gz bam-ified! Mon Nov 2 09:22:10 EST 2020
+HISAT2 PE 375_R1_001.clean.fastq.gz Mon Nov 2 09:22:10 EST 2020
+12509060 reads; of these:
+  12509060 (100.00%) were paired; of these:
+    7943386 (63.50%) aligned concordantly 0 times
+    3857737 (30.84%) aligned concordantly exactly 1 time
+    707937 (5.66%) aligned concordantly >1 times
+    ----
+    7943386 pairs aligned concordantly 0 times; of these:
+      4098404 (51.60%) aligned discordantly 1 time
+    ----
+    3844982 pairs aligned 0 times concordantly or discordantly; of these:
+      7689964 mates make up the pairs; of these:
+        2659539 (34.58%) aligned 0 times
+        3292796 (42.82%) aligned exactly 1 time
+        1737629 (22.60%) aligned >1 times
+89.37% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+375_R1_001.clean.fastq.gz bam-ified! Mon Nov 2 10:15:02 EST 2020
+HISAT2 PE 379_R1_001.clean.fastq.gz Mon Nov 2 10:15:02 EST 2020
+13669693 reads; of these:
+  13669693 (100.00%) were paired; of these:
+    8854870 (64.78%) aligned concordantly 0 times
+    4048602 (29.62%) aligned concordantly exactly 1 time
+    766221 (5.61%) aligned concordantly >1 times
+    ----
+    8854870 pairs aligned concordantly 0 times; of these:
+      4854383 (54.82%) aligned discordantly 1 time
+    ----
+    4000487 pairs aligned 0 times concordantly or discordantly; of these:
+      8000974 mates make up the pairs; of these:
+        2007911 (25.10%) aligned 0 times
+        3922656 (49.03%) aligned exactly 1 time
+        2070407 (25.88%) aligned >1 times
+92.66% overall alignment rate
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+379_R1_001.clean.fastq.gz bam-ified! Mon Nov 2 11:14:14 EST 2020

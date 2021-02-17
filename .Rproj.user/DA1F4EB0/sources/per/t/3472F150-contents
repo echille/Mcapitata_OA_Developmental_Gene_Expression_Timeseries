@@ -1,0 +1,140 @@
+---
+title: "Planula GO Term Enrichment Analysis"
+author: "Erin Chille"
+date: "2021/02/16"
+output: html_document
+---
+
+Load necessary libraries
+```{r}
+library(goseq)
+library(tidyverse)
+```
+
+Import the data files 
+```{r}
+#treatment information
+treatmentinfo <- read.csv("Sample_Info/RNAseq_data.csv", header = TRUE, sep = ",")
+str(treatmentinfo)
+head(treatmentinfo)
+
+#gene count matrix
+gcount <- as.data.frame(read.csv("1-QC-Align-Assemble/Output/gene_count_matrix.csv", row.names="gene_id"))
+gcount <- gcount[ ,treatmentinfo$sample_id] #remove samples not in the treatment information csv (i.e. not in experiment)
+gcount$gene_id <- rownames(gcount)
+rownames(gcount) <- NULL
+dim(gcount)
+head(gcount)
+
+#DESeq2 and clustering results
+DEG.res <- read.csv("2-Differential-Gene-Expression-Analysis/Output/pln_DEGs_all.csv")[,-1]
+str(DEG.res)
+head(DEG.res)
+
+#transcript annotations
+annot <- read_tsv( "0-BLAST-GO-KO/Output/200824_Mcap_Blast_GO_KO.tsv", col_names = TRUE) #biological annotation information
+Go.ref <- subset(annot, select= c(gene_id, length)) #Select only relevant information
+
+#Filter gcount by available annotations
+Go.ref <- merge(gcount, Go.ref, by = "gene_id")
+```
+
+Make a dataframe containing the gene_ids and cluster for each cluster.
+```{r}
+#Select only gene_id and cluster from DEseq2 res
+DEGclust <- subset(DEG.res, select=c(gene_id, cluster))
+DEGclust <- unique(DEGclust)
+
+clust1 <- filter(DEGclust, cluster=="1")
+clust2 <- filter(DEGclust, cluster=="2")
+```
+
+
+```{r}
+#Make ID and length vectors
+Go.ref <- unique(Go.ref)
+dim(Go.ref)
+IDvector <- Go.ref$gene_id
+lengthVector <- Go.ref$length
+
+#Cluster 1
+clust1.genes <- as.vector(clust1$gene_id)
+clust1.genes=as.integer(Go.ref$gene_id%in%clust1.genes)
+names(clust1.genes)=Go.ref$gene_id
+length(clust1.genes)
+length(names(clust1.genes))
+length(unique(names(clust1.genes)))
+
+#Cluster 2
+clust2.genes <- as.vector(clust2$gene_id)
+clust2.genes=as.integer(Go.ref$gene_id%in%clust2.genes)
+names(clust2.genes)=Go.ref$gene_id
+length(clust1.genes)
+
+pwf.C1<-nullp(DEgenes=clust1.genes, id=IDvector, bias.data=lengthVector) #weight vector by length of gene
+pwf.C2<-nullp(clust2.genes, IDvector, bias.data=lengthVector) #weight vector by length of gene
+```
+Prepare GO term dataframe
+```{r}
+GO.annot <- select(annot, gene_id, GO_IDs)
+splitted <- strsplit(as.character(GO.annot$GO_IDs), ";") #split into multiple GO ids
+GO.terms <- data.frame(v1 = rep.int(GO.annot$gene_id, sapply(splitted, length)), v2 = unlist(splitted)) #list all genes with each of their GO terms in a single row
+colnames(GO.terms) <- c("gene_id", "GO.ID")
+head(GO.terms)
+tail(GO.terms)
+
+GO.terms$GO.ID<- as.character(GO.terms$GO.ID)
+GO.terms$GO.ID <- replace_na(GO.terms$GO.ID, "unknown")
+GO.terms$GO.ID <- as.factor(GO.terms$GO.ID)
+GO.terms$gene_id <- as.factor(GO.terms$gene_id)
+GO.terms$GO.ID <- gsub(" ", "", GO.terms$GO.ID)
+GO.terms <- unique(GO.terms)
+
+dim(GO.terms)
+head(GO.terms, 10)
+tail(GO.terms, 10)
+```
+
+Find enriched GO terms, "selection-unbiased testing for category enrichment amongst significantly expressed genes for RNA-seq data"
+```{r, warning=FALSE, message=FALSE}
+GOwall.C1 <- goseq(pwf.C1, GOref$gene_id, gene2cat=GO.terms, test.cats=c("GO:CC", "GO:BP", "GO:MF"), method="Wallenius", use_genes_without_cat=TRUE)
+GOwall.C2 <- goseq(pwf.C2, GOref$gene_id, gene2cat=GO.terms, test.cats=c("GO:CC", "GO:BP", "GO:MF"), method="Wallenius", use_genes_without_cat=TRUE)
+```
+
+---
+
+Find only enriched GO terms that are statistically significant at cutoff
+```{r}
+C1.GO.05<-GOwall.C1$category[GOwall.C1$over_represented_pvalue<.05]
+C1.GO.05<-data.frame(C1.GO.05)
+colnames(C1.GO.05) <- c("category")
+C1.GO.05 <- merge(C1.GO.05, GOwall.C1, by="category")
+C1.GO.05 <- C1.GO.05[order(C1.GO.05$ontology, C1.GO.05$over_represented_pvalue, -C1.GO.05$numDEInCat),]
+C1.GO.05$term <- as.factor(C1.GO.05$term)
+nrow(filter(C1.GO.05, ontology=="BP")) #number sig BP terms
+nrow(filter(C1.GO.05, ontology=="MF")) #number sig MF terms
+
+C2.GO.05<-GOwall.C2$category[GOwall.C2$over_represented_pvalue<.05]
+C2.GO.05<-data.frame(C2.GO.05)
+colnames(C2.GO.05) <- c("category")
+C2.GO.05 <- merge(C2.GO.05, GOwall.C2, by="category")
+C2.GO.05 <- C2.GO.05[order(C2.GO.05$ontology, C2.GO.05$over_represented_pvalue, -C2.GO.05$numDEInCat),]
+C2.GO.05$term <- as.factor(C2.GO.05$term)
+nrow(filter(C2.GO.05, ontology=="BP")) #number sig BP terms
+nrow(filter(C2.GO.05, ontology=="MF")) #number sig MF terms
+```
+
+Correct any un-annotated terms/ontologies
+```{r}
+NAs.ontology <- C1.GO.05 %>% subset(is.na(term))
+print(NAs.ontology)
+NAs.ontology <- C2.GO.05 %>% subset(is.na(term))
+print(NAs.ontology)
+```
+*There were no un-annotated functions except genes with unknown functions*
+
+Save significant terms
+```{r, warning=FALSE}
+write.csv(C1.GO.05, file = "3-Planula-GO-Enrichment-Analysis/Output/GO.05.C1.csv", row.names = FALSE)
+write.csv(C2.GO.05, file = "3-Planula-GO-Enrichment-Analysis/Output/GO.05.C2.csv", row.names = FALSE)
+```

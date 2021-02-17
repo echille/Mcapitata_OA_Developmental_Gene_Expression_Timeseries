@@ -1,0 +1,26 @@
+{
+    "id": "3472F150",
+    "path": "~/Documents/Putnam_Lab.nosync/Mcapitata_OA_Developmental_Gene_Expression_Timeseries/3-Planula-GO-Enrichment-Analysis/Planula_GO_Term_Enrichment_Analysis.Rmd",
+    "project_path": "3-Planula-GO-Enrichment-Analysis/Planula_GO_Term_Enrichment_Analysis.Rmd",
+    "type": "r_markdown",
+    "hash": "3715274169",
+    "contents": "",
+    "dirty": false,
+    "created": 1613531439386.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "cursorPosition": "41,70",
+        "scrollLine": "39",
+        "working_dir": "project"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1613578112,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1613578112031,
+    "read_only": false,
+    "read_only_alternatives": []
+}

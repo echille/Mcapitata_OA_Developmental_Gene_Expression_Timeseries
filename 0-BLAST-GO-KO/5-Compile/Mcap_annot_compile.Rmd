@@ -1,0 +1,269 @@
+---
+title: "Annotation Compilation and Comparison"
+author: "Erin Chille"
+date: "Last updated: 2020/11/03"
+output: html_document
+---
+Load libraries
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(dplyr)
+```
+
+
+This script takes the results of functional annotation services and combines the results. Nucleotide CDS sequences were annotated using DIAMONDSEARCH BLASTX, resulting in 55,217 hits. These hits were used as input into:
+- Uniprot
+- Blast2GO
+
+Additional annotation was provided by
+- InterProScan
+
+## Blast
+```{r}
+blast <- read_tsv("0-BLAST-GO-KO/1-DIAMOND/Mcap.annot.200806.tab", col_names = FALSE)
+colnames(blast) <- c("seqName", "top_hit", "pident", "length", "mismatch", "gapopen", "qstart", "qend", "sstart", "send", "evalue", "bitscore",  "qlen", "slen")
+head(blast)
+dim(blast)
+```
+
+## Unitprot
+
+Mapping occured on August 24th, 2020.
+
+Nucleotide CDS sequences were annotated using DIAMONDSEARCH BLASTX, resulting in [55,217 hits](). These hits were used as input into [Uniprot mapping services](https://www.uniprot.org/uploadlists/) to map to the UniProtKB database IDs (contains GO and KO info)
+
+340 BLAST Refseq Protein IDs were mapped to 342 to the UniProtKB database IDs
+```{r}
+u1 <- read_tsv("0-BLAST-GO-KO/4-Uniprot/Mcap_uniprot1.tab", col_names = TRUE)
+u1 <- u1[,c(1,4:12)]
+colnames(u1) <- c("top_hit", "uniprotkb_entry", "status", "protein_names", "gene_names", "organism", "length", "gene_ontology", "go_ids", "ko")
+head(u1)
+dim(u1)
+```
+
+23,233 BLAST Refseq IDs mapped to the Uniparc database, of these, 732 mapped to 741 to the UniProtKB database IDs
+```{r}
+u2a <- read_tsv("0-BLAST-GO-KO/4-Uniprot/uniparc-to-uniprot/Mcap_uniprot2.tab", col_names = TRUE)
+u2a <- u2a[,c(1,3:11)]
+colnames(u2a) <- c("uniparc_entry", "uniprotkb_entry", "status", "protein_names", "gene_names", "organism", "length", "gene_ontology", "go_ids", "ko")
+
+u2b <- read_tsv("0-BLAST-GO-KO/4-Uniprot/uniparc-to-uniprot/uniparc-to-uniprot.tab", col_names = TRUE)
+colnames(u2b) <- c("top_hit", "uniparc_entry")
+head(u2b)
+u2 <- merge(u2a, u2b, by="uniparc_entry")
+u2 <- u2[,c(11,2:10)]
+head(u2)
+dim(u2)
+```
+
+3,199 BLAST EMBL CDS IDs mapped were mapped to UniProtKB database IDs
+```{r}
+u3 <- read_tsv("0-BLAST-GO-KO/4-Uniprot/EMBL-CDS-to-uniprot.tab", col_names = TRUE)
+u3 <- u3[,c(1,3:11)]
+colnames(u3) <- c("top_hit", "uniprotkb_entry", "status", "protein_names", "gene_names", "organism", "length", "gene_ontology", "go_ids", "ko")
+head(u3)
+dim(u3)
+```
+
+1 BLAST EMBL Protein IDs mapped was mapped to UniProtKB database IDs
+```{r}
+u4 <- read_tsv("0-BLAST-GO-KO/4-Uniprot/EMBL-prot-to-uniprot.tab", col_names = TRUE)
+u4 <- u4[,c(1,3:11)]
+colnames(u4) <- c("top_hit", "uniprotkb_entry", "status", "protein_names", "gene_names", "organism", "length", "gene_ontology", "go_ids", "ko")
+head(u4)
+dim(u4)
+```
+
+### Compile
+```{r}
+Uniprot_results <- bind_rows(u1, u2, u3, u4)
+Uniprot_results <- unique(Uniprot_results)
+Uniprot_results$go_ids <- gsub(" ", "", Uniprot_results$go_ids)
+head(Uniprot_results)
+dim(Uniprot_results)
+nrow(filter(Uniprot_results, grepl("GO",go_ids))) #Genes with GO terms
+```
+
+## Blast2GO
+
+Nucleotide CDS sequences were annotated using DIAMONDSEARCH BLASTX, resulting in [55,217 hits](). These hits were used as input into Blast2GO to obtain GO terms using the August 11, 2020 obo database.
+
+55,217 accession IDs returned 4,205 IDs with GO matches.
+```{r}
+B2G_results <- read_tsv("0-BLAST-GO-KO/3-BLAST2GO/Mcap_blast_200806_GO_200811_Interpro_200824.txt", col_names = TRUE)
+B2G_results <- B2G_results[,c(3:5, 7:8,10:11)]
+colnames(B2G_results) <- c("seqName", "top_hit", "length", "eValue", "simMean", "GO_IDs", "GO_names")
+head(B2G_results)
+dim(B2G_results)
+#nrow(filter(B2G_results, grepl("GO",GO_IDs))) #Genes with GO terms... Commented out because all have go terms
+```
+
+## Find unique and overlapping GO terms
+
+Generate lists of GO terms for each method
+```{r, warning=FALSE, message=FALSE}
+Uniprot_GO <- select(Uniprot_results, top_hit, go_ids)
+splitted <- strsplit(as.character(Uniprot_GO$go_ids), ";") #split into multiple GO ids
+gene_ontology <- data.frame(v1 = rep.int(Uniprot_GO$top_hit, sapply(splitted, length)), v2 = unlist(splitted)) #list all genes with each of their GO terms in a single row
+colnames(gene_ontology) <- c("gene_id", "GO.ID")
+gene_ontology <- separate(gene_ontology, GO.ID, into = c("GO.ID", "ontology", "term"), sep=" ") #Split GO.ID, terms and ontologies into separate columns
+Uniprot.GOterms <- select(gene_ontology, gene_id, GO.ID)
+Uniprot.GOterms$GO.ID<- as.character(Uniprot.GOterms$GO.ID)
+Uniprot.GOterms[Uniprot.GOterms == 0] <- "unknown"
+Uniprot.GOterms$GO.ID <- replace_na(Uniprot.GOterms$GO.ID, "unknown")
+Uniprot.GOterms$GO.ID <- as.factor(Uniprot.GOterms$GO.ID)
+Uniprot.GOterms$gene_id <- as.factor(Uniprot.GOterms$gene_id)
+Uniprot.GOterms$GO.ID <- gsub(" ", "", Uniprot.GOterms$GO.ID)
+Uniprot.GOterms <- unique(Uniprot.GOterms)
+nrow(Uniprot.GOterms)
+
+B2G_GO <- select(B2G_results, top_hit, GO_IDs)
+splitted <- strsplit(as.character(B2G_GO$GO_IDs), ";") #split into multiple GO ids
+gene_ontology <- data.frame(v1 = rep.int(B2G_GO$top_hit, sapply(splitted, length)), v2 = unlist(splitted)) #list all genes with each of their GO terms in a single row
+colnames(gene_ontology) <- c("gene_id", "GO.ID")
+gene_ontology <- separate(gene_ontology, GO.ID, into = c("GO.ID", "ontology", "term"), sep=" ") #Split GO.ID, terms and ontologies into separate columns
+B2G.GOterms <- select(gene_ontology, gene_id, GO.ID)
+B2G.GOterms$GO.ID<- as.character(B2G.GOterms$GO.ID)
+B2G.GOterms[B2G.GOterms == 0] <- "unknown"
+B2G.GOterms$GO.ID <- replace_na(B2G.GOterms$GO.ID, "unknown")
+B2G.GOterms$GO.ID <- as.factor(B2G.GOterms$GO.ID)
+B2G.GOterms$gene_id <- as.factor(B2G.GOterms$gene_id)
+B2G.GOterms$GO.ID <- gsub(" ", "", B2G.GOterms$GO.ID)
+B2G.GOterms <- unique(B2G.GOterms)
+nrow(B2G.GOterms)
+```
+
+Find intersections and unique results for each methods
+```{r}
+UB <- intersect(B2G.GOterms, Uniprot.GOterms) #Blast2Go and Uniprot intersection
+nrow(UB)
+
+Uunique <- setdiff(Uniprot.GOterms, B2G.GOterms) #Uniprot unique
+nrow(Uunique)
+
+Bunique <- setdiff(B2G.GOterms, Uniprot.GOterms) #Blast unique
+nrow(Bunique)
+```
+
+## Merge Annotations
+
+Match top_hits with description
+```{r}
+Mcap_annot <- left_join(blast, B2G_results, by="seqName")
+Mcap_annot <- select(Mcap_annot, seqName, top_hit.x, length.x, evalue, bitscore, simMean, GO_IDs, GO_names)
+Mcap_annot <- rename(Mcap_annot, "top_hit"="top_hit.x")
+Mcap_annot <- left_join(Mcap_annot, Uniprot_results, by="top_hit")
+Mcap_annot$GO <- paste(Mcap_annot$GO_IDs, Mcap_annot$go_ids, sep=';') #generate new column with concatenated GO IDs
+Mcap_annot$GO_terms <- paste(Mcap_annot$GO_names, Mcap_annot$gene_ontology, sep=';') #generate new column with concatenated GO IDs
+Mcap_annot <- select(Mcap_annot,-c("GO_IDs", "GO_names", "gene_ontology", "go_ids", "length"))
+colnames(Mcap_annot) <- c("gene_id", "description", "length","eValue", "bitscore","simMean", "UniProtKB_entry", "status", "protein_names", "gene_names","organism","ko","GO_IDs","GO_terms")
+names(Mcap_annot)
+head(Mcap_annot)
+tail(Mcap_annot)
+dim(Mcap_annot)
+
+#write_tsv(Mcap_annot, "0-BLAST-GO-KO/Output/200824_Mcap_Blast_GO_KO.tsv")
+```
+
+# Compare new and old annotation
+
+Load old annotation
+```{r}
+old_annot <- read.csv("0-BLAST-GO-KO/OLD_200306_Mcap_annotations.csv", sep=",")
+head(old_annot)
+nrow(old_annot)
+```
+
+Find
+  1) Number of genes with significant alignments
+  2) Number of genes with Kegg mappings
+  3) Number of genes with GO mappings
+  4) Total number of GO terms
+  5) Number of unique GO terms
+  6) Total number of Kegg terms
+  7) Number of unique Kegg terms
+  8/9) Avg/med evalue
+  10/11) Avg/med bitscore
+  
+
+Find metrics for old annotation
+```{r}
+old_Sig_Alingments=nrow(filter(old_annot, Accession!="#N/A")) #Number of genes with significant alignments
+old_Genes_with_Kegg=nrow(filter(old_annot, KEGG!="0")) #Number of genes with Kegg mappings
+old_Genes_with_GO=nrow(filter(old_annot, Annotation.GO.ID!="0")) #Number of genes with GO mappings
+
+old.metrics <- old_annot %>% filter(Accession!="#N/A")
+old.metrics$E.value <- as.numeric(old.metrics$E.value)
+old.metrics$Bitscore <- as.numeric(old.metrics$Bitscore)
+old.avg.Eval <-  mean(old.metrics$E.value)
+old.median.Eval <- median(old.metrics$E.value)
+old.avg.bit <- mean(old.metrics$Bitscore)
+old.median.bit <- median(old.metrics$Bitscore)
+
+# total GO terms
+old_GO <- select(old_annot, Name, Annotation.GO.ID)
+splitted <- strsplit(as.character(old_GO$Annotation.GO.ID), ";") #split into multiple GO ids
+old.GOterms <- data.frame(v1 = rep.int(old_GO$Name, sapply(splitted, length)), v2 = unlist(splitted)) #list all genes with each of their GO terms in a single row
+colnames(old.GOterms) <- c("gene_id", "GO.ID")
+old_totGO_narm <- filter(old.GOterms, GO.ID!="0")
+old_totGO <- nrow(old_totGO_narm)
+# total unique GO terms
+old_uniqueGO <- unique(old_totGO_narm$GO.ID)
+old_uniqueGO <- length(old_uniqueGO)
+
+# total Kegg terms
+old_Kegg <- select(old_annot, Name, KEGG)
+splitted <- strsplit(as.character(old_Kegg$KEGG), ";") #split into multiple Kegg ids
+old.Keggterms <- data.frame(v1 = rep.int(old_Kegg$Name, sapply(splitted, length)), v2 = unlist(splitted)) #list all genes with each of their Kegg terms in a single row
+colnames(old.Keggterms) <- c("gene_id", "Kegg.ID")
+old_totKegg <- nrow(filter(old.Keggterms, Kegg.ID!="0"))
+# total unique GO terms
+old_uniqueKegg <- filter(old.Keggterms, Kegg.ID!="0")
+old_uniqueKegg <- unique(old_uniqueKegg$Kegg.ID)
+old_uniqueKegg <- length(old_uniqueKegg)
+```
+
+Find metrics for new annotation
+```{r}
+new_Sig_Alingments=nrow(Mcap_annot)
+new_Genes_with_GO <- nrow(filter(Mcap_annot, grepl("GO",GO_IDs))) #Genes with GO terms...
+new_Genes_with_Kegg <- nrow(filter(Mcap_annot, grepl("K",ko))) #Genes with Kegg terms...
+
+new.avg.Eval <- mean(Mcap_annot$eValue)
+new.median.Eval <- median(Mcap_annot$eValue)
+new.avg.bit <- mean(Mcap_annot$bitscore)
+new.median.bit <- median(Mcap_annot$bitscore)
+
+# total GO terms
+new_GO <- select(Mcap_annot, gene_id, GO_IDs)
+splitted <- strsplit(as.character(new_GO$GO_IDs), ";") #split into multiple GO ids
+new.GOterms <- data.frame(v1 = rep.int(new_GO$gene_id, sapply(splitted, length)), v2 = unlist(splitted)) #list all genes with each of their GO terms in a single row
+colnames(new.GOterms) <- c("gene_id", "GO.ID")
+new_totGO_narm <- filter(new.GOterms, GO.ID!="NA")
+new_totGO <- nrow(new_totGO_narm)
+# total unique GO terms
+new_uniqueGO <- unique(new_totGO_narm$GO.ID)
+new_uniqueGO <- length(new_uniqueGO)
+
+# total Kegg terms
+new_Kegg <- select(Mcap_annot, gene_id, ko)
+splitted <- strsplit(as.character(new_Kegg$ko), ";") #split into multiple Kegg ids
+new.Keggterms <- data.frame(v1 = rep.int(new_Kegg$gene_id, sapply(splitted, length)), v2 = unlist(splitted)) #list all genes with each of their Kegg terms in a single row
+colnames(new.Keggterms) <- c("gene_id", "Kegg.ID")
+new.Keggterms$Kegg.ID <- replace_na(new.Keggterms$Kegg.ID, "NA")
+new_totKegg_narm <- filter(new.Keggterms, Kegg.ID!="NA")
+new_totKegg <- nrow(new_totKegg_narm)
+new_uniqueKegg <- unique(new_totKegg_narm$Kegg.ID)
+new_uniqueKegg <- length(new_uniqueKegg)
+```
+
+Compile into table for comparison
+```{r}
+Old_annotation=c(old.avg.Eval, old.median.Eval, old.avg.bit, old.median.bit, old_Sig_Alingments, old_Genes_with_GO, old_totGO, old_uniqueGO, old_Genes_with_Kegg, old_totKegg, old_uniqueKegg)
+New_annotation=c(new.avg.Eval, new.median.Eval, new.avg.bit, new.median.bit, new_Sig_Alingments, new_Genes_with_GO, new_totGO, new_uniqueGO, new_Genes_with_Kegg, new_totKegg, new_uniqueKegg)
+oldVSnew <- data.frame(Old_annotation, New_annotation)
+str(oldVSnew)
+rownames(oldVSnew) <-  c("Average Evalue", "Median Evalue", "Average bitscore", "Median bitscore", "Number of genes with significant alignments", "Number of genes with GO mappings", "Total number of GO terms", "Number of unique GO terms", "Number of genes with Kegg mappings", "Total number of Kegg terms", "Number of unique Kegg terms")
+oldVSnew
+```
+

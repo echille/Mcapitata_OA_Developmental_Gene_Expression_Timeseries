@@ -1,0 +1,2 @@
+"0","treatmentinfo_gsa$treatment <- factor(treatmentinfo_gsa$treatment, levels = c(""amb"",""l"", ""xl""))"
+"0","head(treatmentinfo_gsa)"

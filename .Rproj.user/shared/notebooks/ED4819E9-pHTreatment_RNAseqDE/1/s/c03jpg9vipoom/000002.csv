@@ -1,0 +1,7 @@
+"0","DEGvst <- vst(gdds, blind=FALSE, nsub = nrow(counts(gdds))) #apply a variance stabilizing transforamtion to minimize efplncts of small counts and normalize wrt library size"
+"0","dim(assay(DEGvst))"
+"1","[1]"
+"1"," 2656"
+"1","   44"
+"1","
+"

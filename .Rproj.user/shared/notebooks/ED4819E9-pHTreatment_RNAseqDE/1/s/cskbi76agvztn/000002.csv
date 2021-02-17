@@ -1,0 +1,1 @@
+"0","DEG_fe <- DESeq(gdds_fe) #run differential expression test by group using the Wald model"

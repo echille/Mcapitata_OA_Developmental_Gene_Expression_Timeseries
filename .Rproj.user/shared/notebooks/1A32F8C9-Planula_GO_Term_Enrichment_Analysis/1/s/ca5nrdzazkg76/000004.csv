@@ -1,0 +1,6 @@
+"0","
+nrow(filter(C1.GO.05, ontology==""BP"")) #number sig BP terms
+"
+"2","Error in h(simpleError(msg, call)) : 
+  error in evaluating the argument 'x' in selecting a method for function 'nrow': object 'C1.GO.05' not found
+"

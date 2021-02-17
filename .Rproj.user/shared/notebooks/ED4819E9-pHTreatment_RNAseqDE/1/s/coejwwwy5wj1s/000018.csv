@@ -1,0 +1,5 @@
+"0","gcount_filt <- subset(gcount_filt, select= -c(gene_id, X119, X120, X121))
+"
+"2","Error in eval(substitute(select), nl, parent.frame()) : 
+  object 'gene_id' not found
+"

@@ -1,0 +1,4 @@
+"0","#Set DESeq2 design"
+"0","gdds_clvg <- DESeqDataSetFromMatrix(countData = gcount_filt_clvg,"
+"0","                              colData = treatmentinfo_clvg,"
+"0","                              design = ~treatment)"
