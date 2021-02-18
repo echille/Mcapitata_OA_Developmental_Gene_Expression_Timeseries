@@ -170,12 +170,14 @@ Plot mean_percent_cleavage
 ```{r}
 final_cell_cleavage <- ggplot(mpc, aes(fill=cleavage_stage, y = mean_percent_cleavage, x=treatment)) + 
   geom_bar(position ="stack", stat = "identity") +
-  xlab("pH Treatment") + ylab("Percent per treatment") + 
+  xlab("pH Treatment") + ylab("Percent in Each Stage") + 
   scale_fill_brewer(name = "Number of Cells", labels = c("One", "Two", "Four", "> Four"), palette = "Paired") + #colour modification
   theme_bw() + #Set background color 
   theme(panel.border = element_blank(), # Set border
                      panel.grid.major = element_blank(), #Set major gridlines
                      panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.title.y = element_text(size = 16), #Set Yaxis label size
+                     axis.text=element_text(size=12), #Set Y tick label size
                      axis.line = element_line(colour = "black"), #Set axes color
         plot.background=element_blank()) + #Set the plot background
   ggtitle("(a)") + #add a main title
@@ -235,8 +237,8 @@ head(egg_volume)
 Examine distribution of egg volume data
 ```{r}
 egg_volume_boxplot <- ggplot(egg_volume, aes(y = volume, x=treatment)) +
-  ylab(expression("Volume " (mm^2))) + xlab("Treatment") + # Set x and y axis labels
-  #expand_limits(y=c(0, 1.0)) +
+  ylab(expression("Volume " (mm^3))) + xlab("Treatment") + # Set x and y axis labels
+  ylim(0,0.13)+
   geom_jitter(colour = "cadetblue3", alpha = 0.5) +
   geom_boxplot(colour="cadetblue3", alpha=0) + 
   theme_bw() + #Set background color
@@ -247,6 +249,8 @@ egg_volume_boxplot <- ggplot(egg_volume, aes(y = volume, x=treatment)) +
                       axis.title.x = element_blank(), # No axis title
                       axis.text.x = element_text(color = "White"), #White-out the x-axis label
                       axis.ticks.x = element_blank(), # No ticks on x-axis
+                      axis.title.y = element_text(size = 16), #Set Yaxis label size
+                     axis.text=element_text(size=12), #Set Y tick label size
                       plot.background=element_blank()) + #Set the plot background
   ggtitle("(b)") + #add a main title
   scale_color_manual(values=c(AMB="cadetblue3", l="palevioletred", xl="indianred3")) + #set treatment colors
@@ -279,6 +283,7 @@ egg_volume_res_scatter <- ggplot(egg_volume_res, aes(x = sample_ID, y = volume))
   theme(panel.border = element_blank(), # Set border
                      panel.grid.major = element_blank(), #Set major gridlines
                      panel.grid.minor = element_blank(), #Set minor gridlines
+                    axis.title.y = element_text(size = 16),
                      axis.line = element_line(colour = "black"), #Set axes color
         plot.background=element_blank()) #Set the plot background
 egg_volume_res_scatter
@@ -333,7 +338,8 @@ Examine treated eggs volume for normal distribution using a boxplot with jitter 
 ```{r}
 #Boxplot colored by treatment
 fert_volume_t_boxplot <- ggplot(fert_volume, aes(x = treatment, y = volume, color = treatment)) + 
-  ylab(expression("Volume " (mm^2))) + xlab("Treatment") + #Label axes
+  ylab(expression("Volume " (mm^3))) + xlab("Treatment") + #Label axes
+  ylim(0,0.13)+
   geom_jitter(alpha = 0.5) +
   geom_boxplot(alpha = 0) +
   theme_bw() + #Set background color
@@ -341,6 +347,8 @@ fert_volume_t_boxplot <- ggplot(fert_volume, aes(x = treatment, y = volume, colo
   theme(panel.border = element_blank(), # Set border
                      panel.grid.major = element_blank(), #Set major gridlines
                      panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.title.y = element_text(size = 16), #Set Yaxis label size
+                     axis.text=element_text(size=12), #Set Y tick label size
                      axis.line = element_line(colour = "black"), #Set axes color
         plot.background=element_blank()) + #Set the plot background
   ggtitle("(c)") + #add a main title
@@ -483,13 +491,14 @@ Examine gastrula volume for normal distribution using a boxplot with jitter and 
 ```{r}
 #Boxplot colored by treatment
 gas_volume_t_boxplot <- ggplot(gas_volume, aes(x = treatment, y = volume, color = treatment)) +
-  ylab("Volume mm2")+ xlab("Treatment") + #Label axes
+  ylab("Volume mm3")+ xlab("Treatment") + #Label axes
   geom_jitter(aes(alpha = 0.3)) +
   geom_boxplot(alpha = 0) +
   theme_bw() + #Set background color
   theme(panel.border = element_blank(), # Set border
                      panel.grid.major = element_blank(), #Set major gridlines
                      panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.title.y = element_text(size = 16),
                      axis.line = element_line(colour = "black"), #Set axes color
         plot.background=element_blank()) #Set the plot background
 show(gas_volume_t_boxplot)
@@ -526,13 +535,16 @@ Examine sqrt-transformed gastrula volume for normal distribution using a boxplot
 ```{r}
 #Boxplot colored by treatment
 gas_sqrt_volume_t_boxplot <- ggplot(gas_volume_sqrt, aes(x = treatment, y = (sqrt_volume)^2, color = treatment)) + #Square the sqrt volume to make size visually comparable across life stages
-   ylab(expression("Volume " (mm^2))) + xlab("Treatment") + #Label axes
+   ylab(expression("Volume " (mm^3))) + xlab("Treatment") + #Label axes
+  ylim(0,0.13)+
   geom_jitter(alpha = 0.5) +
   geom_boxplot(alpha = 0) +
   theme_bw() + #Set background color
   theme(panel.border = element_blank(), # Set border
                      panel.grid.major = element_blank(), #Set major gridlines
                      panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.title.y = element_text(size = 16), #Set Yaxis label size
+                     axis.text=element_text(size=12), #Set Y tick label size
                      axis.line = element_line(colour = "black"), #Set axes color
         plot.background=element_blank()) + #Set the plot background
   ggtitle("(d)") + #add a main title
@@ -685,13 +697,14 @@ show(planulae_volume_t_boxplot)
 
 #Boxplot colored by TANK_NUM
 planulae_volume_s_boxplot <- ggplot(planulae_volume, aes(x = treatment, y = volume, color = TANK_NUM)) + 
-  ylab("Volume mm2")+ xlab("Treatment") + #Label axes
+  ylab("Volume mm3")+ xlab("Treatment") + #Label axes
   geom_jitter(aes(alpha = 0.3)) +
   geom_boxplot(alpha = 0) +
   theme_bw() + #Set background color
   theme(panel.border = element_blank(), # Set border
                      panel.grid.major = element_blank(), #Set major gridlines
                      panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.title.y = element_text(size = 16),
                      axis.line = element_line(colour = "black"), #Set axes color
         plot.background=element_blank()) #Set the plot background
 show(planulae_volume_s_boxplot)
@@ -713,13 +726,16 @@ Examine sqrt-transformed planula  volume for normal distribution using a boxplot
 ```{r}
 #Boxplot colored by treatment
 planulae_sqrt_volume_t_boxplot <- ggplot(planulae_volume_sqrt, aes(x = treatment, y = (sqrt_volume)^2, color = treatment)) + #Square the sqrt volume to make size visually comparable across life stages
-  ylab(expression("Volume " (mm^2))) + xlab("Treatment") + #Label axes
+  ylab(expression("Volume " (mm^3))) + xlab("Treatment") + #Label axes
+  ylim(0,0.13)+
   geom_jitter(alpha = 0.5) +
   geom_boxplot(alpha = 0) +
   theme_bw() + #Set background color
   theme(panel.border = element_blank(), # Set border
                      panel.grid.major = element_blank(), #Set major gridlines
                      panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.title.y = element_text(size = 16), #Set Yaxis label size
+                     axis.text=element_text(size=12), #Set Y tick label size
                      axis.line = element_line(colour = "black"), #Set axes color
         plot.background=element_blank()) + #Set the plot background
   ggtitle("(e)") + #add a main title
