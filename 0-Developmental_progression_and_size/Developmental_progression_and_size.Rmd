@@ -1,0 +1,875 @@
+---
+title: "Embryo development and growth"
+author: "Erin Chille"
+date: "Last updated: 2021/02/17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# BSF Biomineralization Project
+
+## Cell cleavage
+### Set up workspace
+
+Load libraries
+```{r, message = FALSE}
+library("ggplot2")
+library("tidyverse")
+library("betareg")
+library("emmeans")
+library("dplyr")
+```
+
+Import the data
+```{r}
+raw_data <- read.csv("0-Developmental_progression_and_size/Input/cell_cleavage.csv" , header = TRUE, sep = ",")
+```
+
+Change sample_ID and Treatment to Factor variables
+```{r}
+raw_data$sample_ID <- as.factor(raw_data$sample_ID)
+str(raw_data$sample_ID)
+
+raw_data$treatment <- as.factor(raw_data$treatment)
+str(raw_data$treatment)
+```
+
+### Normalize the counts based on number of cells per sample
+
+Calculate total cells per sample
+```{r}
+total_counts_per_sample <- raw_data %>%
+  mutate(total_counts_per_sample = One_cell+Two_cell+Four_cell+Greater_than_4_cell) %>% 
+  arrange(treatment)
+
+show(total_counts_per_sample)
+```
+
+Calculate % at each stage
+```{r}
+normalized_cleavage_counts <- total_counts_per_sample %>%
+  mutate(percent_one_cell = (One_cell/total_counts_per_sample)) %>% 
+  mutate(percent_two_cell = (Two_cell/total_counts_per_sample)) %>%
+  mutate(percent_four_cell = (Four_cell/total_counts_per_sample)) %>%
+  mutate(percent_greater_than_four_cell = (Greater_than_4_cell/total_counts_per_sample))
+
+show(normalized_cleavage_counts)
+str(normalized_cleavage_counts)
+
+gathered_cleavage_counts <- normalized_cleavage_counts %>% 
+  select(sample_ID, treatment, percent_one_cell:percent_greater_than_four_cell) %>% 
+  gather(cleavage_stage, proportion, -sample_ID, -treatment, convert = FALSE, na.rm = TRUE, factor_key = TRUE)
+
+show(gathered_cleavage_counts)
+```
+
+### Use beta regression model to analyze variation in the proportion of cells at each cleavage stage and treatment
+
+Beta regression models are suggested for proportional data instead of t-tests and anovas because the data is often not normally distributed and homoscedastic. Here, we use a beta regression test (as described by S. S. Mangiafico in the RCompanion Handbook chapter, [Beta Regression for Percent and Proportion Data](https://rcompanion.org/handbook/J_02.html)).
+```{r}
+model = betareg(proportion ~ cleavage_stage + treatment + cleavage_stage:treatment,
+                data = gathered_cleavage_counts) #Make the model
+joint_tests(model) #do the test
+summary(model) #examine the results
+plot(model) #Diagnostic plots
+```
+*In summary, we have significant differences in the proportion of cells at different cleavage stages within a treatment, but there is not significant variation in the proportion of cells at different cleavage stages between treatments.*
+
+## Plot cleavage stage
+
+Calculate stats for cleavage stage and treatment categories
+```{r}
+##Just treatment
+gathered_cleavage_counts$proportion <- (gathered_cleavage_counts$proportion)*100 #data had to be proportions for the statistical test but we want them to be plotted as percentages. We do that here.
+gathered_cleavage_counts <- rename(gathered_cleavage_counts, percent=proportion)
+
+#Mean for all treatments should be 25 because 100/4=25. Standard dev may vary.
+clvgstats <- select(gathered_cleavage_counts, treatment:percent)
+clvgstats.amb <- clvgstats %>% filter(treatment=="AMB") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.l <- gathered_cleavage_counts %>% filter(treatment=="l") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.xl <- gathered_cleavage_counts %>% filter(treatment=="xl") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent)) 
+
+treatment.clvgstats.rownames <- as.factor(c("AMB", "l", "xl"))
+treatment.clvgstats <- as.data.frame(bind_rows(clvgstats.amb, clvgstats.l, clvgstats.xl, .id=NULL))
+treatment.clvgstats$cleavage_stage <- treatment.clvgstats.rownames
+treatment.clvgstats <- treatment.clvgstats[c(5,1,2,3,4)]
+show(treatment.clvgstats)
+
+##Just cleavage
+#Cleavage stage means should differ
+clvgstats.onecell <- clvgstats %>% filter(cleavage_stage=="percent_one_cell") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.twocell <- clvgstats %>% filter(cleavage_stage=="percent_two_cell") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.fourcell <- clvgstats %>% filter(cleavage_stage=="percent_four_cell") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.gfourcell <- clvgstats %>% filter(cleavage_stage=="percent_greater_than_four_cell") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+
+stage.clvgstats.rownames <- as.factor(c("One Cell", "Two Cells", "Four Cells", "> Four Cells"))
+stage.clvgstats <- as.data.frame(bind_rows(clvgstats.onecell, clvgstats.twocell, clvgstats.fourcell, clvgstats.gfourcell, .id=NULL))
+stage.clvgstats$cleavage_stage <- stage.clvgstats.rownames
+stage.clvgstats <- stage.clvgstats[c(5,1,2,3,4)]
+show(stage.clvgstats)
+
+##Treatment within cleavage
+clvgstats.onecell.amb <- clvgstats %>% filter(cleavage_stage=="percent_one_cell", treatment=="AMB") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.onecell.l <- clvgstats %>% filter(cleavage_stage=="percent_one_cell", treatment=="l") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.onecell.xl <- clvgstats %>% filter(cleavage_stage=="percent_one_cell", treatment=="xl") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.twocell.amb <- clvgstats %>% filter(cleavage_stage=="percent_two_cell", treatment=="AMB") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.twocell.l <- clvgstats %>% filter(cleavage_stage=="percent_two_cell", treatment=="l") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.twocell.xl <- clvgstats %>% filter(cleavage_stage=="percent_two_cell", treatment=="xl") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.fourcell.amb <- clvgstats %>% filter(cleavage_stage=="percent_four_cell", treatment=="AMB") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.fourcell.l <- clvgstats %>% filter(cleavage_stage=="percent_four_cell", treatment=="l") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.fourcell.xl <- clvgstats %>% filter(cleavage_stage=="percent_four_cell", treatment=="xl") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.gfourcell.amb <- clvgstats %>% filter(cleavage_stage=="percent_greater_than_four_cell", treatment=="AMB") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.gfourcell.l <- clvgstats %>% filter(cleavage_stage=="percent_greater_than_four_cell", treatment=="l") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+clvgstats.gfourcell.xl <- clvgstats %>% filter(cleavage_stage=="percent_greater_than_four_cell", treatment=="xl") %>% 
+  summarise(mean=mean(percent), sd=sd(percent), min=min(percent), max=max(percent))
+
+treatmentstage.clvgstats.rownames <- as.factor(c("OneCell_AMB", "OneCell_l", "OneCell_xl", "TwoCell_AMB", "TwoCell_l", "TwoCell_xl", "FourCell_AMB", "FourCell_l", "FourCell_xl", ">FourCell_AMB", ">FourCell_l", ">FourCell_xl"))
+treatmentstage.clvgstats <- as.data.frame(bind_rows(clvgstats.onecell.amb, clvgstats.onecell.l, clvgstats.onecell.xl, clvgstats.twocell.amb, clvgstats.twocell.l, clvgstats.twocell.xl, clvgstats.fourcell.amb, clvgstats.fourcell.l, clvgstats.fourcell.xl, clvgstats.gfourcell.amb, clvgstats.gfourcell.l, clvgstats.gfourcell.xl, .id=NULL))
+treatmentstage.clvgstats$cleavage_stage <- treatmentstage.clvgstats.rownames
+treatmentstage.clvgstats <- treatmentstage.clvgstats[c(5,1,2,3,4)]
+show(treatmentstage.clvgstats)
+```
+
+
+#### Plot mean_percent_cleavage
+
+Calculate means at each stage 
+```{r}
+mpc <- normalized_cleavage_counts %>%
+  group_by(treatment) %>% 
+  summarize("One Cell" = mean(percent_one_cell),
+            "Two Cells" = mean(percent_two_cell),
+            "Four Cells" = mean(percent_four_cell),
+            "> Four Cells" = mean(percent_greater_than_four_cell)) %>% 
+  gather(cleavage_stage, mean_percent_cleavage, -treatment, na.rm = TRUE, factor_key = TRUE)
+show(mpc)
+```
+
+Plot mean_percent_cleavage
+```{r}
+final_cell_cleavage <- ggplot(mpc, aes(fill=cleavage_stage, y = mean_percent_cleavage, x=treatment)) + 
+  geom_bar(position ="stack", stat = "identity") +
+  xlab("pH Treatment") + ylab("Percent in Each Stage") + 
+  scale_fill_brewer(name = "Number of Cells", labels = c("One", "Two", "Four", "> Four"), palette = "Paired") + #colour modification
+  theme_bw() + #Set background color 
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.title.y = element_text(size = 16), #Set Yaxis label size
+                     axis.text=element_text(size=12), #Set Y tick label size
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) + #Set the plot background
+  ggtitle("(a)") + #add a main title
+  theme(plot.title = element_text(face = 'bold', 
+                                  size = 12, 
+                                  hjust = 0),
+        legend.position = c(0.5, 1), #Place legend top middle of figure
+        legend.direction = "horizontal", #Make legend list items in a row versus columns
+        legend.background = element_rect(fill = NA), #Legend block no-fill
+        legend.title = element_text(size = 10),
+        legend.text = element_text(size = 8), legend.key.size = unit(0.5, "cm"),
+  legend.key.width = unit(0.5,"cm"))
+final_cell_cleavage
+```
+
+
+## Growth through development
+
+### Set up workspace
+
+Load libraries
+```{r, message = FALSE}
+library("tidyverse")
+library("dplyr")
+library("ggplot2")
+library("gridExtra")
+```
+
+Import the data
+```{r, message = FALSE}
+raw_data <- read_csv("0-Developmental_progression_and_size/Input/size_metric_timeseries_data.csv")
+
+raw_data$sample_ID <- as.factor(raw_data$sample_ID)
+raw_data$time_point <- as.factor(raw_data$time_point)
+raw_data$treatment <- as.factor(raw_data$treatment)
+raw_data$TANK_NUM <- as.factor(raw_data$TANK_NUM)
+raw_data$metric_id <- as.factor(raw_data$metric_id)
+```
+
+Check the type of each variable
+```{r}
+str(raw_data)
+```
+
+### Examine volume at each life stage
+
+#### Unfertilized Eggs (No treatment)
+
+##### Calculate egg volume
+```{r}
+egg_volume <- filter(raw_data, time_point == "Eggs") %>% 
+  mutate(volume = ((4*pi*width1/6)*(width2/2)^2)) #Use equation for volume of ellipse
+head(egg_volume)
+```
+
+##### Examine the data
+Examine distribution of egg volume data
+```{r}
+egg_volume_boxplot <- ggplot(egg_volume, aes(y = volume, x=treatment)) +
+  ylab(expression("Volume " (mm^3))) + xlab("Treatment") + # Set x and y axis labels
+  ylim(0,0.13)+
+  geom_jitter(colour = "slateblue", alpha = 0.5) +
+  geom_boxplot(colour="slateblue", alpha=0) + 
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+                      axis.title.x = element_blank(), # No axis title
+                      axis.text.x = element_text(color = "White"), #White-out the x-axis label
+                      axis.ticks.x = element_blank(), # No ticks on x-axis
+                      axis.title.y = element_text(size = 16), #Set Yaxis label size
+                     axis.text=element_text(size=12), #Set Y tick label size
+                      plot.background=element_blank()) + #Set the plot background
+  ggtitle("(b)") + #add a main title
+  scale_color_manual(values=c(AMB="slateblue", l="indianred3", xl="deeppink4")) + #set treatment colors
+  theme(plot.title = element_text(face = 'bold', 
+                                  size = 12, 
+                                  hjust = 0),
+        legend.position = "bottom") #set title attributes
+egg_volume_boxplot
+
+#QQ-Plot
+qqnorm(egg_volume$volume)
+qqline(egg_volume$volume)
+```
+
+Examine egg volume for equal variance with residual regression.
+```{r}
+#Create dataframe of predicted and residual values for each volume
+egg_volume_res <- egg_volume #Copy dataset to manipulate for residual regression
+egg_volume_fit <- lm(volume ~ sample_ID, data = egg_volume_res)  # Fit the model
+egg_volume_res$predicted <- predict(egg_volume_fit)   # Save the predicted values
+egg_volume_res$residuals <- residuals(egg_volume_fit) # Save the residual values
+head(select(egg_volume_res, volume, predicted, residuals))
+
+#Plot predicted (red) versus residuals (black)
+egg_volume_res_scatter <- ggplot(egg_volume_res, aes(x = sample_ID, y = volume)) + # Plot volume versus treament as scatter
+  geom_point() +
+  geom_point(aes(y = predicted), color = "red") + # Add the predicted values
+  ylab("Volume mm2")+ xlab("Sample ID") + #Label axes
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                    axis.title.y = element_text(size = 16),
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) #Set the plot background
+egg_volume_res_scatter
+
+#Histogram of residuals
+egg_volume_res_hist <- egg_volume_res %>%
+  ggplot(aes(x = residuals, fill = volume)) +
+    geom_histogram(binwidth = 0.01, color="#e9ecef", alpha=0.6, position = 'identity') +
+    labs(fill="") + # Plot volume versus treament as scatter
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) #Set the plot background)
+egg_volume_res_hist
+```
+
+Examine summary statistics for untreated eggs
+```{r}
+untreatedegg <- select(egg_volume, time_point, volume)
+untreatedegg.stats <- untreatedegg %>% 
+  summarise(mean=mean(volume), sd=sd(volume), min=min(volume), max=max(volume))
+notreatment <- as.factor(c("NA"))
+untreatedegg.stats$treatment <- notreatment
+
+untreatedegg.stats.rownames <- as.factor(c("Untreated_Eggs"))
+untreatedegg.stats$timepoint <-untreatedegg.stats.rownames
+untreatedegg.stats <- untreatedegg.stats[c(6,5,1,2,3,4)]
+show(untreatedegg.stats)
+```
+
+##### Final plot
+```{r}
+final_egg_volume <- egg_volume_boxplot
+final_egg_volume
+```
+
+#### Treated Eggs
+
+##### Calculate treated eggs volume.  
+```{r}
+#Use the equation for volume of ellipse to calculate fertilized egg volume.
+fert_volume <- filter(raw_data, time_point == "Fertilized_embryos") %>% 
+  mutate(volume = ((4*pi*width1/6)*(width2/2)^2)) #Use equation for volume of ellipse
+head(fert_volume)
+```
+
+
+##### Examine the data
+Examine treated eggs volume for normal distribution using a boxplot with jitter and qq-plot. Examine variation between tanks using a boxplot with jitter.
+```{r}
+#Boxplot colored by treatment
+fert_volume_t_boxplot <- ggplot(fert_volume, aes(x = treatment, y = volume, color = treatment)) + 
+  ylab(expression("Volume " (mm^3))) + xlab("Treatment") + #Label axes
+  ylim(0,0.13)+
+  geom_jitter(alpha = 0.5) +
+  geom_boxplot(alpha = 0) +
+  theme_bw() + #Set background color
+  scale_color_manual(values=c(AMB="slateblue", l="indianred3", xl="deeppink4")) + #set treatment colors
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.title.y = element_text(size = 16), #Set Yaxis label size
+                     axis.text=element_text(size=12), #Set Y tick label size
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) + #Set the plot background
+  ggtitle("(c)") + #add a main title
+  scale_color_manual(values=c(AMB="slateblue", l="indianred3", xl="deeppink4")) + #set treatment colors
+  theme(plot.title = element_text(face = 'bold', 
+                                  size = 12, 
+                                  hjust = 0),
+        legend.position = "none") #set title attributes
+fert_volume_t_boxplot
+
+#Boxplot colored by TANK_NUM
+fert_volume_s_boxplot <- ggplot(fert_volume, aes(x = treatment, y = volume, color = TANK_NUM)) + 
+  ylab("Volume mm2")+ xlab("Treatment") + #Label axes
+  geom_jitter(aes(alpha = 0.3)) +
+  geom_boxplot(alpha = 0) +
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) #Set the plot background
+fert_volume_s_boxplot
+
+#QQ-Plot
+qqnorm(fert_volume$volume)
+qqline(fert_volume$volume)
+```
+
+Examine treated eggs volume for equal variance with residual regression.
+```{r}
+#Create dataframe of predicted and residual values for each volume
+fert_volume_res <- fert_volume #Copy dataset to manipulate for residual regression
+fert_volume_fit <- lm(volume ~ treatment, data = fert_volume_res)  # Fit the model
+fert_volume_res$predicted <- predict(fert_volume_fit)   # Save the predicted values
+fert_volume_res$residuals <- residuals(fert_volume_fit) # Save the residual values
+head(select(fert_volume_res, treatment, volume, predicted, residuals))
+
+#Plot predicted (red) versus residuals (black)
+fert_volume_res_scatter <- ggplot(fert_volume_res, aes(x = treatment, y = volume)) + # Plot volume versus treament as scatter
+  geom_point() +
+  geom_point(aes(y = predicted), color = "red") + # Add the predicted values
+  ylab("Volume mm2")+ xlab("Treatment") + #Label axes
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) #Set the plot background
+fert_volume_res_scatter
+
+#Histogram of residuals
+fert_volume_res_hist <- fert_volume_res %>%
+  ggplot(aes(x = residuals, fill = volume)) +
+    geom_histogram(binwidth = 0.0025, color="#e9ecef", alpha=0.6, position = 'identity') +
+    labs(fill="") + # Plot volume versus treament as scatter
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) #Set the plot background)
+fert_volume_res_hist
+
+#Histogram of residuals separated by treatment
+fert_volume_res_t_hist <- fert_volume_res %>%
+  ggplot(aes(x = residuals, fill = treatment)) +
+    geom_histogram(binwidth = 0.0025, color="#e9ecef", alpha=0.6, position = 'identity') +
+    labs(fill="") + # Plot volume versus treament as scatter
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) + #Set the plot background)
+facet_wrap(facets = vars(treatment)) #Split 1 graph into three each showing a different treatment
+fert_volume_res_t_hist
+```
+
+##### Statistical Analysis
+Testing for tank effects: 1-Way ANOVA of treated eggs volume against tank nested within treatment. 
+```{r}
+#1-Way ANOVA of volume against tank nested within treatment.
+fert_volume_nested_anova <- aov(volume ~ treatment/TANK_NUM, data = fert_volume)
+summary(fert_volume_nested_anova)
+```
+
+Testing the effects of treatment on volume:
+```{r}
+#1-Way ANOVA of volume against treatment
+fert_volume_anova <- aov(volume ~ treatment, data = fert_volume)
+summary(fert_volume_anova)
+```
+
+Examine summary statistics for treated eggs
+```{r}
+treatedegg <- select(fert_volume, time_point:treatment, volume)
+treatedegg.amb <- treatedegg %>% filter(treatment=="AMB")
+treatedegg.amb.stats <- treatedegg.amb %>% summarise(mean=mean(volume), sd=sd(volume), min=min(volume), max=max(volume))
+amb <- as.factor(c("AMB"))
+treatedegg.amb.stats$treatment <- amb
+
+treatedegg.l <- treatedegg %>% filter(treatment=="l")
+treatedegg.l.stats <- treatedegg.l %>% summarise(mean=mean(volume), sd=sd(volume), min=min(volume), max=max(volume))
+l <- as.factor(c("l"))
+treatedegg.l.stats$treatment <- l
+
+treatedegg.xl <- treatedegg %>% filter(treatment=="xl")
+treatedegg.xl.stats <- treatedegg.xl %>% summarise(mean=mean(volume), sd=sd(volume), min=min(volume), max=max(volume))
+xl <- as.factor(c("xl"))
+treatedegg.xl.stats$treatment <- xl
+
+treatedegg.stats.rownames <- as.factor(c("Treated_egg", "Treated_egg", "Treated_egg"))
+treatedegg.stats <- as.data.frame(bind_rows(treatedegg.amb.stats, treatedegg.l.stats, treatedegg.xl.stats, .id=NULL))
+treatedegg.stats$timepoint <-treatedegg.stats.rownames
+treatedegg.stats <- treatedegg.stats[c(6,5,1,2,3,4)]
+show(treatedegg.stats)
+```
+
+##### Final Plot
+```{r}
+final_fert_volume <- fert_volume_t_boxplot +
+  annotate("text", x = 1.2, y = 0.068, label = "a") +
+  annotate("text", x = 2.2, y = 0.068, label = "a") +
+  annotate("text", x = 3.2, y = 0.068, label = "a")
+final_fert_volume
+```
+
+#### Gastrulation
+
+##### Calculate Gastrula Volume
+```{r}
+gas_volume <- filter(raw_data, time_point == "Gastrulation") %>% 
+  mutate(volume = ((4*pi*width1/6)*(width2/2)^2))  #Use equation for volume of ellipse
+head(gas_volume)
+```
+
+
+##### Examine the Data
+Examine gastrula volume for normal distribution using a boxplot with jitter and qq-plot. Examine variation between tanks using a boxplot with jitter.
+```{r}
+#Boxplot colored by treatment
+gas_volume_t_boxplot <- ggplot(gas_volume, aes(x = treatment, y = volume, color = treatment)) +
+  ylab("Volume mm3")+ xlab("Treatment") + #Label axes
+  geom_jitter(aes(alpha = 0.3)) +
+  geom_boxplot(alpha = 0) +
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.title.y = element_text(size = 16),
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) #Set the plot background
+show(gas_volume_t_boxplot)
+
+#Boxplot colored by TANK_NUM
+gas_volume_s_boxplot <- ggplot(gas_volume, aes(x = treatment, y = volume, color = TANK_NUM)) + 
+  ylab("Volume mm2")+ xlab("Treatment") + #Label axes
+  geom_jitter(aes(alpha = 0.3)) +
+  geom_boxplot(alpha = 0) +
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) #Set the plot background
+show(gas_volume_s_boxplot)
+
+#QQ-Plot
+qqnorm(gas_volume$volume)
+qqline(gas_volume$volume)
+```
+
+
+##### Transform the Data
+The qq-plot shows that the data does not look normal. We will transform the data below using the 'SQRT' function.
+```{r}
+gas_volume_sqrt <- mutate(gas_volume, sqrt_volume = sqrt(volume)) # Transform the distribution
+head(gas_volume_sqrt)
+```
+
+
+##### Examine the Data Again
+Examine sqrt-transformed gastrula volume for normal distribution using a boxplot with jitter and qq-plot. Examine variation between tanks using a boxplot with jitter.
+```{r}
+#Boxplot colored by treatment
+gas_sqrt_volume_t_boxplot <- ggplot(gas_volume_sqrt, aes(x = treatment, y = (sqrt_volume)^2, color = treatment)) + #Square the sqrt volume to make size visually comparable across life stages
+   ylab(expression("Volume " (mm^3))) + xlab("Treatment") + #Label axes
+  ylim(0,0.13)+
+  geom_jitter(alpha = 0.5) +
+  geom_boxplot(alpha = 0) +
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.title.y = element_text(size = 16), #Set Yaxis label size
+                     axis.text=element_text(size=12), #Set Y tick label size
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) + #Set the plot background
+  ggtitle("(d)") + #add a main title
+  scale_color_manual(values=c(AMB="slateblue", l="indianred3", xl="deeppink4")) + #set treatment colors
+  theme(plot.title = element_text(face = 'bold', 
+                                  size = 12, 
+                                  hjust = 0),
+        legend.position = "none") #set title attributes
+show(gas_sqrt_volume_t_boxplot)
+
+#Boxplot colored by TANK_NUM
+gas_sqrt_volume_s_boxplot <- ggplot(gas_volume_sqrt, aes(x = treatment, y = sqrt_volume, color = TANK_NUM)) + 
+  ylab("Volume mm2")+ xlab("Treatment") + #Label axes
+  geom_jitter(aes(alpha = 0.3)) +
+  geom_boxplot(alpha = 0) +
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) #Set the plot background
+show(gas_volume_s_boxplot)
+
+#QQ-Plot
+qqnorm(gas_volume_sqrt$sqrt_volume)
+qqline(gas_volume_sqrt$sqrt_volume)
+```
+
+Examine sqrt-transformed gastrulation volume for equal variance with residual regression.
+```{r}
+#Create dataframe of predicted and residual values for each volume
+gas_sqrt_volume_res <- gas_volume_sqrt #Copy dataset to manipulate for residual regression
+gas_sqrt_volume_fit <- lm(sqrt_volume ~ treatment, data = gas_sqrt_volume_res)  # Fit the model
+gas_sqrt_volume_res$predicted <- predict(gas_sqrt_volume_fit)   # Save the predicted values
+gas_sqrt_volume_res$residuals <- residuals(gas_sqrt_volume_fit) # Save the residual values
+head(select(gas_sqrt_volume_res, treatment, sqrt_volume, predicted, residuals))
+
+#Plot predicted (red) versus residuals (black)
+gas_sqrt_volume_res_scatter <- ggplot(gas_sqrt_volume_res, aes(x = treatment, y = sqrt_volume)) + # Plot volume versus treament as scatter
+  geom_point() +
+  geom_point(aes(y = predicted), color = "red") + # Add the predicted values +
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) #Set the plot background
+gas_sqrt_volume_res_scatter
+
+#Histogram of residuals
+gas_sqrt_volume_res_hist <- gas_sqrt_volume_res %>%
+  ggplot(aes(x = residuals, fill = volume)) +
+    geom_histogram(binwidth = 0.01, color="#e9ecef", alpha=0.6, position = 'identity') +
+    labs(fill="") + # Plot volume versus treament as scatter
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) #Set the plot background)
+gas_sqrt_volume_res_hist
+
+#Histogram of residuals separated by treatment
+gas_sqrt_volume_res_t_hist <- gas_sqrt_volume_res %>%
+  ggplot(aes(x = residuals, fill = treatment)) +
+    geom_histogram(binwidth = 0.01, color="#e9ecef", alpha=0.6, position = 'identity') +
+    labs(fill="") + # Plot volume versus treament as scatter
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) + #Set the plot background)
+facet_wrap(facets = vars(treatment)) #Split 1 graph into three each showing a different treatment
+gas_sqrt_volume_res_t_hist
+```
+
+##### Statistical Analysis
+Testing for tank effects: 1-Way ANOVA of sqrt-transformed planulae volume against tank nested within treatment. 
+```{r}
+#1-Way ANOVA of volume against tank nested within treatment.
+gas_sqrt_volume_ts_anova <- aov(volume ~ treatment/TANK_NUM, data = gas_volume_sqrt)
+summary(gas_sqrt_volume_ts_anova)
+```
+
+Testing the effects of treatment on volume:
+```{r}
+#1-Way ANOVA of volume against treatment.
+gas_sqrt_volume_txs_anova <- aov(sqrt_volume ~ treatment, data = gas_volume_sqrt)
+summary(gas_sqrt_volume_txs_anova)
+TukeyHSD(gas_sqrt_volume_txs_anova)
+```
+
+Examine summary statistics for gastrula
+```{r}
+gas <- select(gas_volume, time_point:treatment, volume)
+
+gas.amb <- gas %>% filter(treatment=="AMB")
+gas.amb.stats <- gas.amb %>% summarise(mean=mean(volume), sd=sd(volume), min=min(volume), max=max(volume))
+gas.amb.stats$treatment <- amb
+
+gas.l <- gas %>% filter(treatment=="l")
+gas.l.stats <- gas.l %>% summarise(mean=mean(volume), sd=sd(volume), min=min(volume), max=max(volume))
+gas.l.stats$treatment <- l
+
+gas.xl <- gas %>% filter(treatment=="xl")
+gas.xl.stats <- gas.xl %>% summarise(mean=mean(volume), sd=sd(volume), min=min(volume), max=max(volume))
+gas.xl.stats$treatment <- xl
+
+gas.stats.rownames <- as.factor(c("Gastrulation", "Gastrulation", "Gastrulation"))
+gas.stats <- as.data.frame(bind_rows(gas.amb.stats, gas.l.stats, gas.xl.stats, .id=NULL))
+gas.stats$timepoint <-gas.stats.rownames
+gas.stats <- gas.stats[c(6,5,1,2,3,4)]
+show(gas.stats)
+```
+
+##### Final plot
+```{r}
+final_gas_volume <- gas_sqrt_volume_t_boxplot +
+  annotate("text", x = 1.2, y = 0.1, label = "a") +
+  annotate("text", x = 2.2, y = 0.1, label = "b") +
+  annotate("text", x = 3.2, y = 0.1, label = "b")
+final_gas_volume
+```
+
+#### Planulae
+
+##### Calculate planulae volume
+```{r}
+planulae_volume <- filter(raw_data, time_point == "Planulae") %>% 
+  mutate(volume = ((4*pi*width1/6)*(width2/2)^2))  #Use equation for volume of ellipse
+head(planulae_volume)
+```
+
+##### Examine the Data
+Examine planula  volume for normal distribution using a boxplot with jitter and qq-plot. Examine variation between tanks using a boxplot with jitter.
+```{r}
+#Boxplot colored by treatment
+planulae_volume_t_boxplot <- ggplot(planulae_volume, aes(x = treatment, y = volume, color = treatment)) +
+  ylab("Volume mm2")+ xlab("Treatment") + #Label axes
+  geom_jitter(aes(alpha = 0.3)) +
+  geom_boxplot(alpha = 0) +
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) #Set the plot background
+show(planulae_volume_t_boxplot)
+
+#Boxplot colored by TANK_NUM
+planulae_volume_s_boxplot <- ggplot(planulae_volume, aes(x = treatment, y = volume, color = TANK_NUM)) + 
+  ylab("Volume mm3")+ xlab("Treatment") + #Label axes
+  geom_jitter(aes(alpha = 0.3)) +
+  geom_boxplot(alpha = 0) +
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.title.y = element_text(size = 16),
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) #Set the plot background
+show(planulae_volume_s_boxplot)
+
+#QQ-Plot
+qqnorm(planulae_volume$volume)
+qqline(planulae_volume$volume)
+```
+
+##### Transform the Data
+The qq-plot shows that the data does not look normal. We will transform the data below using the 'SQRT' function.
+```{r}
+planulae_volume_sqrt <- mutate(planulae_volume, sqrt_volume = sqrt(volume)) # Transform the distribution
+head(planulae_volume_sqrt)
+```
+
+##### Examine the Data Again
+Examine sqrt-transformed planula  volume for normal distribution using a boxplot with jitter and qq-plot. Examine variation between tanks using a boxplot with jitter.
+```{r}
+#Boxplot colored by treatment
+planulae_sqrt_volume_t_boxplot <- ggplot(planulae_volume_sqrt, aes(x = treatment, y = (sqrt_volume)^2, color = treatment)) + #Square the sqrt volume to make size visually comparable across life stages
+  ylab(expression("Volume " (mm^3))) + xlab("Treatment") + #Label axes
+  ylim(0,0.13)+
+  geom_jitter(alpha = 0.5) +
+  geom_boxplot(alpha = 0) +
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.title.y = element_text(size = 16), #Set Yaxis label size
+                     axis.text=element_text(size=12), #Set Y tick label size
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) + #Set the plot background
+  ggtitle("(e)") + #add a main title
+  scale_color_manual(values=c(AMB="slateblue", l="indianred3", xl="deeppink4")) + #set treatment colors
+  theme(plot.title = element_text(face = 'bold', 
+                                  size = 12, 
+                                  hjust = 0), 
+        legend.position = ("none")) #set title attributes
+planulae_sqrt_volume_t_boxplot
+
+#Boxplot colored by TANK_NUM
+planulae_sqrt_volume_s_boxplot <- ggplot(planulae_volume_sqrt, aes(x = treatment, y = sqrt_volume, color = TANK_NUM)) + 
+  ylab("Volume mm2")+ xlab("Treatment") + #Label axes
+  geom_jitter(aes(alpha = 0.3)) +
+  geom_boxplot(alpha = 0) +
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) #Set the plot background
+show(planulae_volume_s_boxplot)
+
+#QQ-Plot
+qqnorm(planulae_volume_sqrt$sqrt_volume)
+qqline(planulae_volume_sqrt$sqrt_volume)
+```
+
+Examine sqrt-transformed planulae volume for equal variance with residual regression.
+```{r}
+#Create dataframe of predicted and residual values for each volume
+planulae_sqrt_volume_res <- planulae_volume_sqrt #Copy dataset to manipulate for residual regression
+planulae_sqrt_volume_fit <- lm(sqrt_volume ~ treatment, data = planulae_sqrt_volume_res)  # Fit the model
+planulae_sqrt_volume_res$predicted <- predict(planulae_sqrt_volume_fit)   # Save the predicted values
+planulae_sqrt_volume_res$residuals <- residuals(planulae_sqrt_volume_fit) # Save the residual values
+head(select(planulae_sqrt_volume_res, treatment, sqrt_volume, predicted, residuals))
+
+#Plot predicted (red) versus residuals (black)
+planulae_sqrt_volume_res_scatter <- ggplot(planulae_sqrt_volume_res, aes(x = treatment, y = sqrt_volume)) + # Plot volume versus treament as scatter
+  geom_point() +
+  geom_point(aes(y = predicted), color = "red") + # Add the predicted values +
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) #Set the plot background
+planulae_sqrt_volume_res_scatter
+
+#Histogram of residuals
+planulae_sqrt_volume_res_hist <- planulae_sqrt_volume_res %>%
+  ggplot(aes(x = residuals, fill = volume)) +
+    geom_histogram(binwidth = 0.01, color="#e9ecef", alpha=0.6, position = 'identity') +
+    labs(fill="") + # Plot volume versus treament as scatter
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) #Set the plot background)
+planulae_sqrt_volume_res_hist
+
+#Histogram of residuals separated by treatment
+planulae_sqrt_volume_res_t_hist <- planulae_sqrt_volume_res %>%
+  ggplot(aes(x = residuals, fill = treatment)) +
+    geom_histogram(binwidth = 0.01, color="#e9ecef", alpha=0.6, position = 'identity') +
+    labs(fill="") + # Plot volume versus treament as scatter
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) + #Set the plot background)
+facet_wrap(facets = vars(treatment)) #Split 1 graph into three each showing a different treatment
+planulae_sqrt_volume_res_t_hist
+```
+
+##### Statistical Analysis
+Testing for tank effects: 1-Way ANOVA of sqrt-transformed planulae volume against treatment. 1-Way ANOVA of volume against tank nested within treatment.
+```{r}
+#1-Way ANOVA of volume against tank nested within treatment.
+planulae_sqrt_volume_ts_anova <- aov(volume ~ treatment/TANK_NUM, data = planulae_volume_sqrt)
+summary(planulae_sqrt_volume_ts_anova)
+```
+
+Testing the effects of treatment on volume:
+```{r}
+#1-Way ANOVA of volume against treatment
+planulae_sqrt_volume_txs_anova <- aov(sqrt_volume ~ treatment, data = planulae_volume_sqrt)
+summary(planulae_sqrt_volume_txs_anova)
+TukeyHSD(planulae_sqrt_volume_txs_anova)
+```
+
+Examine summary statistics for planula
+```{r}
+plan <- select(planulae_volume, time_point:treatment, volume)
+
+plan.amb <- plan %>% filter(treatment=="AMB")
+plan.amb.stats <- plan.amb %>% summarise(mean=mean(volume), sd=sd(volume), min=min(volume), max=max(volume))
+plan.amb.stats$treatment <- amb
+
+plan.l <- plan %>% filter(treatment=="l")
+plan.l.stats <- plan.l %>% summarise(mean=mean(volume), sd=sd(volume), min=min(volume), max=max(volume))
+plan.l.stats$treatment <- l
+
+plan.xl <- plan %>% filter(treatment=="xl")
+plan.xl.stats <- plan.xl %>% summarise(mean=mean(volume), sd=sd(volume), min=min(volume), max=max(volume))
+plan.xl.stats$treatment <- xl
+
+plan.stats.rownames <- as.factor(c("Planulae", "Planulae", "Planulae"))
+plan.stats <- as.data.frame(bind_rows(plan.amb.stats, plan.l.stats, plan.xl.stats, .id=NULL))
+plan.stats$timepoint <-plan.stats.rownames
+plan.stats <- plan.stats[c(6,5,1,2,3,4)]
+show(plan.stats)
+```
+
+##### Final table
+```{r}
+volume.stats <- as.data.frame(bind_rows(untreatedegg.stats, treatedegg.stats, gas.stats, plan.stats, .id=NULL))
+volume.stats <- volume.stats[c(6,1,2,3,4,5)]
+show(volume.stats)
+```
+
+
+##### Final plot
+```{r}
+final_plan_volume <- planulae_sqrt_volume_t_boxplot +
+  annotate("text", x = 1.2, y = 0.105, label = "a") +
+  annotate("text", x = 2.2, y = 0.105, label = "b") +
+  annotate("text", x = 3.2, y = 0.105, label = "b")
+final_plan_volume
+```
+
+
+```{r}
+fig_2 <- grid.arrange(final_cell_cleavage, arrangeGrob(final_egg_volume, final_fert_volume, final_gas_volume, final_plan_volume, ncol = 2, nrow = 2), ncol = 2, nrow = 1, widths = c(3,7), clip = "off")
+ggsave("0-Developmental_progression_and_size/Output/fig2_embryo_development.pdf", fig_2, width = 16, height = 8, units = c("in"))

@@ -1,0 +1,526 @@
+---
+title: "Mcap Developmental pH Timeseries WGCNA"
+author: "Erin Chille"
+date: "Last updated 2021/02/17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# The following setting is important, do not omit.
+options(stringsAsFactors = FALSE) #Set Strings to character
+```
+
+# BSF Biomineralization Project: RNAseq Expression and Functional Enrichment Analysis 
+
+This script is based off of Langfelder P, Horvath S (2008) WGCNA: an R package for weighted correlation network analysis. BMC Bioinformatics 2008, 9:559 ([link to paper](http://www.biomedcentral.com/1471-2105/9/559))
+
+## Set up workspace
+
+Import necessary libraries
+```{r, message=FALSE, warning=FALSE}
+library("tidyverse")
+library("genefilter")
+library("DESeq2")
+library("RColorBrewer")
+library("WGCNA")
+library("flashClust")
+library("gridExtra")
+library("ComplexHeatmap")
+library("goseq")
+library("dplyr")
+library("clusterProfiler")
+library("simplifyEnrichment")
+```
+
+## Data input, cleaning, and pre-processing
+
+Import the data files 
+```{r}
+treatmentinfo <- read.csv("Sample_Info/RNAseq_data.csv", header = TRUE, sep = ",")
+head(treatmentinfo)
+
+gcount <- as.data.frame(read.csv("2-QC-Align-Assemble/Output/gene_count_matrix.csv", row.names="gene_id"), colClasses = double)
+head(gcount)
+dim(gcount)
+```
+
+#### Quality-filter gene counts  
+Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the genes that are only present in fewer than two of the 24 ambient samples.
+```{r}
+#keep only life stages with three treatments: Fertilized_egg, Cleavage, Prawn_chip, Early_gastrula, Planula
+dev <- c("Fertilized_egg", "Cleavage", "Prawn_chip", "Early_gastrula", "Planula")
+treatmentinfo_dev <- filter(treatmentinfo, time_point %in% dev)
+dim(treatmentinfo_dev) #rows should be 45
+
+# delete sample columns corresponding to low and extreme low samples by mapping Null value to them
+gcount_dev <- gcount[treatmentinfo_dev$sample_id]
+dim(gcount_dev) #columns should be 45
+
+#create filter for the counts data
+#gfiltdev <- rowSums(count(gcount_dev)) > 0
+#set filter values for PoverA, P=100% percent of the samples have counts over A=10. This means that only 2 out of 33 (0.06060606) samples need to have counts over 10. Our smallest sample size for our life stages is two (fertilized egg, mid-gastrula, early-gastrula). By setting 2/24 as the P, this means if a particular gene is expressed only in 1 of these smallest life stages, it will be included in the analysis.
+filt <- filterfun(pOverA(0.06060606,10))
+
+#create filter for the counts data
+gfiltdev <- genefilter(gcount_dev, filt)
+
+#identify genes to keep by count filter
+gkeepdev <- gcount_dev[gfiltdev,]
+
+
+#identify genes to keep by count filter
+gkeepdev <- gcount_dev[gfiltdev,]
+
+#identify gene lists
+gn.keepdev <- rownames(gkeepdev)
+
+#gene count data filtered in PoverA, P percent of the samples have counts over A
+gcount_filt_dev <- as.data.frame(gcount_dev[which(rownames(gcount_dev) %in% gn.keepdev),])
+
+#How many rows do we have before and after filtering?
+nrow(gcount_dev) #Before
+nrow(gcount_filt_dev) #After
+```
+
+### Quality-check of datasets  
+In order for the DESeq2 algorithms to work, the SampleIDs on the treatmentinfo file and count matrices have to match exactly and in the same order. The following R clump will check to make sure that these match.
+```{r}
+#Checking that all row and column names match. Should return "TRUE"
+all(treatmentinfo_dev$sample_id %in% colnames(gcount_filt_dev))
+all(treatmentinfo_dev$sample_id == colnames(gcount_filt_dev)) 
+```
+
+### Read normalization
+We are now going normalize our read counts using VST-normalization in DESeq2
+
+#### Construct the DESeq2 dataset
+
+Merge the treatment and time_point columns into a new column , group. Set group as a factor.
+```{r}
+treatmentinfo_dev$time_point <- factor(treatmentinfo_dev$time_point, levels = c("Fertilized_egg", "Cleavage", "Prawn_chip", "Early_gastrula", "Planula"))
+treatmentinfo_dev$treatment <- factor(treatmentinfo_dev$treatment, levels = c("amb", "l", "xl"))
+```
+
+Create a DESeqDataSet design from gene count matrix and labels. Here we set the design to look at time_point to test for any differences in gene expression across timepoints.
+```{r}
+#Set DESeq2 design
+gdds_dev <- DESeqDataSetFromMatrix(countData = gcount_filt_dev,
+                              colData = treatmentinfo_dev,
+                              design = ~time_point + treatment + time_point:treatment)
+```
+
+#### Log-transform the count data
+First we are going to log-transform the data using a variance stabilizing transforamtion (VST). This is only for visualization purposes. Essentially, this is roughly similar to putting the data on the log2 scale. It will deal with the sampling variability of low counts by calculating within-group variability (if blind=FALSE). Importantly, it does not use the design to remove variation in the data, and so can be used to examine if there may be any variability do to technical factors such as extraction batch effects.
+
+To do this we first need to calculate the size factors of our samples. This is a rough estimate of how many reads each sample contains compared to the others. In order to use VST (the faster log2 transforming process) to log-transform our data, the size factors need to be less than 4. Otherwise, there could be artefacts in our results.
+```{r}
+SF.gdds_dev <- estimateSizeFactors(gdds_dev) #estimate size factors to determine if we can use vst  to transform our data. Size factors should be less than for to use vst
+print(sizeFactors(SF.gdds_dev)) #View size factors
+```
+
+Our size factors are all less than 4, so we can use VST!
+```{r}
+gvst_dev <- vst(gdds_dev, blind=TRUE) #apply a variance stabilizing transforamtion to minimize effects of small counts and normalize wrt library size
+head(assay(gvst_dev), 3) #view transformed gene count data
+```
+
+
+##### Plot a heatmap of sample-to-sample distances
+```{r}
+gsampleDists_dev <- dist(t(assay(gvst_dev))) #calculate distance matix
+gsampleDistMatrix_dev <- as.matrix(gsampleDists_dev) #distance matrix
+rownames(gsampleDistMatrix_dev) <- colnames(gvst_dev) #assign row names
+colnames(gsampleDistMatrix_dev) <- NULL #assign col names
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255) #assign colors
+pheatmap(gsampleDistMatrix_dev, #plot matrix
+         clustering_distance_rows=gsampleDists_dev, #cluster rows
+         clustering_distance_cols=gsampleDists_dev, #cluster columns
+         col=colors) #set colors
+```
+
+
+##### Principal component plot of samples
+```{r}
+gPCAdata_dev <- plotPCA(gvst_dev, intgroup = c("time_point", "treatment"), returnData=TRUE)
+percentVar_dev <- round(100*attr(gPCAdata_dev, "percentVar")) #plot PCA of samples with all data
+
+allgenesfilt_PCA <- ggplot(gPCAdata_dev, aes(PC1, PC2, shape=time_point, color=treatment)) + 
+  geom_point(size=3) +
+  xlab(paste0("PC1: ",percentVar_dev[1],"% variance")) +
+  ylab(paste0("PC2: ",percentVar_dev[2],"% variance")) +
+  scale_shape_manual(values = c("Fertilized_egg"=1, "Cleavage"=10, "Prawn_chip"=5, "Early_gastrula"=14, "Planula"=2)) +
+  scale_color_manual(values = c("amb"="slateblue", "l"="indianred3", "xl"="deeppink4")) +
+  coord_fixed() +
+    theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     #panel.grid.major = element_blank(), #Set major gridlines 
+                     #panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) # + #Set the plot background
+  #theme(legend.position = ("none")) #set title attributes
+allgenesfilt_PCA
+ggsave(file = "3-WGCNA/Output/Fig3-allgenesfilt-PCA.pdf", allgenesfilt_PCA)
+```
+
+### Compile WGCNA Dataset
+
+Transpose the filtered gene count matrix so that the gene IDs are rows and the sample IDs are columns.
+```{r}
+datExpr <- as.data.frame(t(assay(gvst_dev))) #transpose to output to a new data frame with the column names as row names. And make all data numeric
+```
+
+Check for genes and samples with too many missing values with goodSamplesGenes. There shouldn't be any because we performed pre-filtering
+```{r}
+gsg = goodSamplesGenes(datExpr, verbose = 3)
+gsg$allOK #Should return TRUE if not, the R chunk below will take care of flagged data
+```
+
+Remove flagged samples if the allOK is FALSE
+```{r}
+ncol(datExpr) #number genes before
+if (!gsg$allOK) #If the allOK is FALSE...
+{
+# Optionally, print the gene and sample names that are flagged:
+if (sum(!gsg$goodGenes)>0)
+printFlush(paste("Removing genes:", paste(names(datExpr)[!gsg$goodGenes], collapse = ", ")));
+if (sum(!gsg$goodSamples)>0)
+printFlush(paste("Removing samples:", paste(rownames(datExpr)[!gsg$goodSamples], collapse = ", ")));
+# Remove the offending genes and samples from the data:
+datExpr = datExpr[gsg$goodSamples, gsg$goodGenes]
+}
+ncol(datExpr) #number genes after
+```
+
+### Cluster the samples to look for obvious outliers
+
+Look for outliers by examining
+```{r}
+sampleTree = hclust(dist(datExpr), method = "average");
+# Plot the sample tree: Open a graphic output window of size 12 by 9 inches
+# The user should change the dimensions if the window is too large or too small.
+plot(sampleTree, main = "Sample clustering to detect outliers", sub="", xlab="", cex.lab = 1.5, cex.axis = 1.5, cex.main = 2)
+```
+There don't look to be any outliers, so we will move on with business as usual.
+
+## Network construction and consensus module detection
+
+### Choosing a soft-thresholding power: Analysis of network topology β
+
+The soft thresholding power (β) is the number to which the co-expression similarity is raised to calculate adjacency. The function pickSoftThreshold performs a network topology analysis. The user chooses a set of candidate powers, however the default parameters are suitable values.
+```{r, message=FALSE, warning=FALSE}
+# # Choose a set of soft-thresholding powers
+# powers <- c(seq(from = 1, to=19, by=2), c(21:30)) #Create a string of numbers from 1 through 10, and even numbers from 10 through 20
+# 
+# # Call the network topology analysis function
+# sft <-pickSoftThreshold(datExpr, powerVector = powers, verbose = 5)
+```
+
+Plot the results.
+```{r}
+# sizeGrWindow(9, 5)
+# par(mfrow = c(1,2));
+# cex1 = 0.9;
+# # # Scale-free topology fit index as a function of the soft-thresholding power
+# plot(sft$fitIndices[,1], -sign(sft$fitIndices[,3])*sft$fitIndices[,2],
+#      xlab="Soft Threshold (power)",ylab="Scale Free Topology Model Fit,signed R^2",type="n",
+#     main = paste("Scale independence"));
+# text(sft$fitIndices[,1], -sign(sft$fitIndices[,3])*sft$fitIndices[,2],
+#     labels=powers,cex=cex1,col="red");
+# # # this line corresponds to using an R^2 cut-off
+# abline(h=0.9,col="red")
+# # # Mean connectivity as a function of the soft-thresholding power
+# plot(sft$fitIndices[,1], sft$fitIndices[,5],
+#     xlab="Soft Threshold (power)",ylab="Mean Connectivity", type="n",
+#     main = paste("Mean connectivity"))
+# text(sft$fitIndices[,1], sft$fitIndices[,5], labels=powers, cex=cex1,col="red")
+```
+I used a scale-free topology fit index **R^2 of 0.9**. This lowest recommended R^2 by Langfelder and Horvath is 0.8. I chose 0.9 because we want to use the smallest soft thresholding power that maximizes with model fit. It appears that our **soft thresholding power is 13** because it is the lowest power before the R^2=0.8 threshold that maximizes with model fit.
+
+## Step-by-step network construction and module detection: 
+
+### Co-expression adjacency and topological overlap matrix similarity
+
+The next few steps will be executed in supercomputer, Bluewaves, as our dataset is too large for most standard laptops to handle.
+
+Save Rdata necessary for analysis in Bluewaves
+```{r}
+save(datExpr, file = "3-WGCNA/Input/datExpr.RData")
+```
+
+
+**To be executed on the Bluewaves server**  
+Co-expression similarity and adjacency, using the soft thresholding power 23 and translate the adjacency into topological overlap matrix to calculate the corresponding dissimilarity. I will use a **signed network** because we have a relatively high softPower, according to (>12): https://peterlangfelder.com/2018/11/25/__trashed/
+```{r, }
+# #Set up workspace
+# getwd() #Display the current working directory
+# #If necessary, change the path below to the directory where the data files are stored. "." means current directory. On Windows use a forward slash / instead of the usual \.
+# workingDir = ".";
+# setwd(WGCNA_dev);
+# library(WGCNA) #Load the WGCNA package
+# options(stringsAsFactors = FALSE) #The following setting is important, do not omit.
+# enableWGCNAThreads() #Allow multi-threading within WGCNA. 
+# 
+# #Load the data saved in the first part
+# adjTOM <- load(file="datExpr.RData")
+# adjTOM
+# 
+# #Run analysis
+# softPower=23 #Set softPower to 23
+# adjacency=adjacency(datExpr, power=softPower,type="signed") #Calculate adjacency
+# TOM= TOMsimilarity(adjacency,TOMType = "signed") #Translate adjacency into topological overlap matrix
+# dissTOM= 1-TOM #Calculate dissimilarity in TOM
+# save(adjacency, TOM, dissTOM, file = "../adjTOM.RData") #Save to bluewaves dir
+# save(dissTOM, file = "../dissTOM.RData") #Save to bluewaves dir
+```
+
+
+### Clustering using TOM
+
+Form distance matrix
+```{r}
+# geneTree= flashClust(as.dist(dissTOM), method="average")
+```
+
+We will now plot a dendrogram of genes. Each leaf corresponds to a gene, branches grouping together densely are interconnected, highly co-expressed genes.
+```{r}
+# pdf(file="dissTOMClustering.pdf", width=20, height=20)
+# plot(geneTree, xlab="", sub="", main= "Gene Clustering on TOM-based dissimilarity", labels= FALSE,hang=0.04)
+# dev.off()
+```
+
+### Module identification using dynamicTreeCut
+
+Module identification is essentially cutting the branches off the tree in the dendrogram above. We like large modules, so we set the **minimum module size** relatively high, so we will set the minimum size at 30. I chose 30 as it is the default value chosen by most studies using WGCNA.
+```{r}
+# minModuleSize = 30
+# dynamicMods = cutreeDynamic(dendro = geneTree, distM = dissTOM,
+# deepSplit = 2, pamRespectsDendro = FALSE,
+# minClusterSize = minModuleSize)
+# table(dynamicMods) #list modules and respective sizes
+# save(dynamicMods, geneTree, file = "dyMod_geneTree.RData") #Save to bluewaves dir and scp to 3-WGCNA/Input dir
+```
+Module 0 is reserved for unassigned genes. The are other modules will be listed largest to smallest.
+
+**Now we can continue using Rstudio**
+
+Load modules calculated from the adjacency matrix
+```{r}
+dyMod_geneTree <- load(file = "3-WGCNA/Input/dyMod_geneTree.RData")
+dyMod_geneTree
+geneTree
+```
+
+
+Plot the module assignment under the gene dendrogram
+```{r}
+dynamicColors = labels2colors(dynamicMods) # Convert numeric labels into colors
+table(dynamicColors)
+
+plotDendroAndColors(geneTree, dynamicColors, "Dynamic Tree Cut", dendroLabels = FALSE, hang = 0.03, addGuide = TRUE, guideHang = 0.05, main = "Gene dendrogram and module colors")
+```
+
+### Merge modules whose expression profiles are very similar or choose not to merge
+
+Plot module similarity based on eigengene value
+```{r}
+#Calculate eigengenes
+MEList = moduleEigengenes(datExpr, colors = dynamicColors, softPower = 13)
+MEs = MEList$eigengenes
+
+#Calculate dissimilarity of module eigengenes
+MEDiss = 1-cor(MEs)
+
+#Cluster again and plot the results
+METree = flashClust(as.dist(MEDiss), method = "average")
+
+plot(METree, main = "Clustering of module eigengenes", xlab = "", sub = "")
+```
+We only have 36 modules from our initial clustering, and we want to maximize differences because we expect the most variation to be due to developmental stage, so we will not merge.
+
+##  Relating modules to developmental stage
+
+### Quantifying module–trait associations
+
+Prepare trait data. Data has to be numeric, so I will substitute time_points and type for numeric values
+```{r}
+treatmentinfo_dev$num <- c("1")
+treatmentinfo_dev$group <- paste(sep=".", treatmentinfo_dev$time_point, treatmentinfo_dev$treatment)
+allTraits <- as.data.frame(pivot_wider(treatmentinfo_dev, names_from = group, values_from = num, id_cols = sample_id))
+allTraits[is.na(allTraits)] <- c("0")
+rownames(allTraits) <- allTraits$sample_id
+datTraits <- allTraits[,c(-1)]
+datTraits
+```
+
+Define numbers of genes and samples
+```{r}
+nGenes = ncol(datExpr)
+nSamples = nrow(datExpr)
+```
+
+Correlations of traits with eigengenes
+```{r}
+moduleTraitCor = cor(MEs, datTraits, use = "p");
+moduleTraitPvalue = corPvalueStudent(moduleTraitCor, nSamples);
+Colors=sub("ME","",names(MEs))
+
+moduleTraitTree = hclust(dist(t(moduleTraitCor)), method = "average");
+plot(moduleTraitTree, main = "Life stage clustering based on module-trait correlation", sub="", xlab="", cex.lab = 1.5, cex.axis = 1.5, cex.main = 2)
+```
+
+Correlations of genes with eigengenes
+```{r}
+moduleGeneCor=cor(MEs,datExpr)
+moduleGenePvalue = corPvalueStudent(moduleGeneCor, nSamples);
+```
+
+### Plot module-trait associations
+
+Represent module trait correlations as a heatmap 
+```{r}
+textMatrix = paste(signif(moduleTraitCor, 2), "\n(",signif(moduleTraitPvalue, 1), ")", sep = "")
+dim(textMatrix) = dim(moduleTraitCor)
+head(textMatrix)
+
+labeledHeatmap(Matrix = moduleTraitCor, xLabels = names(datTraits),  yLabels = names(MEs), ySymbols = names(MEs), cex.lab.y= 0.55, cex.lab.x= 0.55, colors = blueWhiteRed(50), textMatrix = textMatrix, setStdMargins = TRUE, cex.text = 0.25, textAdj = , zlim = c(-1,1), main = paste("Module-trait relationships"))
+```
+
+Plot with complexHeatmap
+```{r}
+#bold sig p-values
+#dendrogram with WGCNA MEtree cut-off
+#colored y-axis
+
+#Create list of pvalues for eigengene correlation with specific life stages
+heatmappval <- signif(moduleTraitPvalue, 1)
+
+#Make list of heatmap row colors
+htmap.colors <- names(MEs)
+htmap.colors <- gsub("ME", "", htmap.colors)
+
+pdf(file = "3-WGCNA/Output/Module-trait-relationship-heatmap.pdf", height = 11.5, width = 8)
+ht=Heatmap(moduleTraitCor, name = "Eigengene", column_title = "Module-Trait Eigengene Correlation", 
+        col = blueWhiteRed(50), 
+        row_names_side = "left", row_dend_side = "left",
+        width = unit(5, "in"), height = unit(8.5, "in"), 
+        column_order = 1:15, column_dend_reorder = TRUE, cluster_columns = hclust(dist(t(moduleTraitCor)), method = "average"), column_dend_height = unit(0.5, "in"),
+        cluster_rows = METree, row_gap = unit(2.5, "mm"), border = TRUE,
+        cell_fun = function(j, i, x, y, w, h, col) {
+        if(heatmappval[i, j] <= 0.05) {
+            grid.text(sprintf("%s", heatmappval[i, j]), x, y, gp = gpar(fontsize = 8, fontface = "bold"))
+        }
+        else {
+            grid.text(sprintf("%s", heatmappval[i, j]), x, y, gp = gpar(fontsize = 8, fontface = "plain"))
+        }},
+        column_names_gp =  gpar(fontsize = 10),
+row_names_gp = gpar(fontsize = 10, alpha = 0.75, border = TRUE, fill = htmap.colors))
+draw(ht)
+dev.off()
+```
+
+###  Gene relationship to trait and important modules: Gene Significance and Module Membership
+
+We quantify associations of individual genes with life stage by defining Gene Significance GS as the absolute value of the correlation between the gene and the time_point. For each module, we also define a quantitative measure of module membership MM as the correlation of the module eigengene and the gene expression profile. 
+
+Define variable weight containing the weight column of datTrait
+```{r}
+time_point <- as.data.frame(as.numeric(as.factor(paste(sep=".", treatmentinfo_dev$time_point, treatmentinfo_dev$treatment))))
+names(time_point) = "timepoint"
+dim(time_point)
+```
+
+Colors of the modules
+```{r}
+modNames = substring(names(MEs), 3)
+
+geneModuleMembership = as.data.frame(cor(datExpr, MEs, use = "p"));
+MMPvalue = as.data.frame(corPvalueStudent(as.matrix(geneModuleMembership), nSamples));
+
+names(geneModuleMembership) = paste("MM", modNames, sep="");
+names(MMPvalue) = paste("p.MM", modNames, sep="");
+
+geneTraitSignificance = as.data.frame(cor(datExpr, time_point, use = "p"));
+GSPvalue = as.data.frame(corPvalueStudent(as.matrix(geneTraitSignificance), nSamples));
+
+names(geneTraitSignificance) = paste("GS.", names(time_point), sep="");
+names(GSPvalue) = paste("p.GS.", names(time_point), sep="");
+```
+
+
+### Summary output of network analysis results
+
+#### Make a dataframe that connects traits, genes, and gene annotation
+
+Import annotation file.
+```{r}
+Mcap.annot <- read_tsv( "1-BLAST-GO-KO/Output/200824_Mcap_Blast_GO_KO.tsv", col_names = TRUE) #biological annotation information
+tail(Mcap.annot)
+dim(Mcap.annot)
+```
+
+Match up genes in datExpr to annotation file
+```{r}
+names(Mcap.annot)
+probes = names(datExpr)
+probes2annot = match(probes, Mcap.annot$gene_id)
+
+# The following is the number of probes without annotation... Should return 0.
+sum(is.na(probes2annot))
+```
+
+Create the starting data frame
+```{r}
+geneInfo0 = data.frame(gene_id = probes,
+Accession = Mcap.annot$description[probes2annot],
+Bitscore = Mcap.annot$bitscore[probes2annot],
+eValue = Mcap.annot$eValue[probes2annot],
+Description = Mcap.annot$protein_names[probes2annot],
+KEGG = Mcap.annot$ko[probes2annot],
+Annotation.GO.ID = Mcap.annot$GO_IDs[probes2annot],
+Annotation.GO.Term = Mcap.annot$GO_terms[probes2annot],
+moduleColor = dynamicColors,
+geneTraitSignificance,
+GSPvalue)
+```
+
+
+Order modules by their significance for time_point
+```{r}
+modOrder = order(-abs(cor(MEs, time_point, use = "p")))
+```
+
+Add module membership information in the chosen order
+```{r}
+for (mod in 1:ncol(geneModuleMembership))
+{
+oldNames = names(geneInfo0)
+geneInfo0 = data.frame(geneInfo0, geneModuleMembership[, modOrder[mod]],
+MMPvalue[, modOrder[mod]]);
+names(geneInfo0) = c(oldNames, paste("MM.", modNames[modOrder[mod]], sep=""),
+paste("p.MM.", modNames[modOrder[mod]], sep=""))
+}
+```
+
+Order the genes in the geneInfo variable first by module color, then by geneTraitSignificance
+```{r}
+geneOrder = order(geneInfo0$moduleColor, -abs(geneInfo0$GS.timepoint));
+geneInfo = geneInfo0[geneOrder, ]
+head(geneInfo)
+```
+
+Remove NAs in annotation GO IDs
+```{r}
+geneInfo$Annotation.GO.ID <- gsub(";NA", "", geneInfo$Annotation.GO.ID) #Remove NAs
+geneInfo$Annotation.GO.ID <- gsub("NA", "", geneInfo$Annotation.GO.ID) #Remove NAs
+```
+
+
+See and save geneInfo as a CSV
+```{r}
+dim(geneInfo)
+head(geneInfo)
+
+write.csv(geneInfo, file = "3-WGCNA/Output/geneInfo.csv")
+```
