@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name="huffmyer_stringtie"
+#SBATCH --job-name="stringtie"
 #SBATCH -t 100:00:00
 #SBATCH --export=NONE
 #SBATCH --exclusive
 #SBATCH --mail-type=BEGIN,END,FAIL
-#SBATCH --mail-user=ashuffmyer@uri.edu
+#SBATCH --mail-user=erin_chille@uri.edu
 #SBATCH -D /data/putnamlab/erin_chille/mcap2019/huffmyer
 #SBATCH --mem=100GB
 
@@ -20,7 +20,7 @@ array1=($(ls *_R1_001.clean.fastq.gz.bam))
 
 #Running with the -e option to compare output to exclude novel genes. Also output a file with the gene abundances
 for i in ${array1[@]}; do
-        stringtie -A gene_abund/${i}gene_abund.tab --rf -e -G symbiont.gff -o ${i}.gtf ${i}
+        stringtie --rf -e -G symbiont.gff -o ${i}.gtf ${i}
         echo "StringTie-assembly-to-ref ${i}" $(date)
 done
 echo "Assembly complete!" $(date)
@@ -32,9 +32,9 @@ stringtie --merge -G symbiont.gff -o stringtie_merged.gtf mergelist.txt
 echo "Stringtie merge" $(date)
 
 #Compute the accuracy and precision of assembly
-gffcompare -r symbiont.gff -G stringtie_merged.gtf -o merged
+gffcompare -r symbiont.gff -G sym_stringtie_merged.gtf -o merged
 echo "GFFcompare complete! Starting gene count matrix assembly..." $(date)
 
 #Compile the gene count matrix
-python ./prepDE.py -g gene_count_matrix.csv -i sample_list.txt
+python ./prepDE.py -g sym_gene_count_matrix.csv -i sample_list.txt
 echo "Hooray!!! Gene count matrix complete!" $(date)

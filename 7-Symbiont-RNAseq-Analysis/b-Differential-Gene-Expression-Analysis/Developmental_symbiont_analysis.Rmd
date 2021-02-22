@@ -1,0 +1,153 @@
+---
+title: "Mcap Developmental pH Series of Symbiont Gene Expression in *M. capitata*"
+author: "Erin Chille"
+date: "Last updated 2020/11/12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# The following setting is important, do not omit.
+options(stringsAsFactors = FALSE) #Set Strings to character
+```
+
+# BSF Biomineralization Project: RNAseq Expression and Functional Analysis
+
+## Set up workspace
+
+Import necessary libraries
+```{r, message=FALSE, warning=FALSE}
+library("tidyverse")
+library("genefilter")
+library("DESeq2")
+library("RColorBrewer")
+library("gridExtra")
+library("ComplexHeatmap")
+library("dplyr")
+```
+
+## Data input, cleaning, and pre-processing
+
+Import the data files 
+```{r}
+treatmentinfo <- read.csv("Sample_Info/RNAseq_data.csv", header = TRUE, sep = ",", row.names = "sample_id")
+head(treatmentinfo)
+
+gcount <- as.data.frame(read.csv("7-Symbiont-RNAseq-Analysis/a-QC-Align-Assemble/Output/sym_gene_count_matrix.csv", row.names="gene_id"), colClasses = double)
+gcount <- gcount[ ,rownames(treatmentinfo)] #remove samples not in the treatment information csv (i.e. not in experiment)
+dim(gcount)
+head(gcount)
+```
+
+#### Quality-filter gene counts  
+Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the genes that are only present in fewer than two of the 24 ambient samples.
+```{r}
+#keep only life stages with samples from all pH treatments in treatmentinfo and count data
+treatmentinfo_dev <- filter(treatmentinfo, time_point!="Unfertilized_egg")
+dim(treatmentinfo_dev) #rows should be 24
+
+# delete sample columns corresponding to low and extreme low samples by mapping Null value to them
+gcount_dev <- gcount[rownames(treatmentinfo_dev)]
+dim(gcount_dev) #columns should be 24
+
+#create filter for the counts data
+#gfiltdev <- rowSums(count(gcount_dev)) > 0
+#set filter values for PoverA, P=100% percent of the samples have counts over A=10. This means that only 2 out of 24 (0.083) samples need to have counts over 10. Our smallest sample size for our life stages is two (fertilized egg, mid-gastrula, early-gastrula). By setting 2/24 as the P, this means if a particular gene is expressed only in 1 of these smallest life stages, it will be included in the analysis.
+filt <- filterfun(pOverA(0.083,10))
+
+#create filter for the counts data
+gfiltdev <- genefilter(gcount_dev, filt)
+
+#identify genes to keep by count filter
+gkeepdev <- gcount_dev[gfiltdev,]
+
+
+#identify genes to keep by count filter
+gkeepdev <- gcount_dev[gfiltdev,]
+
+#identify gene lists
+gn.keepdev <- rownames(gkeepdev)
+
+#gene count data filtered in PoverA, P percent of the samples have counts over A
+gcount_filt_dev <- as.data.frame(gcount_dev[which(rownames(gcount_dev) %in% gn.keepdev),])
+
+#How many rows do we have before and after filtering?
+nrow(gcount_dev) #Before
+nrow(gcount_filt_dev) #After
+```
+
+### Read normalization
+We are now going normalize our read counts using VST-normalization in DESeq2
+
+#### Construct the DESeq2 dataset
+
+Merge the treatment and time_point columns into a new column , group. Set group as a factor.
+```{r}
+treatmentinfo_dev$time_point <- factor(treatmentinfo_dev$time_point, levels = c("Fertilized_egg", "Cleavage", "Prawn_chip", "Early_gastrula", "Planula"))
+treatmentinfo_dev$treatment <- factor(treatmentinfo_dev$treatment, levels = c("amb", "l", "xl"))
+```
+
+Create a DESeqDataSet design from gene count matrix and labels. Here we set the design to look at time_point to test for any differences in gene expression across timepoints.
+```{r}
+#Set DESeq2 design
+gdds_dev <- DESeqDataSetFromMatrix(countData = gcount_filt_dev,
+                              colData = treatmentinfo_dev,
+                              design = ~time_point)
+```
+
+#### Log-transform the count data
+First we are going to log-transform the data using a variance stabilizing transforamtion (VST). This is only for visualization purposes. Essentially, this is roughly similar to putting the data on the log2 scale. It will deal with the sampling variability of low counts by calculating within-group variability (if blind=FALSE). Importantly, it does not use the design to remove variation in the data, and so can be used to examine if there may be any variability do to technical factors such as extraction batch effects.
+
+To do this we first need to calculate the size factors of our samples. This is a rough estimate of how many reads each sample contains compared to the others. In order to use VST (the faster log2 transforming process) to log-transform our data, the size factors need to be less than 4. Otherwise, there could be artefacts in our results.
+```{r}
+SF.gdds_dev <- estimateSizeFactors(gdds_dev) #estimate size factors to determine if we can use vst  to transform our data. Size factors should be less than four to use vst
+print(sizeFactors(SF.gdds_dev)) #View size factors
+```
+
+Our size factors are NOT all less than 4, so we can use RLOG!
+```{r}
+grlog_dev <- rlog(gdds_dev, blind=TRUE) #apply a variance stabilizing transforamtion to minimize effects of small counts and normalize wrt library size
+head(assay(grlog_dev), 3) #view transformed gene count data
+```
+
+
+##### Plot a heatmap of sample-to-sample distances
+```{r}
+gsampleDists_dev <- dist(t(assay(grlog_dev))) #calculate distance matix
+gsampleDistMatrix_dev <- as.matrix(gsampleDists_dev) #distance matrix
+rownames(gsampleDistMatrix_dev) <- colnames(grlog_dev) #assign row names
+colnames(gsampleDistMatrix_dev) <- NULL #assign col names
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255) #assign colors
+pheatmap(gsampleDistMatrix_dev, #plot matrix
+         clustering_distance_rows=gsampleDists_dev, #cluster rows
+         clustering_distance_cols=gsampleDists_dev, #cluster columns
+         col=colors) #set colors
+```
+
+
+##### Principal component plot of samples
+```{r}
+gPCAdata_dev <- plotPCA(grlog_dev, intgroup = c("time_point"), returnData=TRUE)
+percentVar_dev <- round(100*attr(gPCAdata_dev, "percentVar")) #plot PCA of samples with all data
+treatmentinfo_dev$name <- rownames(treatmentinfo_dev)
+gPCAdata_dev <- merge(gPCAdata_dev, treatmentinfo_dev[,c(2,4)], by = "name")
+gPCAdata_dev <- plotPCA(grlog_dev, intgroup = c("time_point", "treatment"), returnData=TRUE)
+percentVar_dev <- round(100*attr(gPCAdata_dev, "percentVar")) #plot PCA of samples with all data
+
+allgenesfilt_PCA <- ggplot(gPCAdata_dev, aes(PC1, PC2, shape=time_point, color=treatment)) + 
+  geom_point(size=3) +
+  xlab(paste0("PC1: ",percentVar_dev[1],"% variance")) +
+  ylab(paste0("PC2: ",percentVar_dev[2],"% variance")) +
+  scale_shape_manual(values = c("Fertilized_egg"=1, "Cleavage"=10, "Prawn_chip"=5, "Early_gastrula"=14, "Planula"=2)) +
+  scale_color_manual(values = c("amb"="slateblue", "l"="indianred3", "xl"="deeppink4")) +
+  coord_fixed() +
+    theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     #panel.grid.major = element_blank(), #Set major gridlines 
+                     #panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.line = element_line(colour = "black"), #Set axes color
+        plot.background=element_blank()) # + #Set the plot background
+  #theme(legend.position = ("none")) #set title attributes
+allgenesfilt_PCA
+```
