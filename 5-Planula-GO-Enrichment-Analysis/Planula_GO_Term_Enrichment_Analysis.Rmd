@@ -46,10 +46,12 @@ DEGclust <- subset(DEG.res, select=c(gene_id, cluster))
 DEGclust <- unique(DEGclust)
 
 clust1 <- filter(DEGclust, cluster=="1")
+nrow(clust1) #nrow clust1
 clust2 <- filter(DEGclust, cluster=="2")
+nrow(clust2) #nrow clust2
 ```
 
-
+Set ID and gene length vectors, and make a binary matrix indicating which genes are differentially expressed. These are used as input to nullp, which for calculates a Probability Weighting Function for each set of DEGs.
 ```{r}
 #Make ID and length vectors
 Go.ref <- unique(Go.ref)
@@ -74,6 +76,7 @@ length(clust1.genes)
 pwf.C1<-nullp(DEgenes=clust1.genes, id=IDvector, bias.data=lengthVector) #weight vector by length of gene
 pwf.C2<-nullp(clust2.genes, IDvector, bias.data=lengthVector) #weight vector by length of gene
 ```
+
 Prepare GO term dataframe
 ```{r}
 GO.annot <- select(annot, gene_id, GO_IDs)
@@ -100,8 +103,6 @@ Find enriched GO terms, "selection-unbiased testing for category enrichment amon
 GOwall.C1 <- goseq(pwf.C1, GOref$gene_id, gene2cat=GO.terms, test.cats=c("GO:CC", "GO:BP", "GO:MF"), method="Wallenius", use_genes_without_cat=TRUE)
 GOwall.C2 <- goseq(pwf.C2, GOref$gene_id, gene2cat=GO.terms, test.cats=c("GO:CC", "GO:BP", "GO:MF"), method="Wallenius", use_genes_without_cat=TRUE)
 ```
-
----
 
 Find only enriched GO terms that are statistically significant at cutoff
 ```{r}
