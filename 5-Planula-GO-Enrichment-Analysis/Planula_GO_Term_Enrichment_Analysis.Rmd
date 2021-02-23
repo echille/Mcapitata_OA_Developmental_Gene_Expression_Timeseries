@@ -82,8 +82,11 @@ pwf.C2<-nullp(clust2.genes, IDvector, bias.data=lengthVector) #weight vector by 
 Prepare GO term dataframe
 ```{r}
 GO.annot <- select(annot, gene_id, GO_IDs)
-splitted <- strsplit(as.character(GO.annot$GO_IDs), ";") #split into multiple GO ids
-GO.terms <- data.frame(v1 = rep.int(GO.annot$gene_id, sapply(splitted, length)), v2 = unlist(splitted)) #list all genes with each of their GO terms in a single row
+GO.annot.na <- filter(GO.annot, GO_IDs!="NA;NA") #Remove NAs
+GO.annot.na$GO_IDs <- gsub("NA;", "", GO.annot.na$GO_IDs)  #Remove NAs
+GO.annot.na$GO_IDs <- gsub(";NA", "", GO.annot.na$GO_IDs)  #Remove NAs
+splitted <- strsplit(as.character(GO.annot.na$GO_IDs), ";") #split into multiple GO ids
+GO.terms <- data.frame(v1 = rep.int(GO.annot.na$gene_id, sapply(splitted, length)), v2 = unlist(splitted)) #list all genes with each of their GO terms in a single row
 colnames(GO.terms) <- c("gene_id", "GO.ID")
 
 GO.terms$GO.ID<- as.character(GO.terms$GO.ID)
@@ -95,7 +98,8 @@ GO.terms <- unique(GO.terms)
 
 dim(GO.terms)
 head(GO.terms, 10)
-GO.terms <- filter(GO.terms, GO.ID!="NA")
+
+nrow(GO.terms)/length(unique(GO.terms$gene_id)) #avg GO IDs per gene
 ```
 
 Find enriched GO terms, "selection-unbiased testing for category enrichment amongst significantly expressed genes for RNA-seq data"
