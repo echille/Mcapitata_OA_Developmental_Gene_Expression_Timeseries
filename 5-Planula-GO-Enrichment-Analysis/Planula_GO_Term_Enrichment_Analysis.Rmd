@@ -24,12 +24,14 @@ gcount <- gcount[ ,treatmentinfo$sample_id] #remove samples not in the treatment
 gcount$gene_id <- rownames(gcount)
 rownames(gcount) <- NULL
 dim(gcount)
-head(gcount)
 
 #DESeq2 and clustering results
 DEG.res <- read.csv("4-Differential-Gene-Expression-Analysis/Output/pln_DEGs_all.csv")[,-1]
-str(DEG.res)
-head(DEG.res)
+nrow(DEG.res)
+
+#filter DEGs for log2FoldChange>|1|
+DEG.res <- filter(DEG.res, log2FoldChange > 1 | log2FoldChange < (-1))
+nrow(DEG.res)
 
 #transcript annotations
 annot <- read_tsv( "1-BLAST-GO-KO/Output/200824_Mcap_Blast_GO_KO.tsv", col_names = TRUE) #biological annotation information
@@ -83,8 +85,6 @@ GO.annot <- select(annot, gene_id, GO_IDs)
 splitted <- strsplit(as.character(GO.annot$GO_IDs), ";") #split into multiple GO ids
 GO.terms <- data.frame(v1 = rep.int(GO.annot$gene_id, sapply(splitted, length)), v2 = unlist(splitted)) #list all genes with each of their GO terms in a single row
 colnames(GO.terms) <- c("gene_id", "GO.ID")
-head(GO.terms)
-tail(GO.terms)
 
 GO.terms$GO.ID<- as.character(GO.terms$GO.ID)
 GO.terms$GO.ID <- replace_na(GO.terms$GO.ID, "unknown")
@@ -95,7 +95,7 @@ GO.terms <- unique(GO.terms)
 
 dim(GO.terms)
 head(GO.terms, 10)
-tail(GO.terms, 10)
+GO.terms <- filter(GO.terms, GO.ID!="NA")
 ```
 
 Find enriched GO terms, "selection-unbiased testing for category enrichment amongst significantly expressed genes for RNA-seq data"
@@ -114,6 +114,7 @@ C1.GO.05 <- C1.GO.05[order(C1.GO.05$ontology, C1.GO.05$over_represented_pvalue, 
 C1.GO.05$term <- as.factor(C1.GO.05$term)
 nrow(filter(C1.GO.05, ontology=="BP")) #number sig BP terms
 nrow(filter(C1.GO.05, ontology=="MF")) #number sig MF terms
+nrow(C1.GO.05)
 
 C2.GO.05<-GOwall.C2$category[GOwall.C2$over_represented_pvalue<.05]
 C2.GO.05<-data.frame(C2.GO.05)
@@ -123,6 +124,7 @@ C2.GO.05 <- C2.GO.05[order(C2.GO.05$ontology, C2.GO.05$over_represented_pvalue, 
 C2.GO.05$term <- as.factor(C2.GO.05$term)
 nrow(filter(C2.GO.05, ontology=="BP")) #number sig BP terms
 nrow(filter(C2.GO.05, ontology=="MF")) #number sig MF terms
+nrow(C2.GO.05)
 ```
 
 Correct any un-annotated terms/ontologies
