@@ -1,0 +1,139 @@
+Date,Calib.Date,Time,Sample.ID,Treatment,Type,TA.Run,Temperature,pH.MV,Salinity,Period1,Notes,
+20180613,20180613,0:12,Conical1,Ambient,Conical,No,26.56,-50.8,NA,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,0:12,Conical2,Ambient,Conical,No,26.64,-51.3,NA,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,0:12,Conical3,Low,Conical,No,26.77,-37.6,NA,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,0:12,Conical4,XLow,Conical,No,26.65,-18.8,NA,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,0:12,Conical5,XLow,Conical,No,26.66,-18.7,NA,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,0:12,Conical6,Low,Conical,No,26.78,-37.2,NA,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,0:12,Conical7,Ambient,Conical,No,26.65,-51.4,NA,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,0:12,Conical8,Low,Conical,No,26.77,-37.2,NA,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,0:12,Conical9,XLow,Conical,No,26.67,-18.2,NA,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,9:45,Conical1,Ambient,Conical,Yes,26.94,-52.2,34.14,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,9:45,Conical2,Ambient,Conical,Yes,27.05,-52.3,34.13,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,9:45,Conical3,Low,Conical,Yes,27.14,-38.6,34.22,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,9:45,Conical4,XLow,Conical,Yes,27.04,-18.8,34.14,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,9:45,Conical5,XLow,Conical,Yes,27.03,-19.1,34.13,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,9:45,Conical6,Low,Conical,Yes,27.12,-38.3,34.2,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,9:45,Conical7,Ambient,Conical,Yes,27.03,-52.5,34.21,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,9:45,Conical8,Low,Conical,Yes,27.21,-39,34.21,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180613,20180613,9:45,Conical9,XLow,Conical,Yes,27.13,-19.3,34.21,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180613,0:44,Conical1,Ambient,Conical,No,26.78,-47.2,34.28,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180613,0:44,Conical2,Ambient,Conical,No,26.85,-46.3,34.36,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180613,0:44,Conical3,Low,Conical,No,27.06,-31.4,34.43,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180613,0:44,Conical4,XLow,Conical,No,26.92,-19.3,34.37,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180613,0:44,Conical5,XLow,Conical,No,26.92,-15.5,34.34,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180613,0:44,Conical6,Low,Conical,No,27.02,-16.4,34.33,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180613,0:44,Conical7,Ambient,Conical,No,26.88,-50.2,34.37,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180613,0:44,Conical8,Low,Conical,No,27.03,-36.2,34.34,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180613,0:44,Conical9,XLow,Conical,No,26.97,-16.7,34.41,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180614,9:00,Conical1,Ambient,Conical,Yes,26.78,-50.7,34.32,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180614,9:00,Conical2,Ambient,Conical,Yes,26.84,-48.3,34.31,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180614,9:00,Conical3,Low,Conical,Yes,27.01,-34.2,34.3,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180614,9:00,Conical4,XLow,Conical,Yes,NA,NA,NA,Devo,"Thermo meter A325 + Mettler Toledo 5134301, larvae dead no measurements taken ",
+20180614,20180614,9:00,Conical5,XLow,Conical,Yes,26.9,-18,34.29,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180614,9:00,Conical6,Low,Conical,Yes,27,-34.3,34.34,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180614,9:00,Conical7,Ambient,Conical,Yes,26.84,-47.6,34.3,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180614,9:00,Conical8,Low,Conical,Yes,27.01,-34.2,34.34,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180614,9:00,Conical9,XLow,Conical,Yes,26.98,-18.1,34.29,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180614,20180614,10:11,Tank10,Ambient,Tank,Yes,26.63,-52.7,34.28,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180614,20180614,10:11,Tank11,XLow,Tank,Yes,26.63,-21.2,34.22,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180614,20180614,10:11,Tank12,Low,Tank,Yes,26.43,-38.1,34.17,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180614,20180614,10:11,Tank13,Ambient,Tank,Yes,26.44,-52.4,34.21,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180614,20180614,10:11,Tank14,XLow,Tank,Yes,26.54,-21.9,34.34,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180614,20180614,10:11,Tank15,Low,Tank,Yes,26.48,-38.8,34.29,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180615,20180615,9:50,Tank10,Ambient,Tank,Yes,26.67,-51.8,34.45,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180615,20180615,9:50,Tank11,XLow,Tank,Yes,26.55,-19.7,34.27,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180615,20180615,9:50,Tank12,Low,Tank,Yes,26.42,-38.8,34.56,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180615,20180615,9:50,Tank13,Ambient,Tank,Yes,26.41,-51.9,34.25,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180615,20180615,9:50,Tank14,XLow,Tank,Yes,26.44,-23.6,34.26,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180615,20180615,9:50,Tank15,Low,Tank,Yes,26.39,-38.3,34.26,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180615,20180615,14:45,Tank10,Ambient,Tank,No,27.35,-54.2,34.26,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180615,20180615,14:45,Tank11,XLow,Tank,No,27.16,-20.1,34.3,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180615,20180615,14:45,Tank12,Low,Tank,No,27.14,-38.8,34.46,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180615,20180615,14:45,Tank13,Ambient,Tank,No,27.06,-52.2,34.24,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180615,20180615,14:45,Tank14,XLow,Tank,No,27.1,-24.2,34.26,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180615,20180615,14:45,Tank15,Low,Tank,No,27.24,-39.7,34.4,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180616,20180616,10:30,Tank10,Ambient,Tank,Yes,26.62,-52.2,34.29,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180616,20180616,10:30,Tank11,XLow,Tank,Yes,26.19,-21.7,34.25,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180616,20180616,10:30,Tank12,Low,Tank,Yes,26.23,-39.2,34.27,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180616,20180616,10:30,Tank13,Ambient,Tank,Yes,26.28,-52.5,34.25,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180616,20180616,10:30,Tank14,XLow,Tank,Yes,26.17,-21.7,34.37,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180616,20180616,10:30,Tank15,Low,Tank,Yes,26.21,-39,34.25,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180616,20180616,15:20,Tank10,Ambient,Tank,No,27.45,-51.9,34.21,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180616,20180616,15:20,Tank11,XLow,Tank,No,26.95,-22.2,34.14,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180616,20180616,15:20,Tank12,Low,Tank,No,27.11,-38.9,34.24,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180616,20180616,15:20,Tank13,Ambient,Tank,No,27.04,-52.3,34.3,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180616,20180616,15:20,Tank14,XLow,Tank,No,26.88,-21.2,34.08,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180616,20180616,15:20,Tank15,Low,Tank,No,27.25,-38.8,34.37,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180617,20180617,10:15,Tank10,Ambient,Tank,Yes,25.92,-52.6,34.35,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180617,20180617,10:15,Tank11,XLow,Tank,Yes,26.22,-22.4,34.14,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180617,20180617,10:15,Tank12,Low,Tank,Yes,26.21,-40.4,34.34,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180617,20180617,10:15,Tank13,Ambient,Tank,Yes,26.29,-52.9,34.37,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180617,20180617,10:15,Tank14,XLow,Tank,Yes,26.11,-24.9,34.29,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180617,20180617,10:15,Tank15,Low,Tank,Yes,26.16,-38.7,34.33,Devo,Thermo meter A325 + Mettler Toledo 5134301,& have Mon1
+20180617,20180617,14:22,Tank10,Ambient,Tank,No,26.81,-52.9,34.26,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180617,20180617,14:22,Tank11,XLow,Tank,No,26.62,-23.2,34.14,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180617,20180617,14:22,Tank12,Low,Tank,No,26.65,-39.1,34.08,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180617,20180617,14:22,Tank13,Ambient,Tank,No,26.88,-53.2,34.36,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180617,20180617,14:22,Tank14,XLow,Tank,No,26.57,-24.4,34.22,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180617,20180617,14:22,Tank15,Low,Tank,No,26.75,-39.9,34.18,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180618,20180618,10:26,Tank10,Ambient,Tank,Yes,26.43,-54.3,34.16,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180618,20180618,10:26,Tank11,XLow,Tank,Yes,26.32,-21.8,34.2,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180618,20180618,10:26,Tank12,Low,Tank,Yes,26.08,-39.5,34.3,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180618,20180618,10:26,Tank13,Ambient,Tank,Yes,26.23,-53.8,34.27,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180618,20180618,10:26,Tank14,XLow,Tank,Yes,26.28,-24.2,34.17,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180618,20180618,10:26,Tank15,Low,Tank,Yes,26.14,-40.5,34.22,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180618,20180618,11:27,Tank10,Ambient,Tank,No,26.41,-53.6,34.15,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180618,20180618,11:27,Tank11,XLow,Tank,No,26.21,-22.7,34.1,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180618,20180618,11:27,Tank12,Low,Tank,No,26.06,-39.5,34.12,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180618,20180618,11:27,Tank13,Ambient,Tank,No,26.3,-54.9,33.89,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180618,20180618,11:27,Tank14,XLow,Tank,No,26.33,-24.7,34.08,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180618,20180618,11:27,Tank15,Low,Tank,No,25.92,-39.6,34.13,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180619,20180619,10:30,Tank10,Ambient,Tank,Yes,27.01,-54.6,34.24,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180619,20180619,10:30,Tank11,XLow,Tank,Yes,26.74,-21.5,34.43,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180619,20180619,10:30,Tank12,Low,Tank,Yes,26.66,-40.2,34.36,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180619,20180619,10:30,Tank13,Ambient,Tank,Yes,26.88,-54.5,34.2,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180619,20180619,10:30,Tank14,XLow,Tank,Yes,26.71,-22.2,34.19,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180619,20180619,10:30,Tank15,Low,Tank,Yes,26.22,-39.6,34.23,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180619,20180619,14:22,Tank10,Ambient,Tank,No,27.35,-52.5,34.08,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180619,20180619,14:22,Tank11,XLow,Tank,No,27,-21.4,34.06,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180619,20180619,14:22,Tank12,Low,Tank,No,26.94,-38.8,33.88,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180619,20180619,14:22,Tank13,Ambient,Tank,No,27.26,-52.3,33.92,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180619,20180619,14:22,Tank14,XLow,Tank,No,26.82,-23.4,34.09,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180619,20180619,14:22,Tank15,Low,Tank,No,27.08,-38.6,33.88,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180620,20180620,9:30,Tank10,Ambient,Tank,Yes,27.51,-54.7,34.3,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180620,20180620,9:30,Tank11,XLow,Tank,Yes,27.37,-21.4,34.26,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180620,20180620,9:30,Tank12,Low,Tank,Yes,27.35,-29,34.16,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180620,20180620,9:30,Tank13,Ambient,Tank,Yes,27.15,-53.3,34.31,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180620,20180620,9:30,Tank14,XLow,Tank,Yes,27.15,-22.8,34.2,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180620,20180620,9:30,Tank15,Low,Tank,Yes,27.12,-39.7,34.28,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180620,20180620,14:10,Tank10,Ambient,Tank,No,28.11,-55.1,34.12,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180620,20180620,14:10,Tank11,XLow,Tank,No,28.21,-22.2,34.25,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180620,20180620,14:10,Tank12,Low,Tank,No,28.28,-39.4,34.08,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180620,20180620,14:10,Tank13,Ambient,Tank,No,28.22,-54.8,34.02,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180620,20180620,14:10,Tank14,XLow,Tank,No,28.13,-23.9,34.12,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180620,20180620,14:10,Tank15,Low,Tank,No,28.16,-39.9,34.17,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180621,20180621,9:35,Tank10,Ambient,Tank,Yes,27.49,-56.8,34.25,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180621,20180621,9:35,Tank11,XLow,Tank,Yes,27.36,-23.1,34.29,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180621,20180621,9:35,Tank12,Low,Tank,Yes,27.41,-39.2,34.26,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180621,20180621,9:35,Tank13,Ambient,Tank,Yes,27.26,-56.2,34.29,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180621,20180621,9:35,Tank14,XLow,Tank,Yes,27.15,-23.5,34.27,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180621,20180621,9:35,Tank15,Low,Tank,Yes,27.12,-39.1,34.3,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180621,20180621,16:56,Tank10,Ambient,Tank,No,27.34,-55.8,34.22,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180621,20180621,16:56,Tank11,XLow,Tank,No,27.44,-22.2,34.33,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180621,20180621,16:56,Tank12,Low,Tank,No,27.52,-39.9,34.29,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180621,20180621,16:56,Tank13,Ambient,Tank,No,27.11,-54.5,34.2,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180621,20180621,16:56,Tank14,XLow,Tank,No,27.16,-22.8,34.3,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180621,20180621,16:56,Tank15,Low,Tank,No,27.24,-39.5,34.34,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180622,20180622,9:15,Tank10,Ambient,Tank,Yes,27.07,-55.1,34.32,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180622,20180622,9:15,Tank11,XLow,Tank,Yes,27.03,-23,34.35,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180622,20180622,9:15,Tank12,Low,Tank,Yes,27.05,-38.7,34.33,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180622,20180622,9:15,Tank13,Ambient,Tank,Yes,26.86,-53.2,34.37,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180622,20180622,9:15,Tank14,XLow,Tank,Yes,26.85,-24.8,34.33,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180622,20180622,9:15,Tank15,Low,Tank,Yes,26.84,-38.8,34.38,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180622,20180622,17:00,Tank10,Ambient,Tank,No,27.87,-54.8,34.29,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180622,20180622,17:00,Tank11,XLow,Tank,No,27.5,-25.4,34.37,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180622,20180622,17:00,Tank12,Low,Tank,No,27.73,-41.3,34.3,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180622,20180622,17:00,Tank13,Ambient,Tank,No,27.53,-54.4,34.33,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180622,20180622,17:00,Tank14,XLow,Tank,No,27.6,-25.4,34.29,Devo,Thermo meter A325 + Mettler Toledo 5134301,
+20180622,20180622,17:00,Tank15,Low,Tank,No,27.4,-40.8,34.36,Devo,Thermo meter A325 + Mettler Toledo 5134301,

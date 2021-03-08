@@ -672,7 +672,7 @@ pheatmap(matplnC2, scale= "row", annotation_col=df_pln, border_color = "black",
                            show_rownames =FALSE,
                            show_colnames =FALSE,
                            cluster_cols = TRUE,
-                           cluster_rows = TRUE, cutree_cols = 3) 
+                           cluster_rows = TRUE, cutree_cols = 3)
 ```
 
 See what modules planula DEGs belong to
