@@ -19,6 +19,7 @@ options(stringsAsFactors = FALSE) #Set Strings to character
 Import necessary libraries
 ```{r, message=FALSE, warning=FALSE}
 library("tidyverse")
+library("tximport")
 library("genefilter")
 library("DESeq2")
 library("RColorBrewer")
@@ -34,553 +35,20 @@ Import the data files
 treatmentinfo <- read.csv("Sample_Info/RNAseq_data.csv", header = TRUE, sep = ",", row.names = "sample_id")
 head(treatmentinfo)
 
-gcount <- as.data.frame(read.csv("7-Symbiont-RNAseq-Analysis/a-QC-Align-Assemble/Output/sym_gene_count_matrix.csv", row.names="gene_id"), colClasses = double)
-gcount <- gcount[ ,rownames(treatmentinfo)] #remove samples not in the treatment information csv (i.e. not in experiment)
-dim(gcount)
+gcount <- as.data.frame(read_delim(file = "7-Symbiont-RNAseq-Analysis/a-QC-Align-Assemble/Trinity/RSEM.isoform.counts.matrix.tsv", delim = "\t"))
+rownames(gcount) <- gcount$X1
+gcount$X1 <- NULL
 head(gcount)
+nrow(gcount)
+gcount <- round(gcount) # round the gene counts matrix
+t2g <- read.csv("7-Symbiont-RNAseq-Analysis/b-Differential-Gene-Expression-Analysis/pln_matrix_ids.csv", header = TRUE, sep = ",")
+colnames(gcount) <- t2g$sample_id
+treatmentinfo <- treatmentinfo[colnames(gcount),] #remove samples not in the gcount matrix from treatment info csv 
 ```
-
-#### Quality-filter gene counts  
-Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the genes that are only present in fewer than two of the 24 ambient samples.
-```{r}
-# #keep only life stages with samples from all pH treatments in treatmentinfo and count data
-# treatmentinfo_dev <- filter(treatmentinfo, time_point!="Unfertilized_egg")
-# dim(treatmentinfo_dev) #rows should be 24
-# 
-# # delete sample columns corresponding to low and extreme low samples by mapping Null value to them
-# gcount_dev <- gcount[rownames(treatmentinfo_dev)]
-# dim(gcount_dev) #columns should be 24
-# 
-# #create filter for the counts data
-# #gfiltdev <- rowSums(count(gcount_dev)) > 0
-# #set filter values for PoverA, P=100% percent of the samples have counts over A=10. This means that only 2 out of 41 (0.04878049) samples need to have counts over 10. Our smallest sample size for our life stages is two (fertilized egg, early-gastrula). By setting 2/41 as the P, this means if a particular gene is expressed only in 1 of these smallest life stages, it will be included in the analysis.
-# filt <- filterfun(pOverA(0.04878049,10))
-# 
-# #create filter for the counts data
-# gfiltdev <- genefilter(gcount_dev, filt)
-# 
-# #identify genes to keep by count filter
-# gkeepdev <- gcount_dev[gfiltdev,]
-# 
-# 
-# #identify genes to keep by count filter
-# gkeepdev <- gcount_dev[gfiltdev,]
-# 
-# #identify gene lists
-# gn.keepdev <- rownames(gkeepdev)
-# 
-# #gene count data filtered in PoverA, P percent of the samples have counts over A
-# gcount_filt_dev <- as.data.frame(gcount_dev[which(rownames(gcount_dev) %in% gn.keepdev),])
-# 
-# #How many rows do we have before and after filtering?
-# nrow(gcount_dev) #Before
-# nrow(gcount_filt_dev) #After
-```
-
-### Read normalization
-We are now going normalize our read counts using VST-normalization in DESeq2
-
-#### Construct the DESeq2 dataset
-
-Merge the treatment and time_point columns into a new column , group. Set group as a factor.
-```{r}
-# treatmentinfo_dev$time_point <- factor(treatmentinfo_dev$time_point, levels = c("Fertilized_egg", "Cleavage", "Prawn_chip", "Early_gastrula", "Planula"))
-# treatmentinfo_dev$treatment <- factor(treatmentinfo_dev$treatment, levels = c("amb", "l", "xl"))
-```
-
-Create a DESeqDataSet design from gene count matrix and labels. Here we set the design to look at time_point to test for any differences in gene expression across timepoints.
-```{r}
-# #Set DESeq2 design
-# gdds_dev <- DESeqDataSetFromMatrix(countData = gcount_filt_dev,
-#                               colData = treatmentinfo_dev,
-#                               design = ~time_point)
-```
-
-#### Log-transform the count data
-First we are going to log-transform the data using a variance stabilizing transforamtion (VST). This is only for visualization purposes. Essentially, this is roughly similar to putting the data on the log2 scale. It will deal with the sampling variability of low counts by calculating within-group variability (if blind=TRUE). Importantly, it does not use the design to remove variation in the data, and so can be used to examine if there may be any variability do to technical factors such as extraction batch effects.
-
-To do this we first need to calculate the size factors of our samples. This is a rough estimate of how many reads each sample contains compared to the others. In order to use VST (the faster log2 transforming process) to log-transform our data, the size factors need to be less than 4. Otherwise, there could be artefacts in our results.
-```{r}
-# SF.gdds_dev <- estimateSizeFactors(gdds_dev) #estimate size factors to determine if we can use vst  to transform our data. Size factors should be less than four to use vst
-# print(sizeFactors(SF.gdds_dev)) #View size factors
-```
-
-Our size factors are NOT all less than 4, so we can use RLOG!
-```{r}
-# grlog_dev <- rlog(gdds_dev, blind=TRUE) #apply a variance stabilizing transforamtion to minimize effects of small counts and normalize wrt library size
-# head(assay(grlog_dev), 3) #view transformed gene count data
-```
-
-
-##### Plot a heatmap of sample-to-sample distances
-```{r}
-# gsampleDists_dev <- dist(t(assay(grlog_dev))) #calculate distance matix
-# gsampleDistMatrix_dev <- as.matrix(gsampleDists_dev) #distance matrix
-# rownames(gsampleDistMatrix_dev) <- colnames(grlog_dev) #assign row names
-# colnames(gsampleDistMatrix_dev) <- NULL #assign col names
-# colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255) #assign colors
-# pheatmap(gsampleDistMatrix_dev, #plot matrix
-#          clustering_distance_rows=gsampleDists_dev, #cluster rows
-#          clustering_distance_cols=gsampleDists_dev, #cluster columns
-#          col=colors) #set colors
-```
-
-
-##### Principal component plot of samples
-```{r}
-# gPCAdata_dev <- plotPCA(grlog_dev, intgroup = c("time_point"), returnData=TRUE)
-# percentVar_dev <- round(100*attr(gPCAdata_dev, "percentVar")) #plot PCA of samples with all data
-# treatmentinfo_dev$name <- rownames(treatmentinfo_dev)
-# gPCAdata_dev <- merge(gPCAdata_dev, treatmentinfo_dev[,c(2,4)], by = "name")
-# gPCAdata_dev <- plotPCA(grlog_dev, intgroup = c("time_point", "treatment"), returnData=TRUE)
-# percentVar_dev <- round(100*attr(gPCAdata_dev, "percentVar")) #plot PCA of samples with all data
-# 
-# allgenesfilt_PCA <- ggplot(gPCAdata_dev, aes(PC1, PC2, shape=time_point, color=treatment)) + 
-#   geom_point(size=3) +
-#   xlab(paste0("PC1: ",percentVar_dev[1],"% variance")) +
-#   ylab(paste0("PC2: ",percentVar_dev[2],"% variance")) +
-#   scale_shape_manual(values = c("Fertilized_egg"=1, "Cleavage"=10, "Prawn_chip"=5, "Early_gastrula"=14, "Planula"=2)) +
-#   scale_color_manual(values = c("amb"="slateblue", "l"="indianred3", "xl"="deeppink4")) +
-#   coord_fixed() +
-#     theme_bw() + #Set background color
-#   theme(panel.border = element_blank(), # Set border
-#                      #panel.grid.major = element_blank(), #Set major gridlines 
-#                      #panel.grid.minor = element_blank(), #Set minor gridlines
-#                      axis.line = element_line(colour = "black"), #Set axes color
-#         plot.background=element_blank()) # + #Set the plot background
-#   #theme(legend.position = ("none")) #set title attributes
-# allgenesfilt_PCA
-```
-
-
-### Fertilized embryo analysis
-
-#### Construct DESeq2 dataset
-
-##### Pre-filter gene counts
-Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples. We will also filter out low coverage samples. Here, we will keep P=85% percent of the samples have counts over A=5. We chose this value allowing only 1 of 9 samples to have a value less than 5 per gene.*This filter will be used for all life stages*
-```{r}
-#keep only selected life stage from treatmentinfo and count data
-treatmentinfo_fe <- filter(treatmentinfo, time_point=="Fertilized_egg")
-gcount_fe <- gcount[, rownames(treatmentinfo_fe)]
-
-#Set filter values for PoverA, P=85% percent of the samples have counts over A=5. We chose this value allowing only 1 of 8 samples to have a value less than 5 per gene. 
-filt <- filterfun(pOverA(0.875,5))
-
-#create filter for the counts data
-gfiltfe <- genefilter(gcount_fe, filt)
-
-#identify genes to keep by count filter
-gkeepfe <- gcount_fe[gfiltfe,]
-
-#identify gene lists
-gn.keepfe <- rownames(gkeepfe)
-
-#gene count data filtered in PoverA, P percent of the samples have counts over A
-gcount_filt_fe <- as.data.frame(gcount_fe[which(rownames(gcount_fe) %in% gn.keepfe),])
-head(gcount_filt_fe)
-dim(gcount_filt_fe)
-```
-#### Construct the DESeq dataset
-Merge the treatment and time_point columns into a new column , group. Set group as a factor.
-```{r}
-treatmentinfo_fe$treatment <- factor(treatmentinfo_fe$treatment, levels = c("amb","l", "xl"))
-```
-
-Create a DESeqDataSet design from gene count matrix and labels. Here we set the design to look at the interaction of time_point and treatment to test for any differences in gene expression across timepoints attributed to treatment.
-```{r}
-#Set DESeq2 design
-gdds_fe <- DESeqDataSetFromMatrix(countData = gcount_filt_fe,
-                              colData = treatmentinfo_fe,
-                              design = ~treatment)
-```
-
-#### Visualize gene count data
-
-We're looking to see if the samples of the same pH treatments cluster
-
-##### Log-transform the count data
-First we are going to log-transform the data using a variance stabilizing transforamtion (vst). This is only for visualization purposes. Essentially, this is roughly similar to putting the data on the log2 scale. It will deal with the sampling variability of low counts by calculating within-group variability (if blind=TRUE). Importantly, it does not use the design to remove variation in the data, and so can be used to examine if there may be any variability do to technical factors such as extraction batch effects.
-
-To do this we first need to calculate the size factors of our samples. This is a rough estimate of how many reads each sample contains compared to the others. In order to use VST (the faster log2 transforming process) to log-transform our data, the size factors need to be less than 4. Otherwise, there could be artefacts in our results.
-```{r}
-SF.gdds_fe <- estimateSizeFactors( gdds_fe ) #estimate size factors to determine if we can use vst  to transform our data. Size factors should be less than for to use vst
-print(sizeFactors(SF.gdds_fe)) #View size factors
-```
-
-Our size factors are all less than 4, so we can use VST!
-```{r}
-gvst_fe <- vst(gdds_fe, blind=TRUE) #apply a variance stabilizing transforamtion to minimize effects of small counts and normalize wrt library size
-```
-
-#### Principal component plot of samples
-```{r}
-gPCAdata_fe <- plotPCA(gvst_fe, intgroup = c("treatment"), returnData=TRUE)
-percentVar_fe <- round(100*attr(gPCAdata_fe, "percentVar")) #plot PCA of samples with all data
-ggplot(gPCAdata_fe, aes(PC1, PC2, color=treatment)) + 
-  geom_point(size=3) +
-  xlab(paste0("PC1: ",percentVar_fe[1],"% variance")) +
-  ylab(paste0("PC2: ",percentVar_fe[2],"% variance")) +
-  scale_color_manual(values = c(amb="slateblue", l="indianred3", xl="deeppink4")) +
-  coord_fixed() +
-  theme_bw() + #Set background color
-  theme(panel.border = element_blank(), # Set border
-                     #panel.grid.major = element_blank(), #Set major gridlines
-                     #panel.grid.minor = element_blank(), #Set minor gridlines
-                     axis.line = element_line(colour = "black"), #Set axes color
-        plot.background=element_blank()) + #Set the plot background
-  theme(legend.position = ("none")) #set title attributes
-```
-
-Well, it looks like the ambient treatments cluster together but the other treatments don't cluster.
-
-#### Differential Gene Expression Analysis
-
-##### Run DE analysis
-
-Run differential expression test using a Wald model. 
-```{r, message = FALSE}
-DEG_fe <- DESeq(gdds_fe) #run differential expression test by group using the Wald model
-```
-
-Explore significant p-values for treatment_l_vs_amb, treatment_xl_vs_amb, and treatment_xl_vs_l
-```{r, message = FALSE}
-DEG_fe.results.l_vs_amb <- results(DEG_fe, contrast= c("treatment","l","amb"))
-head(DEG_fe.results.l_vs_amb)
-sum(DEG_fe.results.l_vs_amb$padj < 0.05, na.rm=TRUE)
-
-DEG_fe.results.xl_vs_amb <- results(DEG_fe, contrast= c("treatment","xl","amb"))
-head(DEG_fe.results.xl_vs_amb)
-sum(DEG_fe.results.xl_vs_amb$padj < 0.05, na.rm=TRUE) #How many adjusted p-values were less than 0.05?
-
-DEG_fe.results.xl_vs_l <- results(DEG_fe, contrast= c("treatment","xl","l"))
-head(DEG_fe.results.xl_vs_l)
-sum(DEG_fe.results.xl_vs_l$padj < 0.05, na.rm=TRUE) #How many adjusted p-values were less than 0.05?
-```
-*No genes were differentially expressed between treatments in the fertilized eggs.*
-
-### Cleavage analysis
-
-#### Construct DES2 dataset
-
-##### Pre-filter gene counts
-Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples. We will also apply a filter so only transcripts with low coverage using the PoverA filter described above (P=0.85, A=5). low coverage using the PoverA filter described above (P=0.85, A=5).
-```{r}
-#keep only cleaving embryos from treatmentinfo and count data
-treatmentinfo_clvg <- filter(treatmentinfo, time_point=="Cleavage")
-gcount_clvg <- gcount[, rownames(treatmentinfo_clvg)]
-
-#create filter for the counts data according to the povera filter set earlier (0.85,5)
-gfiltclvg <- genefilter(gcount_clvg, filt)
-
-#identify genes to keep by count filter
-gkeepclvg <- gcount_clvg[gfiltclvg,]
-
-#identify gene lists
-gn.keepclvg <- rownames(gkeepclvg)
-
-#gene count data filtered in PoverA, P percent of the samples have counts over A
-gcount_filt_clvg <- as.data.frame(gcount_clvg[which(rownames(gcount_clvg) %in% gn.keepclvg),])
-head(gcount_filt_clvg)
-dim(gcount_filt_clvg)
-```
-#### Construct the DESeq dataset
-Merge the treatment and time_point columns into a new column , group. Set group as a factor.
-```{r}
-treatmentinfo_clvg$treatment <- factor(treatmentinfo_clvg$treatment, levels = c("amb","l", "xl"))
-head(treatmentinfo_clvg)
-```
-
-Create a DESeqDataSet design from gene count matrix and labels. Here we set the design to look at the interaction of time_point and treatment to test for any differences in gene expression across timepoints attributed to treatment.
-```{r}
-#Set DESeq2 design
-gdds_clvg <- DESeqDataSetFromMatrix(countData = gcount_filt_clvg,
-                              colData = treatmentinfo_clvg,
-                              design = ~treatment)
-```
-
-#### Visualize gene count data
-
-We're looking to see if the samples of the same pH treatments cluster
-
-##### Log-transform the count data
-First we are going to log-transform the data using a variance stabilizing transforamtion (vst). This is only for visualization purposes. Essentially, this is roughly similar to putting the data on the log2 scale. It will deal with the sampling variability of low counts by calculating within-group variability (if blind=TRUE). Importantly, it does not use the design to remove variation in the data, and so can be used to examine if there may be any variability do to technical factors such as extraction batch effects.
-
-To do this we first need to calculate the size factors of our samples. This is a rough estimate of how many reads each sample contains compared to the others. In order to use VST (the faster log2 transforming process) to log-transform our data, the size factors need to be less than 4. Otherwise, there could be artefacts in our results.
-```{r}
-SF.gdds_clvg <- estimateSizeFactors( gdds_clvg ) #estimate size factors to determine if we can use vst  to transform our data. Size factors should be less than for to use vst
-print(sizeFactors(SF.gdds_clvg)) #View size factors
-```
-
-Our size factors are not all less than four, so we will use varianceStabilizingTransformation
-```{r}
-gvst_clvg <- varianceStabilizingTransformation(gdds_clvg, blind=TRUE) #apply a variance stabilizing transforamtion to minimize effects of small counts and normalize wrt library size
-head(assay(gvst_clvg), 3) #view transformed gene count data
-```
-
-#### Principal component plot of samples
-```{r}
-gPCAdata_clvg <- plotPCA(gvst_clvg, intgroup = c("treatment"), returnData=TRUE)
-percentVar_clvg <- round(100*attr(gPCAdata_clvg, "percentVar")) #plot PCA of samples with all data
-ggplot(gPCAdata_clvg, aes(PC1, PC2, color=treatment)) + 
-  geom_point(size=3) +
-  xlab(paste0("PC1: ",percentVar_clvg[1],"% variance")) +
-  ylab(paste0("PC2: ",percentVar_clvg[2],"% variance")) +
-  scale_color_manual(values = c(amb="slateblue", l="indianred3", xl="deeppink4")) +
-  coord_fixed() +
-    theme_bw() + #Set background color
-  theme(panel.border = element_blank(), # Set border
-                     #panel.grid.major = element_blank(), #Set major gridlines
-                     #panel.grid.minor = element_blank(), #Set minor gridlines
-                     axis.line = element_line(colour = "black"), #Set axes color
-        plot.background=element_blank()) + #Set the plot background
-  theme(legend.position = ("none")) #set title attributes
-```
-
-It doesn't look like there is any clustering in the gene counts as a whole.
-
-#### Differential Gene Expression Analysis
-
-##### Run DE analysis
-
-Run differential expression test using a Wald model. 
-```{r, message = FALSE}
-DEG_clvg <- DESeq(gdds_clvg) #run differential expression test by group using the Wald model
-```
-
-Explore significant p-values for treatment_l_vs_amb, treatment_xl_vs_amb, and treatment_xl_vs_l
-```{r, message = FALSE}
-DEG_clvg.results.l_vs_amb <- results(DEG_clvg, contrast=c("treatment","l","amb"))
-head(DEG_clvg.results.l_vs_amb)
-sum(DEG_clvg.results.l_vs_amb$padj < 0.05, na.rm=TRUE) #How many adjusted p-values were less than 0.05?
-
-DEG_clvg.results.xl_vs_amb <- results(DEG_clvg, name="treatment_xl_vs_amb")
-head(DEG_clvg.results.xl_vs_amb)
-sum(DEG_clvg.results.xl_vs_amb$padj < 0.05, na.rm=TRUE) #How many adjusted p-values were less than 0.05?
-
-DEG_clvg.results.xl_vs_l <- results(DEG_clvg, contrast= c("treatment","xl","l"))
-head(DEG_clvg.results.xl_vs_l)
-sum(DEG_clvg.results.xl_vs_l$padj < 0.05, na.rm=TRUE) #How many adjusted p-values were less than 0.05?
-```
-
-*No genes were differentially expressed between treatments in the cleavage samples.*
-
-### Prawn chip analysis
-
-##### Pre-filter gene counts
+## Pre-filter gene counts
 Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples.. We will also apply a filter so only transcripts with low coverage using the PoverA filter described above (P=0.85, A=5). 
 ```{r}
-#keep only selected life stage from treatmentinfo and count data
-treatmentinfo_pc <- filter(treatmentinfo, time_point=="Prawn_chip")
-gcount_pc <- gcount[,rownames(treatmentinfo_pc)]
-
-#create filter for the counts data
-gfiltpc <- genefilter(gcount_pc, filt)
-
-#identify genes to keep by count filter
-gkeeppc <- gcount_pc[gfiltpc,]
-
-#identify gene lists
-gn.keeppc <- rownames(gkeeppc)
-
-#gene count data filtered in PoverA, P percent of the samples have counts over A
-gcount_filt_pc <- as.data.frame(gcount_pc[which(rownames(gcount_pc) %in% gn.keeppc),])
-head(gcount_filt_pc)
-```
-
-#### Construct the DESeq dataset
-Merge the treatment and time_point columns into a new column , group. Set group as a factor.
-```{r}
-treatmentinfo_pc$treatment <- factor(treatmentinfo_pc$treatment, levels = c("amb","l", "xl"))
-```
-
-Create a DESeqDataSet design from gene count matrix and labels. Here we set the design to look at the interaction of time_point and treatment to test for any differences in gene expression across timepoints attributed to treatment.
-```{r}
-#Set DESeq2 design
-gdds_pc <- DESeqDataSetFromMatrix(countData = gcount_filt_pc,
-                              colData = treatmentinfo_pc,
-                              design = ~treatment)
-```
-
-#### Visualize gene count data
-
-We're looking to see if the samples of the same pH treatments cluster
-
-##### Log-transform the count data
-
-Log-transform the data using a variance stabilizing transforamtion (vst) for visualization purposes, only. To do this we first need to calculate the size factors of our samples. This is a rough estimate of how many reads each sample contains compared to the others. In order to use VST (the faster log2 transforming process) to log-transform our data, the size factors need to be less than 4. Otherwise, there could be artefacts in our results.
-```{r}
-SF.gdds_pc <- estimateSizeFactors( gdds_pc ) #estimate size factors to determine if we can use vst  to transform our data. Size factors should be less than for to use vst
-print(sizeFactors(SF.gdds_pc)) #View size factors
-```
-
-Our size factors are all less than 4 so we will use varianceStabilizingTransformation!
-```{r}
-gvst_pc <- varianceStabilizingTransformation(gdds_pc, blind=TRUE) #apply a variance stabilizing transforamtion to minimize effects of small counts and normalize wrt library size
-head(assay(gvst_pc), 3) #view transformed gene count data
-```
-#### Principal component plot of samples
-```{r}
-gPCAdata_pc <- plotPCA(gvst_pc, intgroup = c("treatment"), returnData=TRUE)
-percentVar_pc <- round(100*attr(gPCAdata_pc, "percentVar")) #plot PCA of samples with all data
-ggplot(gPCAdata_pc, aes(PC1, PC2, color=treatment)) + 
-  geom_point(size=3) +
-  xlab(paste0("PC1: ",percentVar_pc[1],"% variance")) +
-  ylab(paste0("PC2: ",percentVar_pc[2],"% variance")) +
-  scale_color_manual(values = c(amb="slateblue", l="indianred3", xl="deeppink4")) +
-  coord_fixed() +
-    theme_bw() + #Set background color
-  theme(panel.border = element_blank(), # Set border
-                     #panel.grid.major = element_blank(), #Set major gridlines
-                     #panel.grid.minor = element_blank(), #Set minor gridlines
-                     axis.line = element_line(colour = "black"), #Set axes color
-        plot.background=element_blank()) + #Set the plot background
-  theme(legend.position = ("none")) #set title attributes
-```
-
-It doesn't look like there is much any clustering in the gene counts due to treatment as a whole.
-
-#### Differential Gene Expression Analysis
-
-##### Run DE analysis
-
-Run differential expression test using a Wald model. 
-```{r, message = FALSE}
-DEG_pc <- DESeq(gdds_pc) #run difpcrential expression test by group using the Wald model
-```
-
-Explore significant p-values for treatment_l_vs_amb, treatment_xl_vs_amb, and treatment_xl_vs_l
-```{r, message = FALSE}
-DEG_pc.results.l_vs_amb <- results(DEG_pc, contrast=c("treatment","l","amb"))
-head(DEG_pc.results.l_vs_amb)
-sum(DEG_pc.results.l_vs_amb$padj < 0.05, na.rm=TRUE) #How many adjusted p-values were less than 0.05?
-
-DEG_pc.results.xl_vs_amb <- results(DEG_pc, name="treatment_xl_vs_amb")
-head(DEG_pc.results.xl_vs_amb)
-sum(DEG_pc.results.xl_vs_amb$padj < 0.05, na.rm=TRUE) #How many adjusted p-values were less than 0.05?
-
-
-DEG_pc.results.xl_vs_l <- results(DEG_pc, contrast= c("treatment","xl","l"))
-head(DEG_pc.results.xl_vs_l)
-sum(DEG_pc.results.xl_vs_l$padj < 0.05, na.rm=TRUE) #How many adjusted p-values were less than 0.05?
-```
-*There's ONE differentially expressed gene between treatments in the prawn chip samples.*
-
-### Early gastrula analysis
-
-##### Pre-filter gene counts
-Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples. We will also apply a filter so only transcripts with low coverage using the PoverA filter described above (P=0.85, A=5). 
-```{r}
-#keep only selected life stage from treatmentinfo and count data
-treatmentinfo_gsa <- filter(treatmentinfo, time_point=="Early_gastrula")
-gcount_gsa <- gcount[, rownames(treatmentinfo_gsa)]
-
-#create filter for the counts data
-gfiltgsa <- genefilter(gcount_gsa, filt)
-
-#identify genes to keep by count filter
-gkeepgsa <- gcount_gsa[gfiltgsa,]
-
-#identify gene lists
-gn.keepgsa <- rownames(gkeepgsa)
-
-#gene count data filtered in PoverA, P percent of the samples have counts over A
-gcount_filt_gsa <- as.data.frame(gcount_gsa[which(rownames(gcount_gsa) %in% gn.keepgsa),])
-head(gcount_filt_gsa)
-```
-#### Construct the DESeq dataset
-Merge the treatment and time_point columns into a new column , group. Set group as a factor.
-```{r}
-treatmentinfo_gsa$treatment <- factor(treatmentinfo_gsa$treatment, levels = c("amb","l", "xl"))
-head(treatmentinfo_gsa)
-```
-
-Create a DESeqDataSet design from gene count matrix and labels. Here we set the design to look at the interaction of time_point and treatment to test for any differences in gene expression across timepoints attributed to treatment.
-```{r}
-#Set DESeq2 design
-gdds_gsa <- DESeqDataSetFromMatrix(countData = gcount_filt_gsa,
-                              colData = treatmentinfo_gsa,
-                              design = ~treatment)
-```
-
-#### Visualize gene count data
-
-We're looking to see if the samples of the same pH treatments cluster
-
-##### Log-transform the count data
-Log-transform the data using a variance stabilizing transforamtion (vst) for visualization purposes, only. To do this we first need to calculate the size factors of our samples. This is a rough estimate of how many reads each sample contains compared to the others. In order to use VST (the faster log2 transforming process) to log-transform our data, the size factors need to be less than 4. Otherwise, there could be artefacts in our results.
-```{r}
-SF.gdds_gsa <- estimateSizeFactors( gdds_gsa ) #estimate size factors to determine if we can use vst  to transform our data. Size factors should be less than for to use vst
-print(sizeFactors(SF.gdds_gsa)) #View size factors
-```
-
-Our size factors are less than 4, so we can use vst!
-```{r}
-gvst_gsa <- vst(gdds_gsa, blind=TRUE) #apply a variance stabilizing transforamtion to minimize effects of small counts and normalize wrt library size
-head(assay(gvst_gsa), 3) #view transformed gene count data
-```
-
-#### Principal component plot of samples
-```{r}
-gPCAdata_gsa <- plotPCA(gvst_gsa, intgroup = c("treatment"), returnData=TRUE)
-percentVar_gsa <- round(100*attr(gPCAdata_gsa, "percentVar")) #plot PCA of samples with all data
-ggplot(gPCAdata_gsa, aes(PC1, PC2, color=treatment)) + 
-  geom_point(size=3) +
-  xlab(paste0("PC1: ",percentVar_gsa[1],"% variance")) +
-  ylab(paste0("PC2: ",percentVar_gsa[2],"% variance")) +
-  scale_color_manual(values = c(amb="slateblue", l="indianred3", xl="deeppink4")) +
-  coord_fixed() +
-    theme_bw() + #Set background color
-  theme(panel.border = element_blank(), # Set border
-                     #panel.grid.major = element_blank(), #Set major gridlines
-                     #panel.grid.minor = element_blank(), #Set minor gridlines
-                     axis.line = element_line(colour = "black"), #Set axes color
-        plot.background=element_blank()) + #Set the plot background
-  theme(legend.position = ("none")) #set title attributes
-```
-
-It doesn't look like there is much any clustering in the gene counts as a whole.
-
-#### Differential Gene Expression Analysis
-
-##### Run DE analysis
-
-Run differential expression test using a Wald model. 
-```{r, message = FALSE}
-DEG_gsa <- DESeq(gdds_gsa) #run difgsarential expression test by group using the Wald model
-```
-
-Explore significant p-values for treatment_l_vs_amb, treatment_xl_vs_amb, and treatment_xl_vs_l
-```{r, message = FALSE}
-DEG_gsa.results.l_vs_amb <- results(DEG_gsa, contrast=c("treatment","l","amb"))
-head(DEG_gsa.results.l_vs_amb)
-sum(DEG_gsa.results.l_vs_amb$padj < 0.05, na.rm=TRUE) #How many adjusted p-values were less than 0.05?
-gsa_DEGs.l_vs_amb <- as.data.frame(subset(DEG_gsa.results.l_vs_amb, padj<0.05))
-gsa_DEGs.l_vs_amb$contrast <- as.factor(c("l_vs_amb"))
-gsa_DEGs.l_vs_amb$gene_id <- rownames(gsa_DEGs.l_vs_amb)
-rownames(gsa_DEGs.l_vs_amb) <- NULL
-gsa_DEGs.l_vs_amb
-
-DEG_gsa.results.xl_vs_amb <- results(DEG_gsa, name="treatment_xl_vs_amb")
-head(DEG_gsa.results.xl_vs_amb)
-sum(DEG_gsa.results.xl_vs_amb$padj < 0.05, na.rm=TRUE)
-
-DEG_gsa.results.xl_vs_l <- results(DEG_gsa, contrast= c("treatment","xl","l"))
-head(DEG_gsa.results.xl_vs_l)
-sum(DEG_gsa.results.xl_vs_l$padj < 0.05, na.rm=TRUE) #How many adjusted p-values were less than 0.05?
-```
-
-*There are two differentially-expressed genes between the low and ambient treatments at the early gastrula stage, but no differentially-expressed genes between the other comparisons.*
-
-In the annotation file, there were no significant hits to gene_id g66924, but gene_id g30050 hit a **Stylophora pistillata** Proline-rich AKT1 substrate 1 sequence available in [Uniprot](https://www.uniprot.org/uniparc/UPI0010FCC89D). According to the [PFAM entry](https://pfam.xfam.org/family/PF15798), AKT signalling in involved in the regulation of apoptosis in response to cellular stress.
-
-## Planula analysis
-##### Pre-filter gene counts
-Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples.. We will also apply a filter so only transcripts with low coverage using the PoverA filter described above (P=0.85, A=5). 
-```{r}
-#keep only selected life stage from treatmentinfo and count data
-treatmentinfo_pln <- filter(treatmentinfo, time_point=="Planula")
-gcount_pln <- gcount[,rownames(treatmentinfo_pln)]
+filt <- filterfun(pOverA(0.11,5)) #filter out genes that have a count of 5 or fewer in less than 1/9 samples
 
 #create filter for the counts data
 gfiltpln <- genefilter(gcount_pln, filt)
@@ -590,7 +58,7 @@ gkeeppln <- gcount_pln[gfiltpln,]
 gn.keeppln <- rownames(gkeeppln)
 #gene count data filtered in PoverA, P percent of the samples have counts over A
 gcount_filt_pln <- as.data.frame(gcount_pln[which(rownames(gcount_pln) %in% gn.keeppln),])
-head(gcount_filt_pln)
+nrow(gcount_filt_pln)
 ```
 #### Construct the DESeq dataset
 Merge the treatment and time_point columns into a new column , group. Set group as a factor.
@@ -623,7 +91,6 @@ print(sizeFactors(SF.gdds_pln)) #View size factors
 Our size factors are all less than 4, so we can use VST!
 ```{r}
 gvst_pln <- varianceStabilizingTransformation(gdds_pln, blind=TRUE) #apply a variance stabilizing transforamtion to minimize effects of small counts and normalize wrt library size
-head(assay(gvst_pln), 3) #view transformed gene count data
 ```
 
 #### Principal component plot of samples
@@ -669,5 +136,17 @@ sum(DEG_pln.results.xl_vs_amb$padj < 0.05, na.rm=TRUE) #How many adjusted p-valu
 DEG_pln.results.xl_vs_l <- results(DEG_pln, contrast=c("treatment","xl","l"))
 summary(DEG_pln.results.xl_vs_l) #view results summary
 sum(DEG_pln.results.xl_vs_l$padj < 0.05, na.rm=TRUE) #How many adjusted p-values were less than 0.05?
+
+#How many adjusted p-values were less than 0.05 and what were they?
+pNOT1 <- filter(as.data.frame(DEG_pln.results.l_vs_amb), padj!=1)
+pNOT2 <- filter(as.data.frame(DEG_pln.results.xl_vs_amb), padj!=1)
+pNOT3 <- filter(as.data.frame(DEG_pln.results.xl_vs_l), padj!=1)
+
+rn.pNOT1 <- rownames(pNOT1)
+gcount[rn.pNOT1,]
+rn.pNOT2 <- rownames(pNOT2)
+gcount[rn.pNOT2,]
+rn.pNOT3 <- rownames(pNOT3)
+gcount[rn.pNOT3,]
 ```
 There are no DEGs in the planula stage.

@@ -50,14 +50,14 @@ head(gcount)
 #### Construct DESeq2 dataset
 
 ##### Pre-filter gene counts
-Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples. We will also filter out low coverage samples. Here, we will keep P=85% percent of the samples have counts over A=5. We chose this value allowing only 1 of 9 samples to have a value less than 5 per gene.*This filter will be used for all life stages*
+Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples. We will also filter out low coverage samples. Here, we will keep P=87.5% percent of the samples have counts over A=5, allowing only 1 of 8 samples to have a value less than 5 per gene.*This filter will be used for all life stages*
 ```{r}
 #keep only selected life stage from treatmentinfo and count data
 treatmentinfo_fe <- filter(treatmentinfo, time_point=="Fertilized_egg")
 gcount_fe <- gcount[, treatmentinfo_fe$sample_id]
 
-#Set filter values for PoverA, P=85% percent of the samples have counts over A=5. We chose this value allowing only 1 of 9 samples to have a value less than 5 per gene. 
-filt <- filterfun(pOverA(0.85,5))
+#Set filter values for PoverA, P=87.5% percent of the samples have counts over A=5. We chose this value allowing only 1 of 8 samples to have a value less than 5 per gene. 
+filt <- filterfun(pOverA(0.875,5))
 
 #create filter for the counts data
 gfiltfe <- genefilter(gcount_fe, filt)
@@ -156,13 +156,13 @@ sum(DEG_fe.results.xl_vs_l$padj < 0.05, na.rm=TRUE) #How many adjusted p-values 
 #### Construct DES2 dataset
 
 ##### Pre-filter gene counts
-Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples. We will also apply a filter so only transcripts with low coverage using the PoverA filter described above (P=0.85, A=5). low coverage using the PoverA filter described above (P=0.85, A=5).
+Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples. We will also apply a filter so only transcripts with low coverage using the PoverA filter described above (P=0.875, A=5). low coverage using the PoverA filter described above (P=0.875, A=5).
 ```{r}
 #keep only cleaving embryos from treatmentinfo and count data
 treatmentinfo_clvg <- filter(treatmentinfo, time_point=="Cleavage")
 gcount_clvg <- gcount[, treatmentinfo_clvg$sample_id]
 
-#create filter for the counts data according to the povera filter set earlier (0.85,5)
+#create filter for the counts data according to the povera filter set earlier (0.875,5)
 gfiltclvg <- genefilter(gcount_clvg, filt)
 
 #identify genes to keep by count filter
@@ -260,7 +260,7 @@ sum(DEG_clvg.results.xl_vs_l$padj < 0.05, na.rm=TRUE) #How many adjusted p-value
 ### Prawn chip analysis
 
 ##### Pre-filter gene counts
-Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples.. We will also apply a filter so only transcripts with low coverage using the PoverA filter described above (P=0.85, A=5). 
+Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples.. We will also apply a filter so only transcripts with low coverage using the PoverA filter described above (P=0.875, A=5). 
 ```{r}
 #keep only selected life stage from treatmentinfo and count data
 treatmentinfo_pc <- filter(treatmentinfo, time_point=="Prawn_chip")
@@ -361,7 +361,7 @@ sum(DEG_pc.results.xl_vs_l$padj < 0.05, na.rm=TRUE) #How many adjusted p-values 
 ### Early gastrula analysis
 
 ##### Pre-filter gene counts
-Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples. We will also apply a filter so only transcripts with low coverage using the PoverA filter described above (P=0.85, A=5). 
+Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples. We will also apply a filter so only transcripts with low coverage using the PoverA filter described above (P=0.875, A=5). 
 ```{r}
 #keep only selected life stage from treatmentinfo and count data
 treatmentinfo_gsa <- filter(treatmentinfo, time_point=="Early_gastrula")
@@ -468,7 +468,7 @@ In the annotation file, there were no significant hits to gene_id g66924, but ge
 
 ## Planula analysis
 ##### Pre-filter gene counts
-Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples.. We will also apply a filter so only transcripts with low coverage using the PoverA filter described above (P=0.85, A=5). 
+Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples.. We will also apply a filter so only transcripts with low coverage using the PoverA filter described above (P=0.875, A=5). 
 ```{r}
 #keep only selected life stage from treatmentinfo and count data
 treatmentinfo_pln <- filter(treatmentinfo, time_point=="Planula")
@@ -675,31 +675,6 @@ pheatmap(matplnC2, scale= "row", annotation_col=df_pln, border_color = "black",
                            cluster_rows = TRUE, cutree_cols = 3)
 ```
 
-See what modules planula DEGs belong to
-```{r}
-geneInfo <- read_csv("3-WGCNA/Output/geneInfo.csv")[,-1]
-geneInfo <- subset(geneInfo, select=c("gene_id", "moduleColor"))
-
-clust1 <- filter(cluster_res, cluster=="1")
-clust2 <- filter(cluster_res, cluster=="2")
-
-geneInfo.C1 <- filter(geneInfo, gene_id%in%clust1$gene_id)
-geneInfo.C1$yn <- c(1)
-geneInfo.C1 <- pivot_wider(geneInfo.C1, names_from = "moduleColor", id_cols = "gene_id", values_from = "yn")
-geneInfo.C1[is.na(geneInfo.C1)] <- c(0)
-rownames(geneInfo.C1) <- geneInfo.C1$gene_id
-geneInfo.C1 <- geneInfo.C1[,-c(1)]
-colSums(geneInfo.C1)
-
-geneInfo.C2 <- filter(geneInfo, gene_id%in%clust2$gene_id)
-geneInfo.C2$yn <- c(1)
-geneInfo.C2 <- pivot_wider(geneInfo.C2, names_from = "moduleColor", id_cols = "gene_id", values_from = "yn")
-geneInfo.C2[is.na(geneInfo.C2)] <- c(0)
-rownames(geneInfo.C2) <- geneInfo.C2$gene_id
-geneInfo.C2 <- geneInfo.C2[,-c(1)]
-colSums(geneInfo.C2)
-```
-
 ### Venn Diagram of pairwise comparisons DEGs in Planula
 ```{r}
 pln_l_vs_amb_venn <- as.data.frame(pln_DEGs.l_vs_amb$gene_id)
@@ -759,63 +734,4 @@ venn.diagram(
         cat.fontfamily = "sans",
         rotation = 1
 )
-```
-
-### Plot a heatmap of the planula DEGs with all other timepoints. **May exclude this because developmental gene expression patterns mask treatment patterns in planula in the heatmap.**
-
-#### First, get vst-transformed expression for all life stages in the planula DEGs
-
-Remove lowly-expressed genes using the PoverA filter applied above
-```{r}
-# #create filter for the counts data
-# gfilt <- genefilter(gcount, filt)
-# #identify genes to keep by count filter
-# gkeep <- gcount[gfilt,]
-# #identify gene lists
-# gn.keep <- rownames(gkeep)
-# #gene count data filtered in PoverA, P percent of the samples have counts over A
-# gcount_filt <- as.data.frame(gcount[which(rownames(gcount) %in% gn.keep),])
-# 
-# DEGlist <- unique(pln_DEGs_all$gene_id)
-# gcount_filt$gene_id <- rownames(gcount_filt)
-# gcount_filt <- filter(gcount_filt, gene_id%in%DEGlist)
-# gcount_filt <- subset(gcount_filt, select= -c(gene_id, X119, X120, X121))
-# head(gcount_filt)
-```
-Create a DESeqDataSet design from gene count matrix and labels. We will use this to make an attributes for each sample to make plotting easier.
-```{r}
-# treatmentinfo$treatment <- as.factor(treatmentinfo$treatment)
-# treatmentinfo$time_point <- as.factor(treatmentinfo$time_point)
-# 
-# #Set DESeq2 design
-# gdds <- DESeqDataSetFromMatrix(countData = gcount_filt,
-#                               colData = treatmentinfo,
-#                               design = ~time_point)
-```
-
-We know from before that our size factors are all less than 4, so we can use VST!
-```{r}
-# DEGvst <- vst(gdds, blind=FALSE, nsub = nrow(counts(gdds))) #apply a variance stabilizing transforamtion to minimize efplncts of small counts and normalize wrt library size
-# dim(assay(DEGvst))
-```
-
-Make a matrix for computing similarity
-```{r}
-# mat <- assay(DEGvst) #make an expression object
-# mat <- mat - rowMeans(mat) #difference in expression compared to average across all samples
-# 
-# ann_colors <- list(treatment= c(amb="slateblue", l="indianred3", xl="deeppink4"), time_point=c(Fertilized_egg="darkgreen", Cleavage="cadetblue4", Prawn_chip="deepskyblue", Early_gastrula="cornflowerblue", Planula="darkorchid4")) #color-blind friendly
-# 
-# df <- as.data.frame(subset(treatmentinfo, select = c(sample_id, time_point, treatment)))
-# rownames(df) <- df$sample_id
-# df <- subset(df, select= -c(sample_id))
-# df <- filter(df, time_point != "Unfertilized_egg")
-# 
-# pheatmap(mat, scale= "row", annotation_col=df, border_color = "black",
-#                            annotation_colors = ann_colors,
-#                            clustering_distance_rows="euclidean", clustering_method = "average", 
-#                            show_rownames =FALSE,
-#                            show_colnames =FALSE,
-#                            cluster_cols = FALSE,
-#                            cluster_rows = TRUE, cutree_cols = 3, cutree_rows = 2) 
 ```

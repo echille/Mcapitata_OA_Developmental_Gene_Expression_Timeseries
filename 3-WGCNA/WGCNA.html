@@ -47,6 +47,15 @@ if (!!window.navigator.userAgent.match("MSIE 8")) {
 !function(a){"use strict";a.matchMedia=a.matchMedia||function(a){var b,c=a.documentElement,d=c.firstElementChild||c.firstChild,e=a.createElement("body"),f=a.createElement("div");return f.id="mq-test-1",f.style.cssText="position:absolute;top:-100em",e.style.background="none",e.appendChild(f),function(a){return f.innerHTML='&shy;<style media="'+a+'"> #mq-test-1 { width: 42px; }</style>',c.insertBefore(e,d),b=42===f.offsetWidth,c.removeChild(e),{matches:b,media:a}}}(a.document)}(this),function(a){"use strict";function b(){u(!0)}var c={};a.respond=c,c.update=function(){};var d=[],e=function(){var b=!1;try{b=new a.XMLHttpRequest}catch(c){b=new a.ActiveXObject("Microsoft.XMLHTTP")}return function(){return b}}(),f=function(a,b){var c=e();c&&(c.open("GET",a,!0),c.onreadystatechange=function(){4!==c.readyState||200!==c.status&&304!==c.status||b(c.responseText)},4!==c.readyState&&c.send(null))};if(c.ajax=f,c.queue=d,c.regex={media:/@media[^\{]+\{([^\{\}]*\{[^\}\{]*\})+/gi,keyframes:/@(?:\-(?:o|moz|webkit)\-)?keyframes[^\{]+\{(?:[^\{\}]*\{[^\}\{]*\})+[^\}]*\}/gi,urls:/(url\()['"]?([^\/\)'"][^:\)'"]+)['"]?(\))/g,findStyles:/@media *([^\{]+)\{([\S\s]+?)$/,only:/(only\s+)?([a-zA-Z]+)\s?/,minw:/\([\s]*min\-width\s*:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/,maxw:/\([\s]*max\-width\s*:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/},c.mediaQueriesSupported=a.matchMedia&&null!==a.matchMedia("only all")&&a.matchMedia("only all").matches,!c.mediaQueriesSupported){var g,h,i,j=a.document,k=j.documentElement,l=[],m=[],n=[],o={},p=30,q=j.getElementsByTagName("head")[0]||k,r=j.getElementsByTagName("base")[0],s=q.getElementsByTagName("link"),t=function(){var a,b=j.createElement("div"),c=j.body,d=k.style.fontSize,e=c&&c.style.fontSize,f=!1;return b.style.cssText="position:absolute;font-size:1em;width:1em",c||(c=f=j.createElement("body"),c.style.background="none"),k.style.fontSize="100%",c.style.fontSize="100%",c.appendChild(b),f&&k.insertBefore(c,k.firstChild),a=b.offsetWidth,f?k.removeChild(c):c.removeChild(b),k.style.fontSize=d,e&&(c.style.fontSize=e),a=i=parseFloat(a)},u=function(b){var c="clientWidth",d=k[c],e="CSS1Compat"===j.compatMode&&d||j.body[c]||d,f={},o=s[s.length-1],r=(new Date).getTime();if(b&&g&&p>r-g)return a.clearTimeout(h),h=a.setTimeout(u,p),void 0;g=r;for(var v in l)if(l.hasOwnProperty(v)){var w=l[v],x=w.minw,y=w.maxw,z=null===x,A=null===y,B="em";x&&(x=parseFloat(x)*(x.indexOf(B)>-1?i||t():1)),y&&(y=parseFloat(y)*(y.indexOf(B)>-1?i||t():1)),w.hasquery&&(z&&A||!(z||e>=x)||!(A||y>=e))||(f[w.media]||(f[w.media]=[]),f[w.media].push(m[w.rules]))}for(var C in n)n.hasOwnProperty(C)&&n[C]&&n[C].parentNode===q&&q.removeChild(n[C]);n.length=0;for(var D in f)if(f.hasOwnProperty(D)){var E=j.createElement("style"),F=f[D].join("\n");E.type="text/css",E.media=D,q.insertBefore(E,o.nextSibling),E.styleSheet?E.styleSheet.cssText=F:E.appendChild(j.createTextNode(F)),n.push(E)}},v=function(a,b,d){var e=a.replace(c.regex.keyframes,"").match(c.regex.media),f=e&&e.length||0;b=b.substring(0,b.lastIndexOf("/"));var g=function(a){return a.replace(c.regex.urls,"$1"+b+"$2$3")},h=!f&&d;b.length&&(b+="/"),h&&(f=1);for(var i=0;f>i;i++){var j,k,n,o;h?(j=d,m.push(g(a))):(j=e[i].match(c.regex.findStyles)&&RegExp.$1,m.push(RegExp.$2&&g(RegExp.$2))),n=j.split(","),o=n.length;for(var p=0;o>p;p++)k=n[p],l.push({media:k.split("(")[0].match(c.regex.only)&&RegExp.$2||"all",rules:m.length-1,hasquery:k.indexOf("(")>-1,minw:k.match(c.regex.minw)&&parseFloat(RegExp.$1)+(RegExp.$2||""),maxw:k.match(c.regex.maxw)&&parseFloat(RegExp.$1)+(RegExp.$2||"")})}u()},w=function(){if(d.length){var b=d.shift();f(b.href,function(c){v(c,b.href,b.media),o[b.href]=!0,a.setTimeout(function(){w()},0)})}},x=function(){for(var b=0;b<s.length;b++){var c=s[b],e=c.href,f=c.media,g=c.rel&&"stylesheet"===c.rel.toLowerCase();e&&g&&!o[e]&&(c.styleSheet&&c.styleSheet.rawCssText?(v(c.styleSheet.rawCssText,e,f),o[e]=!0):(!/^([a-zA-Z:]*\/\/)/.test(e)&&!r||e.replace(RegExp.$1,"").split("/")[0]===a.location.host)&&("//"===e.substring(0,2)&&(e=a.location.protocol+e),d.push({href:e,media:f})))}w()};x(),c.update=x,c.getEmValue=t,a.addEventListener?a.addEventListener("resize",b,!1):a.attachEvent&&a.attachEvent("onresize",b)}}(this);
 };
 </script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script>
 
 /**
@@ -219,11 +228,6 @@ color: #d14;
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -236,32 +240,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -272,10 +250,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -292,6 +266,9 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
@@ -304,7 +281,6 @@ summary {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -368,7 +344,7 @@ summary {
 
 
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -451,20 +427,20 @@ head(gcount)</code></pre>
 <pre><code>## [1] 63227    51</code></pre>
 <div id="quality-filter-gene-counts" class="section level4">
 <h4>Quality-filter gene counts</h4>
-<p>Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the genes that are only present in fewer than two of the 24 ambient samples.</p>
+<p>Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the genes that are only present in fewer than 2 of the 41 samples.</p>
 <pre class="r"><code>#keep only life stages with three treatments: Fertilized_egg, Cleavage, Prawn_chip, Early_gastrula, Planula
 dev &lt;- c(&quot;Fertilized_egg&quot;, &quot;Cleavage&quot;, &quot;Prawn_chip&quot;, &quot;Early_gastrula&quot;, &quot;Planula&quot;)
 treatmentinfo_dev &lt;- filter(treatmentinfo, time_point %in% dev)
-dim(treatmentinfo_dev) #rows should be 45</code></pre>
+dim(treatmentinfo_dev) #rows 41</code></pre>
 <pre><code>## [1] 41  4</code></pre>
 <pre class="r"><code># delete sample columns corresponding to low and extreme low samples by mapping Null value to them
 gcount_dev &lt;- gcount[treatmentinfo_dev$sample_id]
-dim(gcount_dev) #columns should be 45</code></pre>
+dim(gcount_dev) #columns 41</code></pre>
 <pre><code>## [1] 63227    41</code></pre>
 <pre class="r"><code>#create filter for the counts data
 #gfiltdev &lt;- rowSums(count(gcount_dev)) &gt; 0
-#set filter values for PoverA, P=100% percent of the samples have counts over A=10. This means that only 2 out of 33 (0.06060606) samples need to have counts over 10. Our smallest sample size for our life stages is two (fertilized egg, mid-gastrula, early-gastrula). By setting 2/24 as the P, this means if a particular gene is expressed only in 1 of these smallest life stages, it will be included in the analysis.
-filt &lt;- filterfun(pOverA(0.06060606,10))
+#set filter values for PoverA, P=4.88% percent of the samples have counts over A=10. This means that only 2 out of 41 (0.04878049) samples need to have counts over 10 because our smallest sample size for a treatment is 2. By setting 2/41 as the P, this means if a particular gene is expressed only in 1 of these smallest life stages, it will be included in the analysis.
+filt &lt;- filterfun(pOverA(0.04878049,10))
 
 #create filter for the counts data
 gfiltdev &lt;- genefilter(gcount_dev, filt)
@@ -673,7 +649,7 @@ plot(sampleTree, main = &quot;Sample clustering to detect outliers&quot;, sub=&q
 <p>Save Rdata necessary for analysis in Bluewaves</p>
 <pre class="r"><code>save(datExpr, file = &quot;3-WGCNA/Input/datExpr.RData&quot;)</code></pre>
 <p><strong>To be executed on the Bluewaves server</strong><br />
-Co-expression similarity and adjacency, using the soft thresholding power 23 and translate the adjacency into topological overlap matrix to calculate the corresponding dissimilarity. I will use a <strong>signed network</strong> because we have a relatively high softPower, according to (&gt;12): <a href="https://peterlangfelder.com/2018/11/25/__trashed/" class="uri">https://peterlangfelder.com/2018/11/25/__trashed/</a></p>
+Co-expression similarity and adjacency, using the soft thresholding power 13 and translate the adjacency into topological overlap matrix to calculate the corresponding dissimilarity. I will use a <strong>signed network</strong> because we have a relatively high softPower, according to (&gt;12): <a href="https://peterlangfelder.com/2018/11/25/__trashed/" class="uri">https://peterlangfelder.com/2018/11/25/__trashed/</a></p>
 <pre class="r"><code># #Set up workspace
 # getwd() #Display the current working directory
 # #If necessary, change the path below to the directory where the data files are stored. &quot;.&quot; means current directory. On Windows use a forward slash / instead of the usual \.
@@ -688,7 +664,7 @@ Co-expression similarity and adjacency, using the soft thresholding power 23 and
 # adjTOM
 # 
 # #Run analysis
-# softPower=23 #Set softPower to 23
+# softPower=13 #Set softPower to 13
 # adjacency=adjacency(datExpr, power=softPower,type=&quot;signed&quot;) #Calculate adjacency
 # TOM= TOMsimilarity(adjacency,TOMType = &quot;signed&quot;) #Translate adjacency into topological overlap matrix
 # dissTOM= 1-TOM #Calculate dissimilarity in TOM
@@ -1079,14 +1055,14 @@ names(GSPvalue) = paste(&quot;p.GS.&quot;, names(time_point), sep=&quot;&quot;);
 ## )</code></pre>
 <pre class="r"><code>tail(Mcap.annot)</code></pre>
 <pre><code>## # A tibble: 6 x 14
-##   gene_id description length   eValue bitscore simMean UniProtKB_entry status
-##   &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt; 
-## 1 g9992   XP_0270592…    229 1.80e-36    164.       NA A0A3M6URP7_9CN… unrev…
-## 2 g9994   XP_0322260…     89 3.00e-10     75.1      NA &lt;NA&gt;            &lt;NA&gt;  
-## 3 g9995   XP_0291803…    299 2.80e-41    180.       NA &lt;NA&gt;            &lt;NA&gt;  
-## 4 g9996   KXJ20016.1     151 1.10e-12     84        NA &lt;NA&gt;            &lt;NA&gt;  
-## 5 g9997   PFX27832.1     141 4.40e-36    161.       NA A0A2B4SH83_STY… unrev…
-## 6 g9999   XP_0157740…    212 1.00e-75    294.       NA &lt;NA&gt;            &lt;NA&gt;  
+##   gene_id description   length   eValue bitscore simMean UniProtKB_entry status 
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;  
+## 1 g9992   XP_027059272…    229 1.80e-36    164.       NA A0A3M6URP7_9CN… unrevi…
+## 2 g9994   XP_032226016…     89 3.00e-10     75.1      NA &lt;NA&gt;            &lt;NA&gt;   
+## 3 g9995   XP_029180319…    299 2.80e-41    180.       NA &lt;NA&gt;            &lt;NA&gt;   
+## 4 g9996   KXJ20016.1       151 1.10e-12     84        NA &lt;NA&gt;            &lt;NA&gt;   
+## 5 g9997   PFX27832.1       141 4.40e-36    161.       NA A0A2B4SH83_STY… unrevi…
+## 6 g9999   XP_015774017…    212 1.00e-75    294.       NA &lt;NA&gt;            &lt;NA&gt;   
 ## # … with 6 more variables: protein_names &lt;chr&gt;, gene_names &lt;chr&gt;,
 ## #   organism &lt;chr&gt;, ko &lt;chr&gt;, GO_IDs &lt;chr&gt;, GO_terms &lt;chr&gt;</code></pre>
 <pre class="r"><code>dim(Mcap.annot)</code></pre>
@@ -1506,7 +1482,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

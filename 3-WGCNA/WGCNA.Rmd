@@ -47,21 +47,21 @@ dim(gcount)
 ```
 
 #### Quality-filter gene counts  
-Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the genes that are only present in fewer than two of the 24 ambient samples.
+Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the genes that are only present in fewer than 2 of the 41 samples.
 ```{r}
 #keep only life stages with three treatments: Fertilized_egg, Cleavage, Prawn_chip, Early_gastrula, Planula
 dev <- c("Fertilized_egg", "Cleavage", "Prawn_chip", "Early_gastrula", "Planula")
 treatmentinfo_dev <- filter(treatmentinfo, time_point %in% dev)
-dim(treatmentinfo_dev) #rows should be 45
+dim(treatmentinfo_dev) #rows 41
 
 # delete sample columns corresponding to low and extreme low samples by mapping Null value to them
 gcount_dev <- gcount[treatmentinfo_dev$sample_id]
-dim(gcount_dev) #columns should be 45
+dim(gcount_dev) #columns 41
 
 #create filter for the counts data
 #gfiltdev <- rowSums(count(gcount_dev)) > 0
-#set filter values for PoverA, P=100% percent of the samples have counts over A=10. This means that only 2 out of 33 (0.06060606) samples need to have counts over 10. Our smallest sample size for our life stages is two (fertilized egg, mid-gastrula, early-gastrula). By setting 2/24 as the P, this means if a particular gene is expressed only in 1 of these smallest life stages, it will be included in the analysis.
-filt <- filterfun(pOverA(0.06060606,10))
+#set filter values for PoverA, P=4.88% percent of the samples have counts over A=10. This means that only 2 out of 41 (0.04878049) samples need to have counts over 10 because our smallest sample size for a treatment is 2. By setting 2/41 as the P, this means if a particular gene is expressed only in 1 of these smallest life stages, it will be included in the analysis.
+filt <- filterfun(pOverA(0.04878049,10))
 
 #create filter for the counts data
 gfiltdev <- genefilter(gcount_dev, filt)
@@ -251,7 +251,7 @@ save(datExpr, file = "3-WGCNA/Input/datExpr.RData")
 
 
 **To be executed on the Bluewaves server**  
-Co-expression similarity and adjacency, using the soft thresholding power 23 and translate the adjacency into topological overlap matrix to calculate the corresponding dissimilarity. I will use a **signed network** because we have a relatively high softPower, according to (>12): https://peterlangfelder.com/2018/11/25/__trashed/
+Co-expression similarity and adjacency, using the soft thresholding power 13 and translate the adjacency into topological overlap matrix to calculate the corresponding dissimilarity. I will use a **signed network** because we have a relatively high softPower, according to (>12): https://peterlangfelder.com/2018/11/25/__trashed/
 ```{r, }
 # #Set up workspace
 # getwd() #Display the current working directory
@@ -267,7 +267,7 @@ Co-expression similarity and adjacency, using the soft thresholding power 23 and
 # adjTOM
 # 
 # #Run analysis
-# softPower=23 #Set softPower to 23
+# softPower=13 #Set softPower to 13
 # adjacency=adjacency(datExpr, power=softPower,type="signed") #Calculate adjacency
 # TOM= TOMsimilarity(adjacency,TOMType = "signed") #Translate adjacency into topological overlap matrix
 # dissTOM= 1-TOM #Calculate dissimilarity in TOM
