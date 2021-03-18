@@ -20,7 +20,7 @@ library("ggplot2")
 library("tidyverse")
 library("betareg")
 library("emmeans")
-library("dplyr")
+library("gridExtra")
 ```
 
 Import the data
@@ -195,16 +195,6 @@ final_cell_cleavage
 
 
 ## Growth through development
-
-### Set up workspace
-
-Load libraries
-```{r, message = FALSE}
-library("tidyverse")
-library("dplyr")
-library("ggplot2")
-library("gridExtra")
-```
 
 Import the data
 ```{r, message = FALSE}

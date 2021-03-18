@@ -81,7 +81,7 @@ pwf.C2<-nullp(clust2.genes, IDvector, bias.data=lengthVector) #weight vector by 
 
 Prepare GO term dataframe
 ```{r}
-GO.annot <- select(annot, gene_id, GO_IDs)
+GO.annot <- subset(annot, select=c(gene_id, GO_IDs))
 GO.annot.na <- filter(GO.annot, GO_IDs!="NA;NA") #Remove NAs
 GO.annot.na$GO_IDs <- gsub("NA;", "", GO.annot.na$GO_IDs)  #Remove NAs
 GO.annot.na$GO_IDs <- gsub(";NA", "", GO.annot.na$GO_IDs)  #Remove NAs
@@ -145,3 +145,29 @@ Save significant terms
 write.csv(C1.GO.05, file = "5-Planula-GO-Enrichment-Analysis/Output/GO.05.C1.csv", row.names = FALSE)
 write.csv(C2.GO.05, file = "5-Planula-GO-Enrichment-Analysis/Output/GO.05.C2.csv", row.names = FALSE)
 ```
+
+Make dataframe of GO results for clustering and heatmap. Using R script from Mass Lab. Needs columns "experiment" where we will put cluster information, "term", "percentDEInCat", and "gene" with all the DE genes associated with that GO term.
+```{r}
+C1_fig <- filter(C1.GO.05, ontology=="BP") #separate out BP terms in cluster
+C1_fig$experiment <- "down" #label them with "experiment"
+
+C2_fig <- filter(C2.GO.05, ontology=="BP")  #separate out BP terms in cluster
+C2_fig$experiment <- "up" #label them with "experiment"
+
+GOclust <- bind_rows(C1_fig, C2_fig) #bind into 1 DF
+
+GOclust$percentDEInCat <- (GOclust$numDEInCat/GOclust$numInCat)*100 #calculate %DEInCat
+GOclust <- GOclust[ ,c(8:9,6,1)] #arrange cols
+
+#add gene_IDs. To get gene_IDs we will merge with the GO.terms DF.
+GOclust <- rename(GOclust, GO.ID = category) #First have to make the "by" column the same for both
+GOclust <- left_join(GOclust, GO.terms, by="GO.ID" ) #join the DFs
+GOclust$gene_id <- as.character(GOclust$gene_id) #make gene ID a character so we can collasp our many near-identical columns
+
+GOclust <- GOclust %>% #collapse and have gene IDs for a particular term in a single row as a comma-sep list. 
+  group_by(experiment, percentDEInCat, term) %>%
+  summarise(genes = toString(gene_id)) %>% #rename collapsed gene_ID column "gene"
+  ungroup()
+write.csv(GOclust, file = "5-Planula-GO-Enrichment-Analysis/Output/GO.05.clust.csv", row.names = FALSE)
+```
+

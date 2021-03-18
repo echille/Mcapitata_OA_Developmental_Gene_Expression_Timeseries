@@ -1,0 +1,13 @@
+id,term,cluster
+GO:0003726,double-stranded RNA adenosine deaminase activity,1
+GO:0016887,ATPase activity,1
+GO:0008234,cysteine-type peptidase activity,1
+GO:0004222,metalloendopeptidase activity,1
+GO:0004386,helicase activity,1
+GO:0003968,RNA-directed 5'-3' RNA polymerase activity,1
+GO:0008241,peptidyl-dipeptidase activity,1
+GO:0008559,ATPase-coupled xenobiotic transmembrane transporter activity,2
+GO:0015297,antiporter activity,2
+GO:0042910,xenobiotic transmembrane transporter activity,2
+GO:0042626,ATPase-coupled transmembrane transporter activity,2
+GO:0046933,"proton-transporting ATP synthase activity, rotational mechanism",2
