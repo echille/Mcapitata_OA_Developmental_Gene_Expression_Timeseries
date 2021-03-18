@@ -170,4 +170,32 @@ GOclust <- GOclust %>% #collapse and have gene IDs for a particular term in a si
   ungroup()
 write.csv(GOclust, file = "5-Planula-GO-Enrichment-Analysis/Output/GO.05.clust.csv", row.names = FALSE)
 ```
+Make dot plot
+```{r}
+GOdot <- bind_rows(C1_fig, C2_fig) #bind into 1 DF
+GOdot$p.adjust <- p.adjust(p = GOdot$over_represented_pvalue, method = "BH") # calculate padj
+GOdot$percentDEInCat <- (GOdot$numDEInCat/GOdot$numInCat)*100 #calculate %DEInCat
+GOdot$p.adjust <- -log10(GOdot$p.adjust)
+
+GOdot <- rename(GOdot, direction=experiment)
+GOdot <- arrange(GOdot, percentDEInCat)
+my.order <- GOdot$term
+GOdot$term <- factor(GOdot$term, levels = my.order)
+# plot: dot plot
+GOdot.plot <- GOdot %>% arrange(percentDEInCat) %>% ggplot(aes(x = reorder(term, percentDEInCat), y = percentDEInCat, 
+                        color = `direction`, size = p.adjust)) + 
+  coord_flip() +
+  geom_point() +
+  scale_color_manual(values=c(up = "red", down = "blue")) +
+  theme_bw() + 
+  ylab("percentDEInCat") + 
+  xlab("term");GOdot.plot
+ggsave(GOdot.plot, filename = "5-Planula-GO-Enrichment-Analysis/Output/GO.05.dotplot.png", 
+  width = 7,
+  height = 7,
+  units = c("in"),
+  dpi = 300)
+```
+
+
 
