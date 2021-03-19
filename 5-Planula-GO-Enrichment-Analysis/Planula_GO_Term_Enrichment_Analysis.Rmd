@@ -187,10 +187,18 @@ GOdot.plot <- GOdot %>% ggplot(aes(x = reorder(term, percentDEInCat), y = percen
   theme_bw() + 
   ylab("percentDEInCat") + 
   xlab("term") +
+  theme(axis.line = element_line(color = 'black'), #Set the axes color
+        panel.border = element_blank(), #Set the border
+        axis.text.x=element_text(size = 9), #set y-axis label size
+        axis.title.x=element_text(size =10), #set y-axis title size
+        axis.text.y=element_text(size = 9), #set x-axis label size
+        legend.text=element_text(size=9), #set legend text size
+        legend.title=element_text(size=10), #set legend title size
+        axis.title.y=element_text(size = 10)) #set x-axis title size
   labs(size = "-log10(p-value)"); GOdot.plot # re-label size labels to reflect p-value tranformation
 
 ggsave(GOdot.plot, filename = "5-Planula-GO-Enrichment-Analysis/Output/GO.05.dotplot.png",
-  width = 10,
+  width = 8,
   height = 7,
   units = c("in"),
   dpi = 300)
