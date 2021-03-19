@@ -35,13 +35,13 @@ Import the data files
 treatmentinfo <- read.csv("Sample_Info/RNAseq_data.csv", header = TRUE, sep = ",", row.names = "sample_id")
 head(treatmentinfo)
 
-gcount <- as.data.frame(read_delim(file = "7-Symbiont-RNAseq-Analysis/a-QC-Align-Assemble/Trinity/RSEM.isoform.counts.matrix.tsv", delim = "\t"))
+gcount <- as.data.frame(read_delim(file = "6-Symbiont-RNAseq-Analysis/a-QC-Align-Assemble/Trinity/RSEM.isoform.counts.matrix.tsv", delim = "\t"))
 rownames(gcount) <- gcount$X1
 gcount$X1 <- NULL
 head(gcount)
 nrow(gcount)
 gcount <- round(gcount) # round the gene counts matrix
-t2g <- read.csv("7-Symbiont-RNAseq-Analysis/b-Differential-Gene-Expression-Analysis/pln_matrix_ids.csv", header = TRUE, sep = ",")
+t2g <- read.csv("6-Symbiont-RNAseq-Analysis/b-Differential-Gene-Expression-Analysis/pln_matrix_ids.csv", header = TRUE, sep = ",")
 colnames(gcount) <- t2g$sample_id
 treatmentinfo <- treatmentinfo[colnames(gcount),] #remove samples not in the gcount matrix from treatment info csv 
 ```
