@@ -147,43 +147,24 @@ write.csv(C1.GO.05, file = "5-Planula-GO-Enrichment-Analysis/Output/GO.05.C1.csv
 write.csv(C2.GO.05, file = "5-Planula-GO-Enrichment-Analysis/Output/GO.05.C2.csv", row.names = FALSE)
 ```
 
-Make dataframe of GO results for clustering and heatmap. Using R script from Mass Lab. Needs columns "experiment" where we will put cluster information, "term", "percentDEInCat", and "gene" with all the DE genes associated with that GO term.
+Plot enriched biological process terms as a dot plot.
 ```{r}
-C1_fig <- filter(C1.GO.05, ontology=="BP") #separate out BP terms in cluster
-C1_fig$experiment <- "down" #label them with "experiment"
+C1_fig <- filter(C1.GO.05, ontology=="BP") #separate out BP terms in cluster 1
+C1_fig$dir.cluster <- "Up (Cluster 1)" #label them with "experiment"
 
-C2_fig <- filter(C2.GO.05, ontology=="BP")  #separate out BP terms in cluster
-C2_fig$experiment <- "up" #label them with "experiment"
+C2_fig <- filter(C2.GO.05, ontology=="BP")  #separate out BP terms in cluster 2
+C2_fig$dir.cluster <- "Down (Cluster 2)" #label them with "experiment"
 
-GOclust <- bind_rows(C1_fig, C2_fig) #bind into 1 DF
-
-GOclust$percentDEInCat <- (GOclust$numDEInCat/GOclust$numInCat)*100 #calculate %DEInCat
-GOclust <- GOclust[ ,c(8:9,6,1)] #arrange cols
-
-#add gene_IDs. To get gene_IDs we will merge with the GO.terms DF.
-GOclust <- rename(GOclust, GO.ID = category) #First have to make the "by" column the same for both
-GOclust <- left_join(GOclust, GO.terms, by="GO.ID" ) #join the DFs
-GOclust$gene_id <- as.character(GOclust$gene_id) #make gene ID a character so we can collasp our many near-identical columns
-
-GOclust <- GOclust %>% #collapse and have gene IDs for a particular term in a single row as a comma-sep list. 
-  group_by(experiment, percentDEInCat, term) %>%
-  summarise(genes = toString(gene_id)) %>% #rename collapsed gene_ID column "gene"
-  ungroup()
-write.csv(GOclust, file = "5-Planula-GO-Enrichment-Analysis/Output/GO.05.clust.csv", row.names = FALSE)
-```
-Make dot plot
-```{r}
 GOdot <- bind_rows(C1_fig, C2_fig) #bind into 1 DF
 GOdot$percentDEInCat <- (GOdot$numDEInCat/GOdot$numInCat)*100 #calculate %DEInCat
 GOdot$over_represented_pvalue <- -log10(GOdot$over_represented_pvalue) #-log10 p-value for plotting
-GOdot <- rename(GOdot, direction=experiment) #rename experiment col to direction of low compared to xlow and amb
 
 # plot: dot plot
 GOdot.plot <- GOdot %>% ggplot(aes(x = reorder(term, percentDEInCat), y = percentDEInCat, 
-  color = `direction`, size = over_represented_pvalue)) + 
+  color = `dir.cluster`, size = over_represented_pvalue)) + 
   coord_flip() +
   geom_point() +
-  scale_color_manual(values=c(up = "red", down = "blue")) +
+  scale_color_manual(values=c("Up (Cluster 1)" = "red", "Down (Cluster 2)" = "blue")) +
   theme_bw() + 
   ylab("percentDEInCat") + 
   xlab("term") +
@@ -194,8 +175,8 @@ GOdot.plot <- GOdot %>% ggplot(aes(x = reorder(term, percentDEInCat), y = percen
         axis.text.y=element_text(size = 9), #set x-axis label size
         legend.text=element_text(size=9), #set legend text size
         legend.title=element_text(size=10), #set legend title size
-        axis.title.y=element_text(size = 10)) #set x-axis title size
-  labs(size = "-log10(p-value)"); GOdot.plot # re-label size labels to reflect p-value tranformation
+        axis.title.y=element_text(size = 10)) + #set x-axis title size
+  labs(size = "-log10(p-value)", color = "Direction (Cluster)"); GOdot.plot # re-label size labels to reflect p-value tranformation
 
 ggsave(GOdot.plot, filename = "5-Planula-GO-Enrichment-Analysis/Output/GO.05.dotplot.png",
   width = 8,

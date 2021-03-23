@@ -172,7 +172,7 @@ mpc$title <- "a) Cleavage"
 
 final_cell_cleavage <- ggplot(mpc, aes(fill=cleavage_stage, y = mean_percent_cleavage, x=treatment)) + 
   geom_bar(position ="stack", stat = "identity") +
-  xlab("Treatment") + ylab("Percent of Embryos at Each Cleavage Stage") + 
+  xlab("Treatment") + ylab("Proportion of Embryos at Each Cleavage Stage") + 
   scale_fill_brewer(name = "", labels = c("One Cell", "Two Cell", "Four Cell", "> Four Cell"), palette = "Paired") + #colour modification
   theme_bw() + #Set background color 
   theme(panel.border = element_blank(), # Set border
