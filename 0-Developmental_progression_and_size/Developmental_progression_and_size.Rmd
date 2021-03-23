@@ -68,9 +68,9 @@ show(gathered_cleavage_counts)
 
 ### Use beta regression model to analyze variation in the proportion of cells at each cleavage stage and treatment
 
-Beta regression models are suggested for proportional data instead of t-tests and anovas because the data is often not normally distributed and homoscedastic. Here, we use a beta regression test (as described by S. S. Mangiafico in the RCompanion Handbook chapter, [Beta Regression for Percent and Proportion Data](https://rcompanion.org/handbook/J_02.html)).
+Beta regression models are suggested for proportional data instead of t-tests and anovas because the data is often not normally distributed and homoscedastic. Here, we use a beta regression test (as described by S. S. Mangiafico in the RCompanion Handbook chapter, [Beta Regression for Percent and Proportion Data](https://rcompanion.org/handbook/J_02.html).
 ```{r}
-model = betareg(proportion ~ cleavage_stage + treatment + cleavage_stage:treatment,
+model = betareg(gathered_cleavage_counts$pr ~ cleavage_stage + treatment + cleavage_stage:treatment,
                 data = gathered_cleavage_counts) #Make the model
 joint_tests(model) #do the test
 summary(model) #examine the results
@@ -168,29 +168,40 @@ show(mpc)
 
 Plot mean_percent_cleavage
 ```{r}
+mpc$title <- "a) Cleavage"
+
 final_cell_cleavage <- ggplot(mpc, aes(fill=cleavage_stage, y = mean_percent_cleavage, x=treatment)) + 
   geom_bar(position ="stack", stat = "identity") +
   xlab("pH Treatment") + ylab("Percent in Each Stage") + 
-  scale_fill_brewer(name = "Number of Cells", labels = c("One", "Two", "Four", "> Four"), palette = "Paired") + #colour modification
+  scale_fill_brewer(name = "", labels = c("One Cell", "Two Cell", "Four Cell", "> Four Cell"), palette = "Paired") + #colour modification
   theme_bw() + #Set background color 
   theme(panel.border = element_blank(), # Set border
                      panel.grid.major = element_blank(), #Set major gridlines
                      panel.grid.minor = element_blank(), #Set minor gridlines
-                     axis.title.y = element_text(size = 16), #Set Yaxis label size
-                     axis.text=element_text(size=12), #Set Y tick label size
                      axis.line = element_line(colour = "black"), #Set axes color
-        plot.background=element_blank()) + #Set the plot background
-  ggtitle("(a)") + #add a main title
-  theme(plot.title = element_text(face = 'bold', 
-                                  size = 12, 
-                                  hjust = 0),
+        plot.background=element_blank(), plot.title = element_text(face = 'bold', size = 12, hjust = 0),
         legend.position = c(0.5, 1), #Place legend top middle of figure
         legend.direction = "horizontal", #Make legend list items in a row versus columns
         legend.background = element_rect(fill = NA), #Legend block no-fill
-        legend.title = element_text(size = 10),
-        legend.text = element_text(size = 8), legend.key.size = unit(0.5, "cm"),
-  legend.key.width = unit(0.5,"cm"))
-final_cell_cleavage
+        axis.title =  element_text(size = 14),
+        axis.text = element_text(size = 12),
+        legend.text = element_text(size = 14),
+        legend.key.size = unit(0.5, "cm"),
+  legend.key.width = unit(0.5,"cm")) + #Set the plot background
+  facet_grid(. ~ title) + #ggtitle("(a) Cleavage") + #add a main title
+  theme(plot.title = element_text(face = 'bold', 
+                                  size = 14, 
+                                  hjust = 0),
+        legend.position = c(0.5, 0.98), #Place legend top middle of figure
+        legend.direction = "horizontal", #Make legend list items in a row versus columns
+        legend.background = element_rect(fill = NA), #Legend block no-fill
+        axis.title =  element_text(size = 14),
+        title = element_text(size = 22),
+        axis.text = element_text(size = 12),
+        legend.title = element_text(size = 12),
+        legend.text = element_text(size = 11), legend.key.size = unit(0.5, "cm"),
+  legend.key.width = unit(0.5,"cm"),
+  strip.text = element_text(size = 14, face = 'bold')); final_cell_cleavage #set facet size
 ```
 
 
@@ -858,8 +869,35 @@ final_plan_volume <- planulae_sqrt_volume_t_boxplot +
   annotate("text", x = 3.2, y = 0.105, label = "b")
 final_plan_volume
 ```
+```{r}
+volume_dat <- bind_rows(egg_volume, fert_volume, gas_volume, planulae_volume)
+volume_dat$treatment <- replace_na(volume_dat$treatment, "AMB")
+volume_dat$time_point <- gsub("Eggs", "b) Unfertilized Egg", volume_dat$time_point)
+volume_dat$time_point <- gsub("Fertilized_embryos", "c) Fertilized Egg", volume_dat$time_point)
+volume_dat$time_point <- gsub("Gastrulation", "d) Early Gastrula", volume_dat$time_point)
+volume_dat$time_point <- gsub("Planulae", "e) Planula", volume_dat$time_point)
+
+df <- ggplot(volume_dat, aes(x = treatment, y = volume, color = treatment)) + #Square the sqrt volume to make size visually comparable across life stages
+  ylab(expression("Volume " (mm^3))) + xlab("Treatment") + #Label axes
+  ylim(0,0.1)+
+  geom_jitter(alpha = 0.5) +
+  geom_boxplot(alpha = 0) +
+  facet_wrap(facets = vars(time_point), nrow = 2, ncol = 2, scales = "fixed") +
+  theme_bw() + #Set background color
+  theme(panel.border = element_blank(), # Set border
+                     panel.grid.major = element_blank(), #Set major gridlines
+                     panel.grid.minor = element_blank(), #Set minor gridlines
+                     axis.text=element_text(size=12), #Set Y tick label size
+                     axis.title=element_text(size=14), #Set Y tick label size
+                     axis.line = element_line(colour = "black"), #Set axes color
+        strip.text = element_text(size = 14, face = 'bold'), #set facet size
+        legend.position = "none",
+        plot.background=element_blank()) + #Set the plot background
+  scale_color_manual(values=c(AMB="slateblue", l="indianred3", xl="deeppink4")); df #set treatment colors
+```
 
 
 ```{r}
-fig_2 <- grid.arrange(final_cell_cleavage, arrangeGrob(final_egg_volume, final_fert_volume, final_gas_volume, final_plan_volume, ncol = 2, nrow = 2), ncol = 2, nrow = 1, widths = c(3,7), clip = "off")
+fig_2 <- grid.arrange(final_cell_cleavage, df, ncol = 2, nrow = 1, widths = c(5,12), clip = "off")
 ggsave("0-Developmental_progression_and_size/Output/fig2_embryo_development.pdf", fig_2, width = 16, height = 8, units = c("in"))
+```
