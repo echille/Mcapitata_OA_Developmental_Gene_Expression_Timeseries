@@ -22,7 +22,7 @@ library("genefilter")
 library("DESeq2")
 library("factoextra")
 library("NbClust")
-library("pheatmap")
+library("ComplexHeatmap")
 library("tidyverse")
 library("RColorBrewer")
 library("ggplot2")
@@ -631,51 +631,34 @@ Get and save clustering results with DESeq2 results
 
 #### Plot a heatmap of differentially-expressed genes
 ```{r}
-pln_DEGs_all <- read.csv("4-Differential-Gene-Expression-Analysis/Output/pln_DEGs_all.csv", header = TRUE, sep = ",")[,-c(1)]
-pln_DEGs_all <- subset(pln_DEGs_all, select = c(gene_id, cluster))
+pln_DEGs_all_clust <- read.csv("4-Differential-Gene-Expression-Analysis/Output/pln_DEGs_all.csv", header = TRUE, sep = ",")[,-c(1)]
+pln_DEGs_all_clust <- subset(pln_DEGs_all_clust, select = c(gene_id, cluster))
 
 #Prepare annotations
-hm_ann_row <- unique(pln_DEGs_all)
+hm_ann_row <- unique(pln_DEGs_all_clust)
 rownames(hm_ann_row) <- hm_ann_row$gene_id
-hm_ann_row <- select(hm_ann_row, cluster)
+hm_ann_row <- subset(hm_ann_row, select=cluster)
 hm_ann_row$cluster <- gsub(1,"Cluster1",hm_ann_row$cluster)
 hm_ann_row$cluster <- gsub(2,"Cluster2",hm_ann_row$cluster)
-hm_ann_row$cluster <- as.factor(hm_ann_row$cluster)
+hm_ann_row <- as.matrix(hm_ann_row[rownames(matpln),])
 
-hm_ann_col <- as.data.frame(colData(pln_DEGvst)[c("treatment")]) #make dataframe for column naming
+hm_ann_col <- HeatmapAnnotation(df=as.data.frame(colData(pln_DEGvst)[c("treatment")]), col = list(treatment=c(amb="slateblue", l="indianred3", xl="deeppink4"))) #make dataframe for column naming
 
-#Prepare colors
-ann_colors <- list(treatment=c(amb="slateblue", l="indianred3", xl="deeppink4"), cluster=c(Cluster1="red", Cluster2="blue")) #color-blind friendly
-
-#Make heatmap and save as pdf
-# pln_DEGheatmap <- pheatmap(matpln, scale= "row",
-#                            annotation_col=hm_ann_col,
-#                            annotation_row = hm_ann_row,
-#                            border_color = "black",
-#                            annotation_colors = ann_colors,
-#                            clustering_distance_rows="correlation", clustering_method = "median", 
-#                            show_rownames =FALSE,
-#                            show_colnames =FALSE,
-#                            cluster_cols = TRUE,
-#                            cluster_rows = TRUE,
-#                            cutree_rows = 2,
-#                            cutree_cols = 3); pln_DEGheatmap
-as.data.frame(matpln)
-data.frame(sample_id=colnames(matpln))
-Heatmap(matpln, column_title = "Treatment", 
+pln_DEGheatmap <- Heatmap(matpln, column_title = "Treatment", 
         #col = blueWhiteRed(50), 
-        row_title = "Cluster",
-        row_names_side = NULL, row_dend_side = "left",
+        row_title = "DEGs", name = "expression",
+        show_row_names = FALSE, top_annotation = hm_ann_col, show_column_names = FALSE, row_dend_side = "left" ,
         #width = unit(4, "in"), height = unit(8.5, "in"), 
         #column_dend_reorder = TRUE, #cluster_columns = hclust(dist(matpln), method = "average"), 
-        column_split = hm_ann_col$treatment, column_dend_height = unit(0.5, "in"),
+        column_split = 3, column_dend_height = unit(0.5, "in"),
         row_km = 2, row_km_repeats = 100, #row_split = 2, 
         row_gap = unit(2.5, "mm"), border = TRUE,
-        column_names_gp =  gpar(fontsize = 10))
+        column_names_gp =  gpar(fontsize = 10)) +
+Heatmap(hm_ann_row, name = "cluster", show_row_names = FALSE, width = unit(5, "mm"), col = c("red", "blue")); pln_DEGheatmap
 
-# png(file = "4-Differential-Gene-Expression-Analysis/Output/OA-PLN_DEGheatmap.png")
-# pln_DEGheatmap
-# dev.off()
+png(file = "4-Differential-Gene-Expression-Analysis/Output/OA-PLN_DEGheatmap.png")
+pln_DEGheatmap
+dev.off()
 ```
 
 ### Venn Diagram of pairwise comparisons DEGs in Planula
@@ -697,17 +680,14 @@ head(pln_xl_vs_l_venn)
 
 pln_DEGs_all_venn <- bind_rows(pln_l_vs_amb_venn, pln_xl_vs_amb_venn, pln_xl_vs_l_venn)
 
-# Prepare a palette of 3 colors with R colorbrewer:
-ann_colors <- c("slateblue", "indianred3", "deeppink4") #color-blind friendly)
-
 # Chart
 futile.logger::flog.threshold(futile.logger::ERROR, name = "VennDiagramLogger") #suppress log file generation
 
 venn.diagram(
        x = list(
-    pln_DEGs_all_venn %>% filter(contrast=="Low vs Ambient") %>% select(gene_id) %>% unlist() , 
-    pln_DEGs_all_venn %>% filter(contrast=="Extreme Low vs Ambient") %>% select(gene_id) %>% unlist() , 
-    pln_DEGs_all_venn %>% filter(contrast=="Extreme Low vs Low") %>% select(gene_id) %>% unlist()
+    pln_DEGs_all_venn %>% filter(contrast=="Low vs Ambient") %>% subset(select=gene_id) %>% unlist() , 
+    pln_DEGs_all_venn %>% filter(contrast=="Extreme Low vs Ambient") %>% subset(select=gene_id) %>% unlist() , 
+    pln_DEGs_all_venn %>% filter(contrast=="Extreme Low vs Low") %>% subset(select=gene_id) %>% unlist()
     ),
   category.names = c("Low vs Ambient" , "Extreme Low vs Ambient" , "Extreme Low vs Low"),
         filename = '4-Differential-Gene-Expression-Analysis/Output/venn_OA_pln_DEGs.png',
@@ -719,12 +699,8 @@ venn.diagram(
         width = 700 , 
         resolution = 300,
         compression = "lzw",
-        
-        # Circles
-        lwd = 2,
-        lty = 'blank',
-        fill = ann_colors,
-        
+        lwd = 0.75, #line width
+  
         # Numbers
         cex = 0.5,
         fontface = "bold",
