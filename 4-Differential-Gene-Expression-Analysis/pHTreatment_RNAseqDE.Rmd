@@ -622,17 +622,20 @@ Find the optimum number of clusters using 30 indexes with the NbClust() package.
 ![nb1](https://raw.githubusercontent.com/echille/E.-Chille-Open-Lab-Notebook/master/images/NBclust.out1.png)
 Get and save clustering results with DESeq2 results
 ```{r}
-calc.kmeans <- kmeans(matpln, 2)
-cluster_res <- data.frame(gene_id = names(calc.kmeans$cluster), cluster = calc.kmeans$cluster)
-
-pln_DEGs_all <- merge(pln_DEGs_all, cluster_res, by = "gene_id")
-write.csv(pln_DEGs_all, file="4-Differential-Gene-Expression-Analysis/Output/pln_DEGs_all.csv")
+# calc.kmeans <- kmeans(matpln, 2)
+# cluster_res <- data.frame(gene_id = names(calc.kmeans$cluster), cluster = calc.kmeans$cluster)
+# 
+# pln_DEGs_all <- merge(pln_DEGs_all, cluster_res, by = "gene_id")
+# write.csv(pln_DEGs_all, file="4-Differential-Gene-Expression-Analysis/Output/pln_DEGs_all.csv")
 ```
 
 #### Plot a heatmap of differentially-expressed genes
 ```{r}
+pln_DEGs_all <- read.csv("4-Differential-Gene-Expression-Analysis/Output/pln_DEGs_all.csv", header = TRUE, sep = ",")[,-c(1)]
+pln_DEGs_all <- subset(pln_DEGs_all, select = c(gene_id, cluster))
+
 #Prepare annotations
-hm_ann_row <- unique(cluster_res)
+hm_ann_row <- unique(pln_DEGs_all)
 rownames(hm_ann_row) <- hm_ann_row$gene_id
 hm_ann_row <- select(hm_ann_row, cluster)
 hm_ann_row$cluster <- gsub(1,"Cluster1",hm_ann_row$cluster)
@@ -645,22 +648,34 @@ hm_ann_col <- as.data.frame(colData(pln_DEGvst)[c("treatment")]) #make dataframe
 ann_colors <- list(treatment=c(amb="slateblue", l="indianred3", xl="deeppink4"), cluster=c(Cluster1="red", Cluster2="blue")) #color-blind friendly
 
 #Make heatmap and save as pdf
-pln_DEGheatmap <- pheatmap(matpln, scale= "row",
-                           annotation_col=hm_ann_col,
-                           annotation_row = hm_ann_row,
-                           border_color = "black",
-                           annotation_colors = ann_colors,
-                           clustering_distance_rows="euclidean", clustering_method = "average", 
-                           show_rownames =FALSE,
-                           show_colnames =FALSE,
-                           cluster_cols = TRUE,
-                           cluster_rows = TRUE,
-                           cutree_rows = 2,
-                           cutree_cols = 3); pln_DEGheatmap
+# pln_DEGheatmap <- pheatmap(matpln, scale= "row",
+#                            annotation_col=hm_ann_col,
+#                            annotation_row = hm_ann_row,
+#                            border_color = "black",
+#                            annotation_colors = ann_colors,
+#                            clustering_distance_rows="correlation", clustering_method = "median", 
+#                            show_rownames =FALSE,
+#                            show_colnames =FALSE,
+#                            cluster_cols = TRUE,
+#                            cluster_rows = TRUE,
+#                            cutree_rows = 2,
+#                            cutree_cols = 3); pln_DEGheatmap
+as.data.frame(matpln)
+data.frame(sample_id=colnames(matpln))
+Heatmap(matpln, column_title = "Treatment", 
+        #col = blueWhiteRed(50), 
+        row_title = "Cluster",
+        row_names_side = NULL, row_dend_side = "left",
+        #width = unit(4, "in"), height = unit(8.5, "in"), 
+        #column_dend_reorder = TRUE, #cluster_columns = hclust(dist(matpln), method = "average"), 
+        column_split = hm_ann_col$treatment, column_dend_height = unit(0.5, "in"),
+        row_km = 2, row_km_repeats = 100, #row_split = 2, 
+        row_gap = unit(2.5, "mm"), border = TRUE,
+        column_names_gp =  gpar(fontsize = 10))
 
-png(file = "4-Differential-Gene-Expression-Analysis/Output/OA-PLN_DEGheatmap.png")
-pln_DEGheatmap
-dev.off()
+# png(file = "4-Differential-Gene-Expression-Analysis/Output/OA-PLN_DEGheatmap.png")
+# pln_DEGheatmap
+# dev.off()
 ```
 
 ### Venn Diagram of pairwise comparisons DEGs in Planula
