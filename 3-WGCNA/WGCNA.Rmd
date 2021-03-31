@@ -150,18 +150,20 @@ allgenesfilt_PCA <- ggplot(gPCAdata_dev, aes(PC1, PC2, shape=time_point, color=t
   geom_point(size=3) +
   xlab(paste0("PC1: ",percentVar_dev[1],"% variance")) +
   ylab(paste0("PC2: ",percentVar_dev[2],"% variance")) +
-  scale_shape_manual(values = c("Fertilized_egg"=1, "Cleavage"=10, "Prawn_chip"=5, "Early_gastrula"=14, "Planula"=2)) +
+  scale_shape_manual(values = c("Fertilized_egg"=1, "Cleavage"=10, "Prawn_chip"=5, "Early_gastrula"=6, "Planula"=19)) +
   scale_color_manual(values = c("amb"="slateblue", "l"="indianred3", "xl"="deeppink4")) +
   coord_fixed() +
-    theme_bw() + #Set background color
+  theme_bw() + #Set background color
   theme(panel.border = element_blank(), # Set border
                      #panel.grid.major = element_blank(), #Set major gridlines 
                      #panel.grid.minor = element_blank(), #Set minor gridlines
-                     axis.line = element_line(colour = "black"), #Set axes color
-        plot.background=element_blank()) # + #Set the plot background
-  #theme(legend.position = ("none")) #set title attributes
-allgenesfilt_PCA
-ggsave(file = "3-WGCNA/Output/Fig3-allgenesfilt-PCA.pdf", allgenesfilt_PCA)
+                     axis.line = element_line(colour = "black", size = 0.6), #Set axes color
+        plot.background=element_blank(), #Set the plot background
+        axis.title = element_text(size = 14), #Axis title size
+        axis.text = element_text(size = 12)) #Axis text size
+allgenesfilt_PCA 
+
+#ggsave(file = "3-WGCNA/Output/Fig3-allgenesfilt-PCA.png", allgenesfilt_PCA, width = 7.5, height = 11/2, units = "in")
 ```
 
 ### Compile WGCNA Dataset

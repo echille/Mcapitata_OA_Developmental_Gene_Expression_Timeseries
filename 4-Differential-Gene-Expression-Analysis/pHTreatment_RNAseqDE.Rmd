@@ -522,19 +522,23 @@ head(assay(gvst_pln), 3) #view transformed gene count data
 ```{r}
 gPCAdata_pln <- plotPCA(gvst_pln, intgroup = c("treatment"), returnData=TRUE)
 percentVar_pln <- round(100*attr(gPCAdata_pln, "percentVar")) #plot PCA of samples with all data
-ggplot(gPCAdata_pln, aes(PC1, PC2, color=treatment)) + 
+pln_pca <- ggplot(gPCAdata_pln, aes(PC1, PC2, color=treatment)) + 
   geom_point(size=3) +
   xlab(paste0("PC1: ",percentVar_pln[1],"% variance")) +
   ylab(paste0("PC2: ",percentVar_pln[2],"% variance")) +
   scale_color_manual(values = c(amb="slateblue", l="indianred3", xl="deeppink4")) +
   coord_fixed() +
-    theme_bw() + #Set background color
+  theme_bw() + #Set background color
   theme(panel.border = element_blank(), # Set border
                      #panel.grid.major = element_blank(), #Set major gridlines
                      #panel.grid.minor = element_blank(), #Set minor gridlines
-                     axis.line = element_line(colour = "black"), #Set axes color
-        plot.background=element_blank()) + #Set the plot background
-  theme(legend.position = ("none")) #set title attributes
+                     axis.line = element_line(colour = "black", size = 0.6), #Set axes color
+        plot.background=element_blank(), #Set the plot background
+        legend.position = ("none"), 
+        axis.title = element_text(size = 14), #Axis title size
+        axis.text = element_text(size = 12)) ; pln_pca #Axis text size; view plot
+
+#ggsave(file = "4-Differential-Gene-Expression-Analysis/Output/Fig2-planula-PCA.png", pln_pca, width = 7.5/2, height = 11/2, units = "in")
 ```
 
 There appears to be clustering by treatment, especially on the PC1 axis.
@@ -644,17 +648,14 @@ hm_ann_row <- as.matrix(hm_ann_row[rownames(matpln),])
 
 hm_ann_col <- HeatmapAnnotation(df=as.data.frame(colData(pln_DEGvst)[c("treatment")]), col = list(treatment=c(amb="slateblue", l="indianred3", xl="deeppink4"))) #make dataframe for column naming
 
-pln_DEGheatmap <- Heatmap(matpln, column_title = "Treatment", 
-        #col = blueWhiteRed(50), 
+pln_DEGheatmap <-  Heatmap(matpln, column_title = "Treatment", 
         row_title = "DEGs", name = "expression",
         show_row_names = FALSE, top_annotation = hm_ann_col, show_column_names = FALSE, row_dend_side = "left" ,
-        #width = unit(4, "in"), height = unit(8.5, "in"), 
-        #column_dend_reorder = TRUE, #cluster_columns = hclust(dist(matpln), method = "average"), 
         column_split = 3, column_dend_height = unit(0.5, "in"),
-        row_km = 2, row_km_repeats = 100, #row_split = 2, 
+        km = 2, row_km_repeats = 100, 
         row_gap = unit(2.5, "mm"), border = TRUE,
         column_names_gp =  gpar(fontsize = 10)) +
-Heatmap(hm_ann_row, name = "cluster", show_row_names = FALSE, width = unit(5, "mm"), col = c("red", "blue")); pln_DEGheatmap
+  Heatmap(hm_ann_row, name = "cluster", show_row_names = FALSE, width = unit(5, "mm"), col = c("#4682B4", "#B47846")); pln_DEGheatmap
 
 png(file = "4-Differential-Gene-Expression-Analysis/Output/OA-PLN_DEGheatmap.png")
 pln_DEGheatmap

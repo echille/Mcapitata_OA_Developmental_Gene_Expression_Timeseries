@@ -21,6 +21,7 @@ library("tidyverse")
 library("betareg")
 library("emmeans")
 library("gridExtra")
+library("Rmisc")
 ```
 
 Import the data
@@ -84,7 +85,7 @@ Calculate stats for cleavage stage and treatment categories
 ```{r}
 ##Just treatment
 gathered_cleavage_counts$proportion <- (gathered_cleavage_counts$proportion)*100 #data had to be proportions for the statistical test but we want them to be plotted as percentages. We do that here.
-gathered_cleavage_counts <- rename(gathered_cleavage_counts, percent=proportion)
+gathered_cleavage_counts <- rename(gathered_cleavage_counts, proportion = percent)
 
 #Mean for all treatments should be 25 because 100/4=25. Standard dev may vary.
 clvgstats <- select(gathered_cleavage_counts, treatment:percent)
@@ -894,6 +895,9 @@ df <- ggplot(volume_dat, aes(x = treatment, y = volume, color = treatment)) + #S
         legend.position = "none",
         plot.background=element_blank()) + #Set the plot background
   scale_color_manual(values=c(AMB="slateblue", l="indianred3", xl="deeppink4")); df #set treatment colors
+```
+```{r}
+summarySE(volume_dat, measurevar = "volume", groupvars = c("time_point", "treatment"))
 ```
 
 

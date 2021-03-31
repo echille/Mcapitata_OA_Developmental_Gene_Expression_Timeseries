@@ -156,9 +156,9 @@ write.csv(C2.GO.05, file = "5-Planula-GO-Enrichment-Analysis/Output/GO.05.C2.csv
 Read in files if previous steps not run.
 ```{r}
 C1.GO.05 <- read_csv("5-Planula-GO-Enrichment-Analysis/Output/GO.05.C1.csv")
-C1.GO.05$dir <- "Up"
+C1.GO.05$dir <- "Up (Cluster1)"
 C2.GO.05 <- read_csv("5-Planula-GO-Enrichment-Analysis/Output/GO.05.C2.csv")
-C2.GO.05$dir <- "Down"
+C2.GO.05$dir <- "Down (Cluster2)"
 all_GO <- bind_rows(C1.GO.05, C2.GO.05)  #bind rows
 str(all_GO)
 ```
@@ -252,6 +252,7 @@ MFplot <- GO.MF %>% filter(numInCat>5) %>% ggplot(aes(x = dir, y = term)) +
 fig5 <- grid.arrange(BPplot, MFplot, ncol = 2, nrow = 1, widths = c(4.25,7), clip = "off")
 fig5 <- ggdraw(plot = fig5) + draw_plot_label(c("a)", "b)"), c(0, 0.38), c(1, 1), size = 15)
 ggsave("5-Planula-GO-Enrichment-Analysis/Output/fig5_GOslim.pdf", fig5, width = 20, height = 20, units = c("in"))
+ggsave("Final_figures/fig5_GOslim.png", fig5, width = 20, height = 20, units = c("in"))
 ```
 
 ## Make supplemental table summarizing GO enrichment
