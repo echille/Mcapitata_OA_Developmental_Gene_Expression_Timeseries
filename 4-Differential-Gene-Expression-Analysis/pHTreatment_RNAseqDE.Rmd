@@ -277,7 +277,7 @@ gn.keeppc <- rownames(gkeeppc)
 
 #gene count data filtered in PoverA, P percent of the samples have counts over A
 gcount_filt_pc <- as.data.frame(gcount_pc[which(rownames(gcount_pc) %in% gn.keeppc),])
-head(gcount_filt_pc)
+dim(gcount_filt_pc)
 ```
 
 #### Construct the DESeq dataset
@@ -378,7 +378,7 @@ gn.keepgsa <- rownames(gkeepgsa)
 
 #gene count data filtered in PoverA, P percent of the samples have counts over A
 gcount_filt_gsa <- as.data.frame(gcount_gsa[which(rownames(gcount_gsa) %in% gn.keepgsa),])
-head(gcount_filt_gsa)
+dim(gcount_filt_gsa)
 ```
 #### Construct the DESeq dataset
 Merge the treatment and time_point columns into a new column , group. Set group as a factor.
@@ -482,7 +482,7 @@ gkeeppln <- gcount_pln[gfiltpln,]
 gn.keeppln <- rownames(gkeeppln)
 #gene count data filtered in PoverA, P percent of the samples have counts over A
 gcount_filt_pln <- as.data.frame(gcount_pln[which(rownames(gcount_pln) %in% gn.keeppln),])
-head(gcount_filt_pln)
+dim(gcount_filt_pln)
 ```
 #### Construct the DESeq dataset
 Merge the treatment and time_point columns into a new column , group. Set group as a factor.
