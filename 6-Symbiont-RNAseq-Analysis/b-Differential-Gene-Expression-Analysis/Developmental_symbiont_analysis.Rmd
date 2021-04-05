@@ -35,36 +35,35 @@ Import the data files
 treatmentinfo <- read.csv("Sample_Info/RNAseq_data.csv", header = TRUE, sep = ",", row.names = "sample_id")
 head(treatmentinfo)
 
-gcount <- as.data.frame(read_delim(file = "6-Symbiont-RNAseq-Analysis/a-QC-Align-Assemble/Trinity/RSEM.isoform.counts.matrix.tsv", delim = "\t"))
+gcount <- as.data.frame(read_delim(file = "6-Symbiont-RNAseq-Analysis/a-QC-Align-Assemble/Output/gene_counts_matrix.tsv", delim = "\t"))
 rownames(gcount) <- gcount$X1
 gcount$X1 <- NULL
 head(gcount)
 nrow(gcount)
 gcount <- round(gcount) # round the gene counts matrix
-t2g <- read.csv("6-Symbiont-RNAseq-Analysis/b-Differential-Gene-Expression-Analysis/pln_matrix_ids.csv", header = TRUE, sep = ",")
-colnames(gcount) <- t2g$sample_id
+
 treatmentinfo <- treatmentinfo[colnames(gcount),] #remove samples not in the gcount matrix from treatment info csv 
 ```
 ## Pre-filter gene counts
 Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples.. We will also apply a filter so only transcripts with low coverage using the PoverA filter described above (P=0.85, A=5). 
 ```{r}
-filt <- filterfun(pOverA(0.11,5)) #filter out genes that have a count of 5 or fewer in less than 1/9 samples
+filt <- filterfun(pOverA(0.334,20)) #filter out genes that have a count of 5 or fewer in less than 1/9 samples
 
 #create filter for the counts data
-gfiltpln <- genefilter(gcount_pln, filt)
+gfiltpln <- genefilter(gcount, filt)
 #identify genes to keep by count filter
-gkeeppln <- gcount_pln[gfiltpln,]
+gkeeppln <- gcount[gfiltpln,]
 #identify gene lists
 gn.keeppln <- rownames(gkeeppln)
 #gene count data filtered in PoverA, P percent of the samples have counts over A
-gcount_filt_pln <- as.data.frame(gcount_pln[which(rownames(gcount_pln) %in% gn.keeppln),])
+gcount_filt_pln <- as.data.frame(gcount[which(rownames(gcount) %in% gn.keeppln),])
 nrow(gcount_filt_pln)
 ```
 #### Construct the DESeq dataset
 Merge the treatment and time_point columns into a new column , group. Set group as a factor.
 ```{r}
-treatmentinfo_pln$treatment <- factor(treatmentinfo_pln$treatment, levels = c("amb","l", "xl"))
-head(treatmentinfo_pln)
+treatmentinfo$treatment <- factor(treatmentinfo$treatment, levels = c("amb","l", "xl"))
+head(treatmentinfo)
 head(gcount_filt_pln)
 ```
 
@@ -72,7 +71,7 @@ Create a DESeqDataSet design from gene count matrix and labels. Here we set the 
 ```{r}
 #Set DESeq2 design
 gdds_pln <- DESeqDataSetFromMatrix(countData = gcount_filt_pln,
-                              colData = treatmentinfo_pln,
+                              colData = treatmentinfo,
                               design = ~treatment)
 ```
 
@@ -138,15 +137,24 @@ summary(DEG_pln.results.xl_vs_l) #view results summary
 sum(DEG_pln.results.xl_vs_l$padj < 0.05, na.rm=TRUE) #How many adjusted p-values were less than 0.05?
 
 #How many adjusted p-values were less than 0.05 and what were they?
-pNOT1 <- filter(as.data.frame(DEG_pln.results.l_vs_amb), padj!=1)
-pNOT2 <- filter(as.data.frame(DEG_pln.results.xl_vs_amb), padj!=1)
-pNOT3 <- filter(as.data.frame(DEG_pln.results.xl_vs_l), padj!=1)
-
-rn.pNOT1 <- rownames(pNOT1)
-gcount[rn.pNOT1,]
-rn.pNOT2 <- rownames(pNOT2)
-gcount[rn.pNOT2,]
-rn.pNOT3 <- rownames(pNOT3)
-gcount[rn.pNOT3,]
+LvAMB <- filter(as.data.frame(DEG_pln.results.l_vs_amb), padj<0.05)
+XLvAMB <- filter(as.data.frame(DEG_pln.results.xl_vs_amb), padj<0.05)
+XLvL <- filter(as.data.frame(DEG_pln.results.xl_vs_l), padj<0.05)
 ```
-There are no DEGs in the planula stage.
+There are a fews DEGs in the symbionts at the planula stage.
+
+Get fasta for blast
+```{r}
+library("phylotools")
+fasta <- read.fasta(file = "6-Symbiont-RNAseq-Analysis/a-QC-Align-Assemble/Output/symb_Trinity.fasta", clean_name = FALSE) #load fasta file
+fasta$seq.name <- as.factor(fasta$seq.name)
+rownames(fasta) <- fasta$seq.name
+nXA <- fasta[rownames(XLvAMB),]
+nLA <- fasta[rownames(LvAMB),]
+nXLL <- fasta[which(fasta$seq.name%in%rownames(XLvL))]
+dat2fasta(na.omit(nXA), "6-Symbiont-RNAseq-Analysis/b-Differential-Gene-Expression-Analysis/Output/degsXLvAMB.fasta")
+dat2fasta(na.omit(nLA), "6-Symbiont-RNAseq-Analysis/b-Differential-Gene-Expression-Analysis/Output/degsLvAMB.fasta")
+#dat2fasta(na.omit(fasta[intersect(nLA$seq.name, nXA$seq.name),]), "6-Symbiont-RNAseq-Analysis/b-Differential-Gene-Expression-Analysis/Output/SHAREDdegsLXLvAMB.fasta")
+
+```
+

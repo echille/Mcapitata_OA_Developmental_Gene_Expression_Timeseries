@@ -1,0 +1,31 @@
+############BUSCO search of Mcap holobiont transcriptome assembly against alveolata and metazoan datasets
+
+# BUSCO version is: 4.0.6 
+# The lineage dataset is: alveolata_odb10 (Creation date: 2019-11-21, number of species: 65, number of BUSCOs: 171)
+# Summarized benchmarking in BUSCO notation for file Mcap_holobiont.fasta
+# BUSCO was run in mode: transcriptome
+
+	***** Results: *****
+
+	C:90.1%[S:15.2%,D:74.9%],F:1.2%,M:8.7%,n:171	   
+	154	Complete BUSCOs (C)			   
+	26	Complete and single-copy BUSCOs (S)	   
+	128	Complete and duplicated BUSCOs (D)	   
+	2	Fragmented BUSCOs (F)			   
+	15	Missing BUSCOs (M)			   
+	171	Total BUSCO groups searched		   
+
+# BUSCO version is: 4.0.6 
+# The lineage dataset is: metazoa_odb10 (Creation date: 2019-11-20, number of species: 65, number of BUSCOs: 954)
+# Summarized benchmarking in BUSCO notation for file Mcap_holobiont.fasta
+# BUSCO was run in mode: transcriptome
+
+	***** Results: *****
+
+	C:97.5%[S:31.1%,D:66.4%],F:0.9%,M:1.6%,n:954	   
+	930	Complete BUSCOs (C)			   
+	297	Complete and single-copy BUSCOs (S)	   
+	633	Complete and duplicated BUSCOs (D)	   
+	9	Fragmented BUSCOs (F)			   
+	15	Missing BUSCOs (M)			   
+	954	Total BUSCO groups searched		   
