@@ -145,16 +145,120 @@ There are a fews DEGs in the symbionts at the planula stage.
 
 Get fasta for blast
 ```{r}
-library("phylotools")
-fasta <- read.fasta(file = "6-Symbiont-RNAseq-Analysis/a-QC-Align-Assemble/Output/symb_Trinity.fasta", clean_name = FALSE) #load fasta file
-fasta$seq.name <- as.factor(fasta$seq.name)
-rownames(fasta) <- fasta$seq.name
-nXA <- fasta[rownames(XLvAMB),]
-nLA <- fasta[rownames(LvAMB),]
-nXLL <- fasta[which(fasta$seq.name%in%rownames(XLvL))]
-dat2fasta(na.omit(nXA), "6-Symbiont-RNAseq-Analysis/b-Differential-Gene-Expression-Analysis/Output/degsXLvAMB.fasta")
-dat2fasta(na.omit(nLA), "6-Symbiont-RNAseq-Analysis/b-Differential-Gene-Expression-Analysis/Output/degsLvAMB.fasta")
-#dat2fasta(na.omit(fasta[intersect(nLA$seq.name, nXA$seq.name),]), "6-Symbiont-RNAseq-Analysis/b-Differential-Gene-Expression-Analysis/Output/SHAREDdegsLXLvAMB.fasta")
+# library("phylotools")
+# fasta <- read.fasta(file = "6-Symbiont-RNAseq-Analysis/a-QC-Align-Assemble/Output/symb_Trinity.fasta", clean_name = FALSE) #load fasta file
+# fasta$seq.name <- as.factor(fasta$seq.name)
+# rownames(fasta) <- fasta$seq.name
+# nXA <- fasta[rownames(XLvAMB),]
+# nLA <- fasta[rownames(LvAMB),]
+# nXLL <- fasta[which(fasta$seq.name%in%rownames(XLvL))]
+# dat2fasta(na.omit(nXA), "6-Symbiont-RNAseq-Analysis/b-Differential-Gene-Expression-Analysis/Output/degsXLvAMB.fasta")
+# dat2fasta(na.omit(nLA), "6-Symbiont-RNAseq-Analysis/b-Differential-Gene-Expression-Analysis/Output/degsLvAMB.fasta")
+# #dat2fasta(na.omit(fasta[intersect(nLA$seq.name, nXA$seq.name),]), "6-Symbiont-RNAseq-Analysis/b-Differential-Gene-Expression-Analysis/Output/SHAREDdegsLXLvAMB.fasta")
 
 ```
+#Make a heatmap of DEGs
+Subset the gene count matrix by the list of DEGs
+```{r}
+LvAMB$gene_id <- rownames(LvAMB)
+XLvAMB$gene_id <- rownames(XLvAMB)
+XLvL$gene_id <- rownames(XLvL)
+pln_DEGs_all <- bind_rows(LvAMB, XLvAMB, XLvL)
+pln_DEGlist <- gdds_pln[unique(pln_DEGs_all$gene_id),]
+```
 
+We know from before that our size factors are all less than 4, so we can use VST!
+```{r}
+pln_DEGvst <- vst(pln_DEGlist, blind=FALSE, nsub = nrow(counts(pln_DEGlist))) #apply a variance stabilizing transforamtion to minimize efplncts of small counts and normalize wrt library size
+head(assay(pln_DEGvst)) #view transformed gene count data
+dim(assay(pln_DEGvst))
+```
+
+Make a matrix for computing similarity
+```{r}
+matpln <- assay(pln_DEGvst)#[pln_topVarGenes, ] #make an expression object
+matpln <- matpln - rowMeans(matpln) #difference in expression compared to average across all samples
+```
+Write plot
+```{r}
+#Prepare annotations
+hm_ann_col <- HeatmapAnnotation(df=as.data.frame(colData(pln_DEGvst)[c("treatment")]), col = list(treatment=c(amb="slateblue", l="indianred3", xl="deeppink4"))) #make dataframe for column naming
+pln_DEGheatmap <-  Heatmap(matpln, column_title = "Treatment", 
+        row_title = "DEGs", name = "expression",
+        show_row_names = TRUE, top_annotation = hm_ann_col, show_column_names = TRUE, row_dend_side = "left" ,
+        column_split = 2, column_dend_height = unit(0.5, "in"),
+        #km = 2, row_km_repeats = 100, 
+        row_gap = unit(2.5, "mm"), border = TRUE,
+        column_names_gp =  gpar(fontsize = 10)); pln_DEGheatmap
+# png(file = "4-Differential-Gene-Expression-Analysis/Output/OA-PLN_DEGheatmap.png")
+# pln_DEGheatmap
+# dev.off()
+```
+
+Which are down-regulated in extreme low vs low and ambient
+```{r}
+down <- c("TRINITY_DN1741_c0_g1","TRINITY_DN13136_c1_g1","TRINITY_DN140660_c0_g1","TRINITY_DN1741_c1_g1","TRINITY_DN220095_c0_g1")
+filter(XLvAMB, gene_id%in%down)
+filter(XLvL, gene_id%in%down)
+filter(LvAMB, gene_id%in%down)
+```
+
+```{r}
+up <- c("TRINITY_DN2646_c0_g1", "TRINITY_DN20158_c0_g2","TRINITY_DN454_c1_g1","TRINITY_DN5759_c3_g1","TRINITY_DN45797_c0_g2","TRINITY_DN1625_c0_g1","TRINITY_DN120786_c0_g1")
+filter(XLvAMB, gene_id%in%up)
+filter(XLvL, gene_id%in%up)
+filter(LvAMB, gene_id%in%up)
+```
+# Run BLAST to determine if photosynthesis-related genes are in our *de novo* reference and are being included in our DESeq2 run
+
+Run blast
+```{bash}
+#Make blast database from Mcap predicted protein fasta file
+#/usr/local/ncbi/blast/bin/makeblastdb -in 6-Symbiont-RNAseq-Analysis/a-QC-Align-Assemble/Output/symb_Trinity.fasta -input_type fasta -dbtype nucl -parse_seqids -out 6-Symbiont-RNAseq-Analysis/c-Blast-DEGs/symb.nucl.blast.db
+
+#Blast fasta file containing sequences of selected biomarkers against our sequences
+#/usr/local/ncbi/blast/bin/tblastn -query 6-Symbiont-RNAseq-Analysis/c-Blast-DEGs/photosynthesis.prot.fasta -db 6-Symbiont-RNAseq-Analysis/c-Blast-DEGs/symb.nucl.blast.db -outfmt 6 -max_target_seqs 100 -evalue 1e-05 -out 6-Symbiont-RNAseq-Analysis/c-Blast-DEGs/symb_photo_biomarker_hits.prot.csv
+
+#/usr/local/ncbi/blast/bin/blastn -query 6-Symbiont-RNAseq-Analysis/c-Blast-DEGs/photosynthesis.nucl.fasta -db 6-Symbiont-RNAseq-Analysis/c-Blast-DEGs/symb.nucl.blast.db -outfmt 6 -max_target_seqs 100 -evalue 1e-05 -out 6-Symbiont-RNAseq-Analysis/c-Blast-DEGs/symb_photo_biomarker_hits.nucl.csv
+```
+
+Examine results
+
+```{r}
+hits.nucl <- read.table(file="6-Symbiont-RNAseq-Analysis/c-Blast-DEGs/symb_photo_biomarker_hits.nucl.csv", col.names=c("Enzyme_Name","gene_id","pident", "length", "mismatch", "gapopen", "qstart", "qend", "sstart", "ssend", "evalue", "bitscore"))
+hits.nucl <- hits.nucl %>% distinct(Enzyme_Name, gene_id, .keep_all = TRUE)
+hits.nucl <- hits.nucl %>% group_by(Enzyme_Name) %>% distinct(sstart, ssend, .keep_all = TRUE)
+hits.nucl$gene_id <- gsub("augustus.", "", hits.nucl$gene_id)
+hits.nucl$gene_id <- gsub(".t1", "", hits.nucl$gene_id)
+levels(as.factor(hits.nucl$Enzyme_Name)) #there should be 5
+
+hits.prot <- read.table(file="6-Symbiont-RNAseq-Analysis/c-Blast-DEGs/symb_photo_biomarker_hits.prot.csv", col.names=c("Enzyme_Name","gene_id","pident", "length", "mismatch", "gapopen", "qstart", "qend", "sstart", "ssend", "evalue", "bitscore"))
+hits.prot <- hits.prot %>% distinct(Enzyme_Name, gene_id, .keep_all = TRUE)
+hits.prot <- hits.prot %>% group_by(Enzyme_Name) %>% distinct(sstart, ssend, .keep_all = TRUE)
+hits.prot$gene_id <- gsub("augustus.", "", hits.prot$gene_id)
+hits.prot$gene_id <- gsub(".t1", "", hits.prot$gene_id)
+levels(as.factor(hits.prot$Enzyme_Name)) #there should be 2
+
+photo_genes <- bind_rows(hits.nucl, hits.prot) #combine into 1 df
+photo_genes$gene_id <- gsub("_i\\d", "", photo_genes$gene_id) #remove isoforms because they are not in our counts matrix and results tables
+photo_genes <- photo_genes[!duplicated(photo_genes$gene_id), ] #collapse so there is 1 hit per gene_id
+```
+
+See if any of the hits are in any of the results tables and the filtered counts matrix.
+```{r}
+a <- as.data.frame(DEG_pln.results.l_vs_amb)
+a$gene_id <- rownames(b)
+b <- as.data.frame(DEG_pln.results.xl_vs_amb)
+b$gene_id <- rownames(b)
+c <- as.data.frame(DEG_pln.results.xl_vs_l)
+c$gene_id <- rownames(c)
+
+filter(a, gene_id%in%photo_genes$gene_id)
+filter(b, gene_id%in%photo_genes$gene_id)
+filter(c, gene_id%in%photo_genes$gene_id)
+
+gcount_filt_pln$gene_id <- rownames(gcount_filt_pln)
+filter(gcount_filt_pln, gene_id%in%photo_genes$gene_id)
+```
+
+It appears that these at least some of genes are included!
