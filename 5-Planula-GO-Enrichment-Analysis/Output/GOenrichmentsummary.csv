@@ -1,0 +1,86 @@
+ontology,slim_term,slim_cat,category,term,over_represented_pvalue,numDEInCat,numInCat,dir,genes
+BP,cellular component assembly,GO:0022607,GO:0006334,nucleosome assembly,1.97E-19,13,41,C1 (Up),"g16180, g16183, g17877, g17879, g19731, g19732, g19733, g33802, g33804, g33806, g33809, g33812, g33815, g46076"
+BP,NA,NA,GO:0007017,microtubule-based process,2.22E-05,4,30,C1 (Up),"g21661, g36881, g36885, g61845"
+BP,biosynthetic process,GO:0009058,GO:0006275,regulation of DNA replication,0.00036765,2,5,C1 (Up),"g43600, g5394"
+BP,transport,GO:0006810,GO:0072488,ammonium transmembrane transport,0.001721514,2,12,C1 (Up),"g5592, g61969"
+BP,NA,NA,GO:0006801,superoxide metabolic process,0.001847804,2,13,C1 (Up),"adi2mcaRNA26177_R1, g21490"
+BP,biosynthetic process,GO:0009058,GO:0006352,"DNA-templated transcription, initiation",0.003026556,2,14,C1 (Up),"adi2mcaRNA25316_R4, adi2mcaRNA25316_R5"
+BP,transport,GO:0006810,GO:0007034,vacuolar transport,0.003183569,2,14,C1 (Up),"g47559, g61084"
+BP,transport,GO:0006810,GO:0050482,arachidonic acid secretion,0.004852851,2,17,C1 (Up),"adi2mcaRNA5086_R1, g33742"
+BP,lipid metabolic process,GO:0006629,GO:0006644,phospholipid metabolic process,0.005444907,2,18,C1 (Up),"adi2mcaRNA5086_R1, g33742"
+BP,cell cycle,GO:0007049,GO:0040001,establishment of mitotic spindle localization,0.005586728,1,1,C1 (Up),g48120
+BP,biosynthetic process,GO:0009058,GO:0009263,deoxyribonucleotide biosynthetic process,0.005643447,1,1,C1 (Up),g53997
+BP,biosynthetic process,GO:0009058,GO:1990426,mitotic recombination-dependent replication fork processing,0.005784292,1,1,C1 (Up),g34992
+BP,immune system process,GO:0002376,GO:0006955,immune response,0.005872503,2,19,C1 (Up),"g26013, g58589, g7400"
+BP,biosynthetic process,GO:0009058,GO:0009890,negative regulation of biosynthetic process,0.006375996,1,1,C1 (Up),g66167
+BP,biosynthetic process,GO:0009058,GO:1903507,negative regulation of nucleic acid-templated transcription,0.006387091,1,1,C1 (Up),g22568
+BP,NA,NA,GO:0055114,oxidation-reduction process,0.007345201,11,867,C1 (Up),"adi2mcaRNA2015_R0, adi2mcaRNA2015_R1, adi2mcaRNA7590_R4, adi2mcaRNA8259_R0, adi2mcaRNA9177_R0, adi2mcaRNA9177_R2, g22384, g37889, g53997, g6751, g8562, g8563"
+BP,lipid metabolic process,GO:0006629,GO:0009395,phospholipid catabolic process,0.008124046,1,2,C1 (Up),adi2mcaRNA23633_R0
+BP,cell cycle,GO:0007049,GO:0000281,mitotic cytokinesis,0.008262179,1,2,C1 (Up),g48120
+BP,response to stress,GO:0006950,GO:0006979,response to oxidative stress,0.010368706,2,31,C1 (Up),"adi2mcaRNA9177_R0, adi2mcaRNA9177_R2"
+BP,biosynthetic process,GO:0009058,GO:0006231,dTMP biosynthetic process,0.011741472,1,2,C1 (Up),g30099
+BP,cell cycle,GO:0007049,GO:0000070,mitotic sister chromatid segregation,0.011755679,1,2,C1 (Up),g22336
+BP,cell cycle,GO:0007049,GO:0007051,spindle organization,0.011886816,1,2,C1 (Up),g12315
+BP,cellular component assembly,GO:0022607,GO:0000027,ribosomal large subunit assembly,0.012331059,1,2,C1 (Up),g56996
+BP,transport,GO:0006810,GO:0072321,chaperone-mediated protein transport,0.012755467,1,2,C1 (Up),g2243
+BP,cell motility,GO:0048870,GO:0060294,cilium movement involved in cell motility,0.016320228,1,3,C1 (Up),g22529
+BP,cellular nitrogen compound metaboli...,GO:0034641,GO:0042779,tRNA 3'-trailer cleavage,0.017652338,1,3,C1 (Up),g3410
+BP,lipid metabolic process,GO:0006629,GO:0046488,phosphatidylinositol metabolic process,0.023540125,1,5,C1 (Up),g9260
+BP,biosynthetic process,GO:0009058,GO:0000122,negative regulation of transcription by RNA polymerase II,0.023747629,1,4,C1 (Up),g58547
+BP,cytoskeleton organization,GO:0007010,GO:0031110,regulation of microtubule polymerization or depolymerization,0.023885038,1,4,C1 (Up),g9888
+BP,generation of precursor metabolites...,GO:0006091,GO:0006122,"mitochondrial electron transport, ubiquinol to cytochrome c",0.025237835,1,4,C1 (Up),g49169
+BP,signal transduction,GO:0007165,GO:0002224,toll-like receptor signaling pathway,0.030797153,1,5,C1 (Up),g7400
+BP,cellular component assembly,GO:0022607,GO:0060271,cilium assembly,0.03563164,1,7,C1 (Up),g22529
+BP,biosynthetic process,GO:0009058,GO:0006183,GTP biosynthetic process,0.035683509,1,6,C1 (Up),g51181
+BP,biosynthetic process,GO:0009058,GO:0006228,UTP biosynthetic process,0.035683509,1,6,C1 (Up),g51181
+BP,cellular nitrogen compound metaboli...,GO:0034641,GO:0006165,nucleoside diphosphate phosphorylation,0.035683509,1,6,C1 (Up),g51181
+BP,NA,NA,GO:0006457,protein folding,0.0390295,2,55,C1 (Up),"g28772, g58547, g59987"
+BP,biosynthetic process,GO:0009058,GO:0006241,CTP biosynthetic process,0.040237377,1,7,C1 (Up),g51181
+BP,NA,NA,GO:0007059,chromosome segregation,0.041423225,1,7,C1 (Up),g17911
+BP,cellular component assembly,GO:0022607,GO:0051382,kinetochore assembly,0.042135513,1,7,C1 (Up),g6558
+BP,transport,GO:0006810,GO:0071705,nitrogen compound transport,0.001942843,2,10,C2 (Down),"g15513, g59631"
+BP,NA,NA,GO:0006508,proteolysis,0.005432355,11,723,C2 (Down),"adi2mcaRNA11812_R1, adi2mcaRNA24060_R1, adi2mcaRNA4862_R1, g13999, g25519, g32281, g348, g35557, g37913, g43709, g60537, g62259, g9020"
+BP,transport,GO:0006810,GO:0042908,xenobiotic transport,0.013219321,2,18,C2 (Down),"g15631, g16354"
+BP,immune system process,GO:0002376,GO:0006955,immune response,0.044743374,1,19,C2 (Down),"g26013, g58589, g7400"
+BP,biosynthetic process,GO:0009058,GO:0015986,ATP synthesis coupled proton transport,0.045038046,1,19,C2 (Down),g56942
+MF,ion binding,GO:0043167,GO:0005525,GTP binding,1.11E-05,11,385,C1 (Up),"g14064, g18095, g24134, g24173, g36881, g36885, g36901, g63296, g63598, g63658, g64286, g65539, g67875"
+MF,NA,NA,GO:0003924,GTPase activity,3.30E-05,9,280,C1 (Up),"g14064, g24134, g24173, g36881, g36885, g63296, g63598, g63658, g64286, g65539, g67875"
+MF,enzyme regulator activity,GO:0030234,GO:0030337,DNA polymerase processivity factor activity,3.58E-05,2,2,C1 (Up),"g43600, g5394"
+MF,NA,NA,GO:0003677,DNA binding,9.81E-05,21,1447,C1 (Up),"adi2mcaRNA14013_R5, adi2mcaRNA25316_R4, adi2mcaRNA25316_R5, adi2mcaRNA5355_R0, g16180, g16183, g16799, g17877, g17879, g19731, g19732, g19733, g19795, g2209, g23800, g28199, g33802, g33804, g33806, g33809, g33812, g33815, g43600, g43951, g46076, g5394, g62874, g66818"
+MF,NA,NA,GO:0003714,transcription corepressor activity,0.000169071,2,4,C1 (Up),"g22568, g58547"
+MF,oxidoreductase activity,GO:0016491,GO:0016614,"oxidoreductase activity, acting on CH-OH group of donors",0.002160211,2,15,C1 (Up),"g22384, g37889"
+MF,oxidoreductase activity,GO:0016491,GO:0004601,peroxidase activity,0.003283599,2,20,C1 (Up),"adi2mcaRNA9177_R0, adi2mcaRNA9177_R2"
+MF,transmembrane transporter activity,GO:0022857,GO:0008519,ammonium transmembrane transporter activity,0.004840268,2,19,C1 (Up),"g5592, g61969"
+MF,NA,NA,GO:0004623,phospholipase A2 activity,0.005233372,2,18,C1 (Up),"adi2mcaRNA5086_R1, g33742"
+MF,NA,NA,GO:0020037,heme binding,0.005677565,5,225,C1 (Up),"adi2mcaRNA7590_R4, adi2mcaRNA9177_R0, adi2mcaRNA9177_R2, g8562, g8563"
+MF,structural molecule activity,GO:0005198,GO:0005200,structural constituent of cytoskeleton,0.008123123,2,26,C1 (Up),"g36881, g36885"
+MF,DNA binding,GO:0003677,GO:0003697,single-stranded DNA binding,0.008506915,2,26,C1 (Up),"g23872, g34992"
+MF,lyase activity,GO:0016829,GO:0004451,isocitrate lyase activity,0.010944418,1,2,C1 (Up),g40432
+MF,nuclease activity,GO:0004518,GO:0016891,"endoribonuclease activity, producing 5'-phosphomonoesters",0.011389448,1,2,C1 (Up),g3410
+MF,methyltransferase activity,GO:0008168,GO:0004799,thymidylate synthase activity,0.011741472,1,2,C1 (Up),g30099
+MF,NA,NA,GO:0000150,recombinase activity,0.017706835,1,3,C1 (Up),g34992
+MF,enzyme regulator activity,GO:0030234,GO:0004859,phospholipase inhibitor activity,0.018826332,1,3,C1 (Up),g28747
+MF,NA,NA,GO:0051082,unfolded protein binding,0.020428307,2,40,C1 (Up),"g28772, g58547, g59987"
+MF,ion binding,GO:0043167,GO:0005542,folic acid binding,0.022438517,1,4,C1 (Up),g16338
+MF,ion binding,GO:0043167,GO:0005509,calcium ion binding,0.023130803,9,826,C1 (Up),"adi2mcaRNA18251_R0, adi2mcaRNA22715_R0, g14107, g21537, g25241, g3789, g40330, g44605, g4715, g49968, g50383, g59987, g62869, g67320, g740"
+MF,cytoskeletal protein binding,GO:0008092,GO:0003779,actin binding,0.024051616,2,44,C1 (Up),"g33249, g33252"
+MF,NA,NA,GO:0046982,protein heterodimerization activity,0.026841344,2,44,C1 (Up),"adi2mcaRNA25316_R4, adi2mcaRNA25316_R5"
+MF,kinase activity,GO:0016301,GO:0016307,phosphatidylinositol phosphate kinase activity,0.02967363,1,6,C1 (Up),g9260
+MF,NA,NA,GO:0016740,transferase activity,0.030576798,2,47,C1 (Up),"adi2mcaRNA14013_R5, g16338"
+MF,enzyme regulator activity,GO:0030234,GO:0016538,cyclin-dependent protein serine/threonine kinase regulator activity,0.030639436,1,5,C1 (Up),g47410
+MF,kinase activity,GO:0016301,GO:0004715,non-membrane spanning protein tyrosine kinase activity,0.033993567,1,7,C1 (Up),adi2mcaRNA14013_R5
+MF,kinase activity,GO:0016301,GO:0004550,nucleoside diphosphate kinase activity,0.035683509,1,6,C1 (Up),g51181
+MF,ATPase activity,GO:0016887,GO:0008094,DNA-dependent ATPase activity,0.039404496,1,7,C1 (Up),g34992
+MF,oxidoreductase activity,GO:0016491,GO:0016705,"oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen",0.045737895,3,148,C1 (Up),"adi2mcaRNA7590_R4, g8562, g8563"
+MF,NA,NA,GO:0004620,phospholipase activity,0.046628721,1,9,C1 (Up),adi2mcaRNA23633_R0
+MF,NA,NA,GO:0005515,protein binding,0.047815255,27,4033,C1 (Up),"adi2mcaRNA12272_R0, adi2mcaRNA18304_R0, adi2mcaRNA21901_R0, adi2mcaRNA22189_R0, adi2mcaRNA28760_R0, adi2mcaRNA29499_R3, adi2mcaRNA31154_R9, adi2mcaRNA31290_R1, adi2mcaRNA31763_R1, adi2mcaRNA33699_R1, adi2mcaRNA33811_R0, adi2mcaRNA34754_R1, adi2mcaRNA35152_R0, adi2mcaRNA39283_R0, adi2mcaRNA4862_R1, adi2mcaRNA5790_R0, adi2mcaRNA8002_R3, adi2mcaRNA9101_R1, adi2mcaRNA9523_R0, g10865, g12315, g12772, g1488, g15907, g15947, g18686, g18715, g19806, g20161, g20310, g20927, g21752, g25213, g25519, g25687, g27022, g28163, g28164, g3094, g32995, g33292, g33511, g36061, g36478, g37210, g37537, g3789, g37914, g38294, g41046, g41941, g41942, g4426, g4649, g4715, g52058, g52479, g53218, g53451, g566, g5722, g61314, g62917, g64389, g66994, g70208, g70636, g7331, g8795, g8796"
+MF,"hydrolase activity, acting on carbo...",GO:0016810,GO:0003726,double-stranded RNA adenosine deaminase activity,0.000745214,2,4,C2 (Down),"g19795, g66818"
+MF,NA,NA,GO:0016887,ATPase activity,0.001188945,8,166,C2 (Down),"adi2mcaRNA31183_R2, adi2mcaRNA31183_R4, adi2mcaRNA36181_R0, g15631, g16354, g26842, g42299, g4426, g50130"
+MF,peptidase activity,GO:0008233,GO:0008234,cysteine-type peptidase activity,0.005109113,4,154,C2 (Down),"g25519, g348, g35557, g37913, g62259"
+MF,transmembrane transporter activity,GO:0022857,GO:0008559,ATPase-coupled xenobiotic transmembrane transporter activity,0.013219321,2,18,C2 (Down),"g15631, g16354"
+MF,transmembrane transporter activity,GO:0022857,GO:0015297,antiporter activity,0.018260149,1,4,C2 (Down),g27862
+MF,transmembrane transporter activity,GO:0022857,GO:0042910,xenobiotic transmembrane transporter activity,0.018260149,1,4,C2 (Down),g27862
+MF,peptidase activity,GO:0008233,GO:0004222,metalloendopeptidase activity,0.022868158,4,150,C2 (Down),"adi2mcaRNA11812_R1, adi2mcaRNA24060_R1, g13999, g60537"
+MF,transmembrane transporter activity,GO:0022857,GO:0046933,"proton-transporting ATP synthase activity, rotational mechanism",0.031070213,1,10,C2 (Down),g56942
+MF,nucleotidyltransferase activity,GO:0016779,GO:0003968,RNA-directed 5'-3' RNA polymerase activity,0.035335495,2,11,C2 (Down),"g28199, g39276"
+MF,peptidase activity,GO:0008233,GO:0008241,peptidyl-dipeptidase activity,0.044120744,1,6,C2 (Down),g32281

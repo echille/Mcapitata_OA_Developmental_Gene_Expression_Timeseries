@@ -13,7 +13,7 @@ library(GSEABase)
 library(data.table)
 library(ggplot2)
 library(cowplot)
-library(gridExtra)
+library(patchwork)
 ```
 
 Import the data files 
@@ -158,7 +158,7 @@ Read in files if previous steps not run.
 C1.GO.05 <- read_csv("5-Planula-GO-Enrichment-Analysis/Output/GO.05.C1.csv")
 C1.GO.05$dir <- "C1 (Up)"
 C2.GO.05 <- read_csv("5-Planula-GO-Enrichment-Analysis/Output/GO.05.C2.csv")
-C2.GO.05$dir <- "C2 (Down))"
+C2.GO.05$dir <- "C2 (Down)"
 all_GO <- bind_rows(C1.GO.05, C2.GO.05)  #bind rows
 str(all_GO)
 ```
@@ -225,7 +225,7 @@ GO.MF <- right_join(MFslim, filter(all_GO, ontology=="MF"), by="category") #add 
 
 ## Make heatmap
 ```{r}
-BPplot <- GO.BP %>% filter(numInCat>5) %>% ggplot(aes(x = dir, y = term)) + 
+BPplot <- GO.BP %>% filter(numInCat>5) %>% mutate(term = fct_reorder(term, -over_represented_pvalue)) %>% ggplot(aes(x = dir, y = term)) + 
   geom_tile(aes(fill=over_represented_pvalue, width = 1)) + 
   facet_grid(slim_term ~ ontology, scales = "free_y", labeller = label_wrap_gen(width = 10, multi_line = TRUE))+
   theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
@@ -237,7 +237,7 @@ BPplot <- GO.BP %>% filter(numInCat>5) %>% ggplot(aes(x = dir, y = term)) +
   axis.text = element_text(size = 12), legend.position = "None",
   plot.margin = unit(c(0,1,0,0.25), "cm"))
 
-MFplot <- GO.MF %>% filter(numInCat>5) %>% ggplot(aes(x = dir, y = term)) + 
+MFplot <- GO.MF %>% filter(numInCat>5) %>% mutate(term = fct_reorder(term, -over_represented_pvalue)) %>% ggplot(aes(x = dir, y = term)) + 
   geom_tile(aes(fill=over_represented_pvalue, width = 1)) + 
   scale_y_discrete(position = "right") +
   facet_grid(slim_term ~ ontology, scales = "free_y", labeller = label_wrap_gen(width = 10, multi_line = TRUE), 
@@ -249,9 +249,9 @@ MFplot <- GO.MF %>% filter(numInCat>5) %>% ggplot(aes(x = dir, y = term)) +
   axis.title = element_blank(),
   axis.text = element_text(size = 12), legend.title = element_text(size = 12), legend.text = element_text(size = 11))
 
-fig5 <- grid.arrange(BPplot, MFplot, ncol = 2, nrow = 1, widths = c(4.25,7), clip = "off")
-fig5 <- ggdraw(plot = fig5) + draw_plot_label(c("a)", "b)"), c(0, 0.38), c(1, 1), size = 15)
-ggsave("5-Planula-GO-Enrichment-Analysis/Output/fig5_GOslim.pdf", fig5, width = 20, height = 20, units = c("in"))
+fig5 <- BPplot + MFplot
+fig5 <- ggdraw(plot = fig5) + draw_plot_label(c("a)", "b)"), c(0, 0.33), c(1, 1), size = 15)
+ggsave("5-Planula-GO-Enrichment-Analysis/Output/fig5_GOslim.pdf", fig5, width = 20, height = 2, units = c("in"))
 ggsave("Final_figures/Fig5.png", fig5, width = 20, height = 20, units = c("in"))
 ```
 
@@ -259,5 +259,27 @@ ggsave("Final_figures/Fig5.png", fig5, width = 20, height = 20, units = c("in"))
 ```{r}
 DF_GOhm <- bind_rows(GO.BP, GO.MF)
 head(DF_GOhm)
+```
+
+
+Make dataframe of GO results for clustering and heatmap. Using R script from Mass Lab. Needs columns "experiment" where we will put cluster information, "term", "percentDEInCat", and "gene" with all the DE genes associated with that GO term.
+```{r}
+#add gene_IDs. To get gene_IDs we will merge with the GO.terms DF.
+GOgenes <- data.frame(gene_id=GO.terms$gene_id, category=GO.terms$GO.ID) #First have to make the "by" column the same for both
+GOdf <- left_join(DF_GOhm, GOgenes, by="category" ) #join the DFs
+GOdf$gene_id <- as.character(GOdf$gene_id) #make gene ID a character so we can collasp our many near-identical columns
+GOdf <- GOdf %>% #collapse and have gene IDs for a particular term in a single row as a comma-sep list. 
+  filter(gene_id%in%DEGclust$gene_id) %>% 
+  group_by(ontology, slim_term, slim_cat, category, term, over_represented_pvalue, numDEInCat, numInCat, dir) %>%
+  summarise(genes = toString(gene_id)) %>% #rename collapsed gene_ID column "gene"
+  ungroup()
+head(GOdf)
+str(GOdf)
+write.csv(GOdf, file = "5-Planula-GO-Enrichment-Analysis/Output/GOenrichmentsummary.csv", row.names = FALSE)
+```
+
+Extract DE genes
+```{r}
+
 ```
 
