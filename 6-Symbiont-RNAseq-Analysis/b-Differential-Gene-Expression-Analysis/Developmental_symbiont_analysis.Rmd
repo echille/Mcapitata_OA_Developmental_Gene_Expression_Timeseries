@@ -45,9 +45,9 @@ gcount <- round(gcount) # round the gene counts matrix
 treatmentinfo <- treatmentinfo[colnames(gcount),] #remove samples not in the gcount matrix from treatment info csv 
 ```
 ## Pre-filter gene counts
-Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples.. We will also apply a filter so only transcripts with low coverage using the PoverA filter described above (P=0.85, A=5). 
+Pre-filtering our dataset to reduce the memory size dataframe, increase the speed of the transformation and testing functions, and improve quality of statistical analysis by removing low-coverage counts. Removed counts could represent outliers in the data and removing these improves sensitivity of statistical tests. Here we will filter out the samples from time points where we only took ambient samples.. We will also apply a filter so only transcripts with low coverage using the PoverA filter described above (P=0.875, A=10). 
 ```{r}
-filt <- filterfun(pOverA(0.334,20)) #filter out genes that have a count of 5 or fewer in less than 1/9 samples
+filt <- filterfun(pOverA(0.875,10)) #filter out genes that have a count of 5 or fewer in less than 1/9 samples
 
 #create filter for the counts data
 gfiltpln <- genefilter(gcount, filt)
@@ -140,6 +140,15 @@ sum(DEG_pln.results.xl_vs_l$padj < 0.05, na.rm=TRUE) #How many adjusted p-values
 LvAMB <- filter(as.data.frame(DEG_pln.results.l_vs_amb), padj<0.05)
 XLvAMB <- filter(as.data.frame(DEG_pln.results.xl_vs_amb), padj<0.05)
 XLvL <- filter(as.data.frame(DEG_pln.results.xl_vs_l), padj<0.05)
+
+LvAMB$contrast <- "LvAMB"
+LvAMB$gene_id <- rownames(LvAMB)
+rownames(LvAMB) <- seq(1:12)
+
+XLvAMB$contrast <- "XLvAMB"
+XLvAMB$gene_id <- rownames(XLvAMB)
+rownames(XLvAMB) <- seq(from = 13, to = 29, by = 1)
+blast_DEGs <- bind_rows(LvAMB, XLvAMB)
 ```
 There are a fews DEGs in the symbionts at the planula stage.
 

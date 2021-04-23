@@ -1,4 +1,4 @@
-treatment	sample_id	pSym	pHostHISAT pHostTrinity
+treatment	sample_id	pSym	pHostHISAT	pHostTrinity
 amb	X359	3.74%	90.84%	88.70%
 amb	X361	3.43%	91.56%	89.03%
 amb	X375	4.51%	89.37%	87.62%

@@ -14,6 +14,7 @@ library(data.table)
 library(ggplot2)
 library(cowplot)
 library(patchwork)
+library(clusterProfiler)
 ```
 
 Import the data files 
@@ -278,8 +279,82 @@ str(GOdf)
 write.csv(GOdf, file = "5-Planula-GO-Enrichment-Analysis/Output/GOenrichmentsummary.csv", row.names = FALSE)
 ```
 
-Extract DE genes
+## Kegg enrichment analysis
+
+Load KO -- gene mapping info
 ```{r}
+#Extract from InterProScan search Chille et al., 2021 project
+IPS.KO <- na.omit(subset(annot, select=c(gene_id, ko)))
+IPS.KO$ko <- gsub("\\;", "", IPS.KO$ko)
+
+#Load in and prep KofamScan search results
+KFS.KO <- read_tsv("5-Planula-GO-Enrichment-Analysis/a-Kegg-ontology/Mcap_KO_annot.tsv", col_names = TRUE)[-1,c(1,2,3)]
+colnames(KFS.KO) <- c("sig","gene_id", "ko")
+KFS.KO <- filter(KFS.KO, sig=="*")
+KFS.KO <- KFS.KO[,c(2:3)]
+KFS.KO$gene_id <- gsub("augustus.", "", KFS.KO$gene_id)
+KFS.KO$gene_id <- gsub(".t1", "", KFS.KO$gene_id)
+head(KFS.KO)
+tail(KFS.KO)
+
+#bind all results
+KO.terms <- bind_rows(IPS.KO, KFS.KO)
+KO.terms <- unique(KO.terms)
+str(KO.terms)
+head(KO.terms)
+```
+Obtain KO terms for each cluster of DEGs
+```{r}
+koC1 <- filter(KO.terms, gene_id%in%clust1$gene_id) #Filter for gene IDs in cluster1
+koC2 <- filter(KO.terms, gene_id%in%clust2$gene_id) #Filter for gene IDs in cluster2
+dim(koC1)
+dim(koC2)
+
+write.table(koC1, "Output/koC1.KEGG_mapper_input.txt", quote=FALSE,col.names=FALSE,row.names=FALSE,sep="\t") #TO BE USED FOR KEGG Mapper https://www.genome.jp/kegg/mapper.html.
+
+write.table(koC2, "Output/koC2.KEGG_mapper_input.txt", quote=FALSE,col.names=FALSE,row.names=FALSE,sep="\t") #TO BE USED FOR KEGG Mapper https://www.genome.jp/kegg/mapper.html.
+```
+
+Perform Kegg enrichment with clusterprofiler package
+```{r}
+#Cluster1
+KO.05.C1 <- enrichKEGG(koC1$ko, organism = "ko", keyType = "kegg", pvalueCutoff = 0.05) #run enrichment with Kegg sig < 0.05
+KO.05.C1 <- KO.05.C1[order(KO.05.C1$p.adjust, -KO.05.C1$Count),] #order by p-value, then count
+print(KO.05.C1) #analysis of DE genes
+dim(KO.05.C1)
+write.csv(KO.05.C1, file = "5-Planula-GO-Enrichment-Analysis/Output/KO.05.C1.csv")
+
+#Cluster2
+KO.05.C2 <- enrichKEGG(koC2$ko, organism = "ko", keyType = "kegg", pvalueCutoff = 0.05) #run enrichment with Kegg sig < 0.05
+KO.05.C2 <- KO.05.C2[order(KO.05.C2$p.adjust, -KO.05.C2$Count),] #order by p-value, then count
+head(KO.05.C2) #analysis of DE genes
+dim(KO.05.C2)
+#Nothing!
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```
 
