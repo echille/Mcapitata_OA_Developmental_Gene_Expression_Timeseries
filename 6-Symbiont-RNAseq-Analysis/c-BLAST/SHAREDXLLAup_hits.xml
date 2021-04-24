@@ -1,0 +1,2917 @@
+<?xml version="1.0"?>
+<!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" "http://www.ncbi.nlm.nih.gov/dtd/NCBI_BlastOutput.dtd">
+<BlastOutput>
+  <BlastOutput_program>blastx</BlastOutput_program>
+  <BlastOutput_version>BLASTX 2.11.0+</BlastOutput_version>
+  <BlastOutput_reference>Stephen F. Altschul, Thomas L. Madden, Alejandro A. Sch&amp;auml;ffer, Jinghui Zhang, Zheng Zhang, Webb Miller, and David J. Lipman (1997), &quot;Gapped BLAST and PSI-BLAST: a new generation of protein database search programs&quot;, Nucleic Acids Res. 25:3389-3402.</BlastOutput_reference>
+  <BlastOutput_db>nr</BlastOutput_db>
+  <BlastOutput_query-ID>Query_45305</BlastOutput_query-ID>
+  <BlastOutput_query-def>TRINITY_DN419_c1_g1_i1</BlastOutput_query-def>
+  <BlastOutput_query-len>215</BlastOutput_query-len>
+  <BlastOutput_param>
+    <Parameters>
+      <Parameters_matrix>BLOSUM62</Parameters_matrix>
+      <Parameters_expect>0.05</Parameters_expect>
+      <Parameters_gap-open>11</Parameters_gap-open>
+      <Parameters_gap-extend>1</Parameters_gap-extend>
+      <Parameters_filter>L;</Parameters_filter>
+    </Parameters>
+  </BlastOutput_param>
+<BlastOutput_iterations>
+<Iteration>
+  <Iteration_iter-num>1</Iteration_iter-num>
+  <Iteration_query-ID>Query_45305</Iteration_query-ID>
+  <Iteration_query-def>TRINITY_DN419_c1_g1_i1</Iteration_query-def>
+  <Iteration_query-len>215</Iteration_query-len>
+<Iteration_hits>
+<Hit>
+  <Hit_num>1</Hit_num>
+  <Hit_id>gb|KZS10819.1|</Hit_id>
+  <Hit_def>Uncharacterized protein APZ42_024615 [Daphnia magna]</Hit_def>
+  <Hit_accession>KZS10819</Hit_accession>
+  <Hit_len>341</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>100.138</Hsp_bit-score>
+      <Hsp_score>248</Hsp_score>
+      <Hsp_evalue>4.31109e-23</Hsp_evalue>
+      <Hsp_query-from>14</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>79</Hsp_hit-from>
+      <Hsp_hit-to>145</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>50</Hsp_identity>
+      <Hsp_positive>57</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>67</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGNXXXXXXXXXXXGQTIDRPRFR</Hsp_qseq>
+      <Hsp_hseq>VPCRWVNNPTLGEYCFAMIGRADIEGSKSDVAMNAWPPQASYPCGNFSDTSCFKLRMAKRIDRPRFR</Hsp_hseq>
+      <Hsp_midline>VPCRWVNNPTLG++C AMIGRADIEGSKS+VA NAW P+ASYPCGN SD+S  +L   + IDRPRFR</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>2</Hit_num>
+  <Hit_id>gb|EJW71189.1|</Hit_id>
+  <Hit_def>hypothetical protein WUBG_17902, partial [Wuchereria bancrofti]</Hit_def>
+  <Hit_accession>EJW71189</Hit_accession>
+  <Hit_len>130</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>93.9745</Hsp_bit-score>
+      <Hsp_score>232</Hsp_score>
+      <Hsp_evalue>1.276e-22</Hsp_evalue>
+      <Hsp_query-from>14</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>47</Hsp_hit-from>
+      <Hsp_hit-to>110</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>46</Hsp_identity>
+      <Hsp_positive>52</Hsp_positive>
+      <Hsp_gaps>3</Hsp_gaps>
+      <Hsp_align-len>67</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGNXXXXXXXXXXXGQTIDRPRFR</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNDPTLGEFCFVMIGRADIEGSKSNVAMNAWLPQASYPCGN---FSDTSSKKFKSIDRPRFR</Hsp_hseq>
+      <Hsp_midline>VP  WVN+PTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN    S     + ++IDRPRFR</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>3</Hit_num>
+  <Hit_id>gb|PPD67373.1|</Hit_id>
+  <Hit_def>hypothetical protein GOBAR_DD35751 [Gossypium barbadense]</Hit_def>
+  <Hit_accession>PPD67373</Hit_accession>
+  <Hit_len>216</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>93.5893</Hsp_bit-score>
+      <Hsp_score>231</Hsp_score>
+      <Hsp_evalue>1.45223e-21</Hsp_evalue>
+      <Hsp_query-from>38</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>154</Hsp_hit-from>
+      <Hsp_hit-to>212</Hsp_hit-to>
+      <Hsp_query-frame>2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>43</Hsp_identity>
+      <Hsp_positive>47</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>59</Hsp_align-len>
+      <Hsp_qseq>LAP*ES*ARAVRQVTAGVTGSWQPSVRSDVAF*SFDVGSSYHCDAEVAKCWIVHPPTGN</Hsp_qseq>
+      <Hsp_hseq>FSPSEFDARGVRKVTTGITGLWQPSVHSDVAFLSFDVGSSYHCEAEFTKCWIVHPPIGN</Hsp_hseq>
+      <Hsp_midline> +P E  AR VR+VT G+TG WQPSV SDVAF SFDVGSSYHC+AE  KCWIVHPP GN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>4</Hit_num>
+  <Hit_id>ref|XP_009053171.1|</Hit_id>
+  <Hit_def>hypothetical protein LOTGIDRAFT_116114, partial [Lottia gigantea] &gt;ref|XP_009059916.1| hypothetical protein LOTGIDRAFT_147919, partial [Lottia gigantea] &gt;gb|ESO89395.1| hypothetical protein LOTGIDRAFT_147919, partial [Lottia gigantea] &gt;gb|ESO96054.1| hypothetical protein LOTGIDRAFT_116114, partial [Lottia gigantea]</Hit_def>
+  <Hit_accession>XP_009053171</Hit_accession>
+  <Hit_len>69</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>89.3521</Hsp_bit-score>
+      <Hsp_score>220</Hsp_score>
+      <Hsp_evalue>1.79123e-21</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>15</Hsp_hit-from>
+      <Hsp_hit-to>60</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>41</Hsp_identity>
+      <Hsp_positive>43</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPCWWVNNPTLGEFCFAMIGRADIEGSKSNVAKNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VPC WVNNPTLG+FC AMIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>5</Hit_num>
+  <Hit_id>gb|ELU05767.1|</Hit_id>
+  <Hit_def>hypothetical protein CAPTEDRAFT_142127, partial [Capitella teleta]</Hit_def>
+  <Hit_accession>ELU05767</Hit_accession>
+  <Hit_len>67</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>88.9669</Hsp_bit-score>
+      <Hsp_score>219</Hsp_score>
+      <Hsp_evalue>2.18718e-21</Hsp_evalue>
+      <Hsp_query-from>11</Hsp_query-from>
+      <Hsp_query-to>199</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>63</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>47</Hsp_identity>
+      <Hsp_positive>52</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>63</Hsp_align-len>
+      <Hsp_qseq>VNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGNXXXXXXXXXXXGQTIDRPRFRA</Hsp_qseq>
+      <Hsp_hseq>VNNPTLCEFCFAMIGRADIEGSKSNVAMNAWLPQASYPCGNFSDTSCFKLRSSKRIDRPRFRG</Hsp_hseq>
+      <Hsp_midline>VNNPTL +FC AMIGRADIEGSKSNVA NAWLP+ASYPCGN SD+S  +L   + IDRPRFR </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>6</Hit_num>
+  <Hit_id>gb|ELT98581.1|</Hit_id>
+  <Hit_def>hypothetical protein CAPTEDRAFT_146414, partial [Capitella teleta]</Hit_def>
+  <Hit_accession>ELT98581</Hit_accession>
+  <Hit_len>67</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.6557</Hsp_bit-score>
+      <Hsp_score>213</Hsp_score>
+      <Hsp_evalue>1.55908e-20</Hsp_evalue>
+      <Hsp_query-from>11</Hsp_query-from>
+      <Hsp_query-to>199</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>63</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>46</Hsp_identity>
+      <Hsp_positive>51</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>63</Hsp_align-len>
+      <Hsp_qseq>VNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGNXXXXXXXXXXXGQTIDRPRFRA</Hsp_qseq>
+      <Hsp_hseq>VNNSTLCEFCFAMIGRADIEGSKSNVAMNAWLPQASYPCGNFSDTSCFKLQSSKRIDRPRFRG</Hsp_hseq>
+      <Hsp_midline>VNN TL +FC AMIGRADIEGSKSNVA NAWLP+ASYPCGN SD+S  +L   + IDRPRFR </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>7</Hit_num>
+  <Hit_id>gb|EFX60776.1|</Hit_id>
+  <Hit_def>hypothetical protein DAPPUDRAFT_70655, partial [Daphnia pulex]</Hit_def>
+  <Hit_accession>EFX60776</Hit_accession>
+  <Hit_len>67</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.2705</Hsp_bit-score>
+      <Hsp_score>212</Hsp_score>
+      <Hsp_evalue>2.78877e-20</Hsp_evalue>
+      <Hsp_query-from>11</Hsp_query-from>
+      <Hsp_query-to>199</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>63</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>45</Hsp_identity>
+      <Hsp_positive>52</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>63</Hsp_align-len>
+      <Hsp_qseq>VNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGNXXXXXXXXXXXGQTIDRPRFRA</Hsp_qseq>
+      <Hsp_hseq>VNNPTLGEYCFAMIGRADIEGSKSDVAMNAWPPQASYPCGNFSDTSCFKLRMAKRIDRPRFRG</Hsp_hseq>
+      <Hsp_midline>VNNPTLG++C AMIGRADIEGSKS+VA NAW P+ASYPCGN SD+S  +L   + IDRPRFR </Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>8</Hit_num>
+  <Hit_id>emb|CDQ01648.1|</Hit_id>
+  <Hit_def>Bm988 [Brugia malayi] &gt;emb|CDQ01652.1| Bm992 [Brugia malayi]</Hit_def>
+  <Hit_accession>CDQ01648</Hit_accession>
+  <Hit_len>82</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.2705</Hsp_bit-score>
+      <Hsp_score>212</Hsp_score>
+      <Hsp_evalue>3.81215e-20</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>31</Hsp_hit-from>
+      <Hsp_hit-to>76</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>40</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>9</Hit_num>
+  <Hit_id>gb|PHT26740.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26740</Hit_accession>
+  <Hit_len>307</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>91.2781</Hsp_bit-score>
+      <Hsp_score>225</Hsp_score>
+      <Hsp_evalue>5.80887e-20</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>166</Hsp_hit-from>
+      <Hsp_hit-to>211</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>10</Hit_num>
+  <Hit_id>gb|ACA30301.1|</Hit_id>
+  <Hit_def>putative senescence-associated protein, partial [Cupressus sempervirens]</Hit_def>
+  <Hit_accession>ACA30301</Hit_accession>
+  <Hit_len>98</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>7.25759e-20</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>28</Hsp_hit-from>
+      <Hsp_hit-to>73</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>11</Hit_num>
+  <Hit_id>gb|ABO20851.1|</Hit_id>
+  <Hit_def>putative senescence-associated protein, partial [Lilium longiflorum]</Hit_def>
+  <Hit_accession>ABO20851</Hit_accession>
+  <Hit_len>85</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>7.89477e-20</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>15</Hsp_hit-from>
+      <Hsp_hit-to>60</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>12</Hit_num>
+  <Hit_id>gb|KHN76066.1|</Hit_id>
+  <Hit_def>hypothetical protein Tcan_00060, partial [Toxocara canis]</Hit_def>
+  <Hit_accession>KHN76066</Hit_accession>
+  <Hit_len>81</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.1149</Hsp_bit-score>
+      <Hsp_score>209</Hsp_score>
+      <Hsp_evalue>8.62939e-20</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>31</Hsp_hit-from>
+      <Hsp_hit-to>76</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSKSNVAMDAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGSKSNVA +AWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>13</Hit_num>
+  <Hit_id>ref|XP_003366685.1|</Hit_id>
+  <Hit_def>conserved hypothetical protein, partial [Trichinella spiralis]</Hit_def>
+  <Hit_accession>XP_003366685</Hit_accession>
+  <Hit_len>91</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>9.49949e-20</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>15</Hsp_hit-from>
+      <Hsp_hit-to>60</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSKSNVAMDAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGSKSNVA +AWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>14</Hit_num>
+  <Hit_id>gb|KHN83939.1|</Hit_id>
+  <Hit_def>hypothetical protein Tcan_00058, partial [Toxocara canis]</Hit_def>
+  <Hit_accession>KHN83939</Hit_accession>
+  <Hit_len>82</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>84.7297</Hsp_bit-score>
+      <Hsp_score>208</Hsp_score>
+      <Hsp_evalue>1.46784e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>31</Hsp_hit-from>
+      <Hsp_hit-to>76</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSKSNVAMDAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGSKSNVA +AWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>15</Hit_num>
+  <Hit_id>gb|KHN75038.1|</Hit_id>
+  <Hit_def>hypothetical protein Tcan_00050, partial [Toxocara canis] &gt;gb|KHN75367.1| hypothetical protein Tcan_00053, partial [Toxocara canis] &gt;gb|KHN76770.1| hypothetical protein Tcan_00054, partial [Toxocara canis] &gt;gb|KHN82819.1| hypothetical protein Tcan_00055, partial [Toxocara canis] &gt;gb|KHN85271.1| hypothetical protein Tcan_00056, partial [Toxocara canis]</Hit_def>
+  <Hit_accession>KHN75038</Hit_accession>
+  <Hit_len>82</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>84.7297</Hsp_bit-score>
+      <Hsp_score>208</Hsp_score>
+      <Hsp_evalue>1.46784e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>31</Hsp_hit-from>
+      <Hsp_hit-to>76</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSKSNVAMDAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGSKSNVA +AWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>16</Hit_num>
+  <Hit_id>dbj|GBG77572.1|</Hit_id>
+  <Hit_def>hypothetical protein CBR_g24019 [Chara braunii]</Hit_def>
+  <Hit_accession>GBG77572</Hit_accession>
+  <Hit_len>337</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>90.5077</Hsp_bit-score>
+      <Hsp_score>223</Hsp_score>
+      <Hsp_evalue>1.50679e-19</Hsp_evalue>
+      <Hsp_query-from>59</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>282</Hsp_hit-from>
+      <Hsp_hit-to>333</Hsp_hit-to>
+      <Hsp_query-frame>2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>40</Hsp_identity>
+      <Hsp_positive>44</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>52</Hsp_align-len>
+      <Hsp_qseq>ARAVRQVTAGVTGSWQPSVRSDVAF*SFDVGSSYHCDAEVAKCWIVHPPTGN</Hsp_qseq>
+      <Hsp_hseq>ARGVRKVTTGITGLWKPSVHSDVAFLSFDVGSSYHCEAEFTKCWIVHPPAGN</Hsp_hseq>
+      <Hsp_midline>AR VR+VT G+TG W+PSV SDVAF SFDVGSSYHC+AE  KCWIVHPP GN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>17</Hit_num>
+  <Hit_id>gb|EOY20470.1|</Hit_id>
+  <Hit_def>Plant senescence-associated protein, partial [Theobroma cacao]</Hit_def>
+  <Hit_accession>EOY20470</Hit_accession>
+  <Hit_len>77</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>84.3445</Hsp_bit-score>
+      <Hsp_score>207</Hsp_score>
+      <Hsp_evalue>2.05591e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>202</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>42</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>37</Hsp_identity>
+      <Hsp_positive>39</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>42</Hsp_align-len>
+      <Hsp_qseq>WVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>WVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>18</Hit_num>
+  <Hit_id>gb|KRX12817.1|</Hit_id>
+  <Hit_def>Uncharacterized protein T07_15232 [Trichinella nelsoni]</Hit_def>
+  <Hit_accession>KRX12817</Hit_accession>
+  <Hit_len>153</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>2.81614e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>23</Hsp_hit-from>
+      <Hsp_hit-to>68</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSKSNVAMDAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGSKSNVA +AWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>19</Hit_num>
+  <Hit_id>dbj|BAB33421.1|</Hit_id>
+  <Hit_def>putative senescence-associated protein, partial [Pisum sativum]</Hit_def>
+  <Hit_accession>BAB33421</Hit_accession>
+  <Hit_len>282</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>88.9669</Hsp_bit-score>
+      <Hsp_score>219</Hsp_score>
+      <Hsp_evalue>3.2478e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>74</Hsp_hit-from>
+      <Hsp_hit-to>119</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>20</Hit_num>
+  <Hit_id>gb|KKY00280.1|</Hit_id>
+  <Hit_def>hypothetical protein VN21_15085, partial [Paraclostridium benzoelyticum]</Hit_def>
+  <Hit_accession>KKY00280</Hit_accession>
+  <Hit_len>131</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.1149</Hsp_bit-score>
+      <Hsp_score>209</Hsp_score>
+      <Hsp_evalue>3.37744e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>4</Hsp_hit-from>
+      <Hsp_hit-to>49</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>21</Hit_num>
+  <Hit_id>ref|XP_012857135.1|</Hit_id>
+  <Hit_def>PREDICTED: LOW QUALITY PROTEIN: uncharacterized protein LOC105976410 [Erythranthe guttata]</Hit_def>
+  <Hit_accession>XP_012857135</Hit_accession>
+  <Hit_len>232</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>87.8113</Hsp_bit-score>
+      <Hsp_score>216</Hsp_score>
+      <Hsp_evalue>3.39805e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>60</Hsp_hit-from>
+      <Hsp_hit-to>105</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>22</Hit_num>
+  <Hit_id>gb|KRX53062.1|</Hit_id>
+  <Hit_def>Uncharacterized protein T09_14220 [Trichinella sp. T9] &gt;gb|KRX55493.1| Uncharacterized protein T06_7018 [Trichinella sp. T6] &gt;gb|KRY07253.1| Uncharacterized protein T12_10003 [Trichinella patagoniensis] &gt;gb|KRY44795.1| Uncharacterized protein T03_17295 [Trichinella britovi] &gt;gb|KRZ48643.1| Uncharacterized protein T02_3554 [Trichinella nativa] &gt;gb|KRZ82807.1| Uncharacterized protein T08_14928 [Trichinella sp. T8]</Hit_def>
+  <Hit_accession>KRX53062</Hit_accession>
+  <Hit_len>153</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>3.49938e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>23</Hsp_hit-from>
+      <Hsp_hit-to>68</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSKSNVAMDAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGSKSNVA +AWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>23</Hit_num>
+  <Hit_id>gb|KRX69431.1|</Hit_id>
+  <Hit_def>Retrovirus-related Pol polyprotein from type-1 retrotransposable element [Trichinella sp. T6]</Hit_def>
+  <Hit_accession>KRX69431</Hit_accession>
+  <Hit_len>1600</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>90.8929</Hsp_bit-score>
+      <Hsp_score>224</Hsp_score>
+      <Hsp_evalue>3.56775e-19</Hsp_evalue>
+      <Hsp_query-from>59</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>1240</Hsp_hit-from>
+      <Hsp_hit-to>1291</Hsp_hit-to>
+      <Hsp_query-frame>2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>40</Hsp_identity>
+      <Hsp_positive>44</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>52</Hsp_align-len>
+      <Hsp_qseq>ARAVRQVTAGVTGSWQPSVRSDVAF*SFDVGSSYHCDAEVAKCWIVHPPTGN</Hsp_qseq>
+      <Hsp_hseq>ARGMRKVTTGITGLWQPSVHSDVAFSSFDVGSSYHCEAEFAKRWIVHPPIGN</Hsp_hseq>
+      <Hsp_midline>AR +R+VT G+TG WQPSV SDVAF SFDVGSSYHC+AE AK WIVHPP GN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>24</Hit_num>
+  <Hit_id>gb|KRZ48411.1|</Hit_id>
+  <Hit_def>Uncharacterized protein T02_11458 [Trichinella nativa]</Hit_def>
+  <Hit_accession>KRZ48411</Hit_accession>
+  <Hit_len>156</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>3.64649e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>26</Hsp_hit-from>
+      <Hsp_hit-to>71</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSKSNVAMDAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGSKSNVA +AWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>25</Hit_num>
+  <Hit_id>gb|PHT26865.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26865</Hit_accession>
+  <Hit_len>180</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.6557</Hsp_bit-score>
+      <Hsp_score>213</Hsp_score>
+      <Hsp_evalue>3.70363e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>39</Hsp_hit-from>
+      <Hsp_hit-to>84</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>26</Hit_num>
+  <Hit_id>gb|PHT25045.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25045</Hit_accession>
+  <Hit_len>230</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>87.4261</Hsp_bit-score>
+      <Hsp_score>215</Hsp_score>
+      <Hsp_evalue>3.84006e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>101</Hsp_hit-from>
+      <Hsp_hit-to>146</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>27</Hit_num>
+  <Hit_id>gb|KRY25892.1|</Hit_id>
+  <Hit_def>Uncharacterized protein T01_11440 [Trichinella spiralis] &gt;gb|KRY26551.1| Uncharacterized protein T01_12406 [Trichinella spiralis] &gt;gb|KRY26632.1| Uncharacterized protein T01_15885 [Trichinella spiralis]</Hit_def>
+  <Hit_accession>KRY25892</Hit_accession>
+  <Hit_len>153</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>3.8587e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>23</Hsp_hit-from>
+      <Hsp_hit-to>68</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSKSNVAMDAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGSKSNVA +AWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>28</Hit_num>
+  <Hit_id>gb|PHT26117.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26117</Hit_accession>
+  <Hit_len>154</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>4.26725e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>13</Hsp_hit-from>
+      <Hsp_hit-to>58</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>29</Hit_num>
+  <Hit_id>gb|PHT28916.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT28916</Hit_accession>
+  <Hit_len>218</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>87.0409</Hsp_bit-score>
+      <Hsp_score>214</Hsp_score>
+      <Hsp_evalue>4.51736e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>77</Hsp_hit-from>
+      <Hsp_hit-to>122</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>30</Hit_num>
+  <Hit_id>ref|XP_001900327.1|</Hit_id>
+  <Hit_def>Senescence-associated protein, partial [Brugia malayi]</Hit_def>
+  <Hit_accession>XP_001900327</Hit_accession>
+  <Hit_len>121</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>84.7297</Hsp_bit-score>
+      <Hsp_score>208</Hsp_score>
+      <Hsp_evalue>4.68404e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>15</Hsp_hit-from>
+      <Hsp_hit-to>60</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSKSNVAMNAWLPQASYPCGS</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGSKSNVA NAWLP+ASYPCG+</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>31</Hit_num>
+  <Hit_id>gb|KHN84593.1|</Hit_id>
+  <Hit_def>hypothetical protein Tcan_00059, partial [Toxocara canis]</Hit_def>
+  <Hit_accession>KHN84593</Hit_accession>
+  <Hit_len>82</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>83.5741</Hsp_bit-score>
+      <Hsp_score>205</Hsp_score>
+      <Hsp_evalue>4.74211e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>31</Hsp_hit-from>
+      <Hsp_hit-to>76</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>38</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSESNVAMDAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGS+SNVA +AWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>32</Hit_num>
+  <Hit_id>gb|KRZ67740.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Trichinella papuae]</Hit_def>
+  <Hit_accession>KRZ67740</Hit_accession>
+  <Hit_len>184</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.2705</Hsp_bit-score>
+      <Hsp_score>212</Hsp_score>
+      <Hsp_evalue>5.36872e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>23</Hsp_hit-from>
+      <Hsp_hit-to>68</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSKSNVAMDAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGSKSNVA +AWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>33</Hit_num>
+  <Hit_id>gb|PHT27911.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT27911</Hit_accession>
+  <Hit_len>180</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>5.70557e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>39</Hsp_hit-from>
+      <Hsp_hit-to>84</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>34</Hit_num>
+  <Hit_id>ref|XP_022975571.1|</Hit_id>
+  <Hit_def>uncharacterized protein LOC111475116, partial [Cucurbita maxima]</Hit_def>
+  <Hit_accession>XP_022975571</Hit_accession>
+  <Hit_len>220</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>87.0409</Hsp_bit-score>
+      <Hsp_score>214</Hsp_score>
+      <Hsp_evalue>5.8217e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>13</Hsp_hit-from>
+      <Hsp_hit-to>58</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>35</Hit_num>
+  <Hit_id>gb|PHT26602.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26602</Hit_accession>
+  <Hit_len>227</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>87.0409</Hsp_bit-score>
+      <Hsp_score>214</Hsp_score>
+      <Hsp_evalue>5.92781e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>61</Hsp_hit-from>
+      <Hsp_hit-to>106</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>36</Hit_num>
+  <Hit_id>ref|XP_021910847.1|</Hit_id>
+  <Hit_def>LOW QUALITY PROTEIN: uncharacterized protein LOC110824615, partial [Carica papaya]</Hit_def>
+  <Hit_accession>XP_021910847</Hit_accession>
+  <Hit_len>200</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.2705</Hsp_bit-score>
+      <Hsp_score>212</Hsp_score>
+      <Hsp_evalue>5.94177e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>15</Hsp_hit-from>
+      <Hsp_hit-to>60</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>37</Hit_num>
+  <Hit_id>gb|PHT27281.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT27281</Hit_accession>
+  <Hit_len>185</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>6.38565e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>61</Hsp_hit-from>
+      <Hsp_hit-to>106</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>38</Hit_num>
+  <Hit_id>gb|PHT26662.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26662</Hit_accession>
+  <Hit_len>218</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.6557</Hsp_bit-score>
+      <Hsp_score>213</Hsp_score>
+      <Hsp_evalue>6.50134e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>77</Hsp_hit-from>
+      <Hsp_hit-to>122</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCIIMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC+ MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>39</Hit_num>
+  <Hit_id>ref|XP_021911038.1|</Hit_id>
+  <Hit_def>LOW QUALITY PROTEIN: uncharacterized protein LOC110824844, partial [Carica papaya]</Hit_def>
+  <Hit_accession>XP_021911038</Hit_accession>
+  <Hit_len>200</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.2705</Hsp_bit-score>
+      <Hsp_score>212</Hsp_score>
+      <Hsp_evalue>6.7602e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>15</Hsp_hit-from>
+      <Hsp_hit-to>60</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>40</Hit_num>
+  <Hit_id>ref|XP_021910695.1|</Hit_id>
+  <Hit_def>LOW QUALITY PROTEIN: uncharacterized protein LOC110824418, partial [Carica papaya]</Hit_def>
+  <Hit_accession>XP_021910695</Hit_accession>
+  <Hit_len>197</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.2705</Hsp_bit-score>
+      <Hsp_score>212</Hsp_score>
+      <Hsp_evalue>6.83791e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>12</Hsp_hit-from>
+      <Hsp_hit-to>57</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>41</Hit_num>
+  <Hit_id>ref|XP_022933369.1|</Hit_id>
+  <Hit_def>uncharacterized protein LOC111440753, partial [Cucurbita moschata]</Hit_def>
+  <Hit_accession>XP_022933369</Hit_accession>
+  <Hit_len>227</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.6557</Hsp_bit-score>
+      <Hsp_score>213</Hsp_score>
+      <Hsp_evalue>7.3397e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>20</Hsp_hit-from>
+      <Hsp_hit-to>65</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>42</Hit_num>
+  <Hit_id>gb|PHT25325.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25325</Hit_accession>
+  <Hit_len>207</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.2705</Hsp_bit-score>
+      <Hsp_score>212</Hsp_score>
+      <Hsp_evalue>7.4957e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>88</Hsp_hit-from>
+      <Hsp_hit-to>133</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>43</Hit_num>
+  <Hit_id>ref|XP_022973211.1|</Hit_id>
+  <Hit_def>uncharacterized protein LOC111471770, partial [Cucurbita maxima] &gt;ref|XP_022975378.1| uncharacterized protein LOC111474635, partial [Cucurbita maxima] &gt;ref|XP_022975495.1| uncharacterized protein LOC111474884, partial [Cucurbita maxima] &gt;ref|XP_022975523.1| uncharacterized protein LOC111474999, partial [Cucurbita maxima] &gt;ref|XP_022975528.1| uncharacterized protein LOC111475008, partial [Cucurbita maxima] &gt;ref|XP_022975557.1| uncharacterized protein LOC111475089, partial [Cucurbita maxima]</Hit_def>
+  <Hit_accession>XP_022973211</Hit_accession>
+  <Hit_len>220</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.6557</Hsp_bit-score>
+      <Hsp_score>213</Hsp_score>
+      <Hsp_evalue>7.68927e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>13</Hsp_hit-from>
+      <Hsp_hit-to>58</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>44</Hit_num>
+  <Hit_id>gb|PHT25347.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25347</Hit_accession>
+  <Hit_len>199</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.2705</Hsp_bit-score>
+      <Hsp_score>212</Hsp_score>
+      <Hsp_evalue>7.77697e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>92</Hsp_hit-from>
+      <Hsp_hit-to>137</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>45</Hit_num>
+  <Hit_id>emb|CDQ01643.1|</Hit_id>
+  <Hit_def>Bm983 [Brugia malayi]</Hit_def>
+  <Hit_accession>CDQ01643</Hit_accession>
+  <Hit_len>82</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>82.8037</Hsp_bit-score>
+      <Hsp_score>203</Hsp_score>
+      <Hsp_evalue>7.93712e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>31</Hsp_hit-from>
+      <Hsp_hit-to>76</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>38</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGTKSNVARTAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEG+KSNVA  AWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>46</Hit_num>
+  <Hit_id>gb|PHT25277.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25277</Hit_accession>
+  <Hit_len>197</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>7.94964e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>56</Hsp_hit-from>
+      <Hsp_hit-to>101</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>47</Hit_num>
+  <Hit_id>gb|PHT26616.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26616</Hit_accession>
+  <Hit_len>171</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>8.22671e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>30</Hsp_hit-from>
+      <Hsp_hit-to>75</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+    <Hsp>
+      <Hsp_num>2</Hsp_num>
+      <Hsp_bit-score>55.8398</Hsp_bit-score>
+      <Hsp_score>133</Hsp_score>
+      <Hsp_evalue>1.88421e-07</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>163</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>29</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>25</Hsp_identity>
+      <Hsp_positive>27</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>29</Hsp_align-len>
+      <Hsp_qseq>MIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>MIGRADIEGSKSNVAMNAWLPQASYPCAH</Hsp_hseq>
+      <Hsp_midline>MIGRADIEGSKSNVA NAWLP+ASYPC +</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>48</Hit_num>
+  <Hit_id>gb|EDO47834.1|</Hit_id>
+  <Hit_def>predicted protein, partial [Nematostella vectensis]</Hit_def>
+  <Hit_accession>EDO47834</Hit_accession>
+  <Hit_len>55</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>82.0333</Hsp_bit-score>
+      <Hsp_score>201</Hsp_score>
+      <Hsp_evalue>8.5995e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>199</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>41</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>37</Hsp_identity>
+      <Hsp_positive>39</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>41</Hsp_align-len>
+      <Hsp_qseq>VNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VNNPTLGEFCFAMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VNNPTLG+FC AMIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>49</Hit_num>
+  <Hit_id>gb|KAA6397628.1|</Hit_id>
+  <Hit_def>putative Regulator of rDNA transcription protein 15 [Streblomastix strix]</Hit_def>
+  <Hit_accession>KAA6397628</Hit_accession>
+  <Hit_len>340</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>88.5817</Hsp_bit-score>
+      <Hsp_score>218</Hsp_score>
+      <Hsp_evalue>8.74399e-19</Hsp_evalue>
+      <Hsp_query-from>17</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>255</Hsp_hit-from>
+      <Hsp_hit-to>320</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>43</Hsp_identity>
+      <Hsp_positive>50</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>66</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGNXXXXXXXXXXXGQTIDRPRF</Hsp_qseq>
+      <Hsp_hseq>VPCQWVNNPTLGEFCFAMIGRADIEESKSDVAMNAWPPQASYPCGNFSNTLRRTRSPQRRIYGPRF</Hsp_hseq>
+      <Hsp_midline>VPC+WVNNPTLG+FC AMIGRADIE SKS+VA NAW P+ASYPCGN S++        + I  PRF</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>50</Hit_num>
+  <Hit_id>gb|PHT26829.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26829</Hit_accession>
+  <Hit_len>180</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>8.78883e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>39</Hsp_hit-from>
+      <Hsp_hit-to>84</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>51</Hit_num>
+  <Hit_id>gb|PHT26166.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26166</Hit_accession>
+  <Hit_len>180</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>8.98073e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>39</Hsp_hit-from>
+      <Hsp_hit-to>84</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>52</Hit_num>
+  <Hit_id>gb|PHT25551.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25551</Hit_accession>
+  <Hit_len>240</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.6557</Hsp_bit-score>
+      <Hsp_score>213</Hsp_score>
+      <Hsp_evalue>9.04167e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>96</Hsp_hit-from>
+      <Hsp_hit-to>141</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>53</Hit_num>
+  <Hit_id>emb|CDP93458.1|</Hit_id>
+  <Hit_def>Bm342 [Brugia malayi]</Hit_def>
+  <Hit_accession>CDP93458</Hit_accession>
+  <Hit_len>137</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>84.3445</Hsp_bit-score>
+      <Hsp_score>207</Hsp_score>
+      <Hsp_evalue>9.6284e-19</Hsp_evalue>
+      <Hsp_query-from>83</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>16</Hsp_hit-from>
+      <Hsp_hit-to>59</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>38</Hsp_identity>
+      <Hsp_positive>40</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>44</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPC</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSKSNVAMNAWLPQASYPC</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGSKSNVA NAWLP+ASYPC</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>54</Hit_num>
+  <Hit_id>ref|XP_016557082.1|</Hit_id>
+  <Hit_def>PREDICTED: uncharacterized protein LOC107856604 [Capsicum annuum]</Hit_def>
+  <Hit_accession>XP_016557082</Hit_accession>
+  <Hit_len>196</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>9.75437e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>55</Hsp_hit-from>
+      <Hsp_hit-to>100</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>55</Hit_num>
+  <Hit_id>gb|PHT25419.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25419</Hit_accession>
+  <Hit_len>218</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.2705</Hsp_bit-score>
+      <Hsp_score>212</Hsp_score>
+      <Hsp_evalue>9.87015e-19</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>77</Hsp_hit-from>
+      <Hsp_hit-to>122</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>56</Hit_num>
+  <Hit_id>gb|PVI05493.1|</Hit_id>
+  <Hit_def>hypothetical protein DM02DRAFT_516546, partial [Periconia macrospinosa]</Hit_def>
+  <Hit_accession>PVI05493</Hit_accession>
+  <Hit_len>95</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>82.8037</Hsp_bit-score>
+      <Hsp_score>203</Hsp_score>
+      <Hsp_evalue>1.05535e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>16</Hsp_hit-from>
+      <Hsp_hit-to>61</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>38</Hsp_identity>
+      <Hsp_positive>40</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VISRWVNNPTLTEFCFGMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>V  RWVNNPTL +FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>57</Hit_num>
+  <Hit_id>gb|PHT26714.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26714</Hit_accession>
+  <Hit_len>195</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>1.07475e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>54</Hsp_hit-from>
+      <Hsp_hit-to>99</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>58</Hit_num>
+  <Hit_id>gb|PHT24459.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT24459</Hit_accession>
+  <Hit_len>187</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>1.08461e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>39</Hsp_hit-from>
+      <Hsp_hit-to>84</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>59</Hit_num>
+  <Hit_id>gb|PHT27237.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT27237</Hit_accession>
+  <Hit_len>202</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>1.14367e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>61</Hsp_hit-from>
+      <Hsp_hit-to>106</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>60</Hit_num>
+  <Hit_id>gb|PHT28707.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT28707</Hit_accession>
+  <Hit_len>202</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>1.16852e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>61</Hsp_hit-from>
+      <Hsp_hit-to>106</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>61</Hit_num>
+  <Hit_id>gb|PHT25150.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25150</Hit_accession>
+  <Hit_len>202</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>1.1939e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>61</Hsp_hit-from>
+      <Hsp_hit-to>106</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>62</Hit_num>
+  <Hit_id>gb|PHT44507.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT44507</Hit_accession>
+  <Hit_len>202</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>1.21983e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>61</Hsp_hit-from>
+      <Hsp_hit-to>106</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>63</Hit_num>
+  <Hit_id>gb|PHT27849.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT27849</Hit_accession>
+  <Hit_len>200</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>1.24769e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>59</Hsp_hit-from>
+      <Hsp_hit-to>104</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>64</Hit_num>
+  <Hit_id>gb|PHT25572.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25572</Hit_accession>
+  <Hit_len>214</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>1.27084e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>73</Hsp_hit-from>
+      <Hsp_hit-to>118</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>65</Hit_num>
+  <Hit_id>gb|PHT26277.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26277</Hit_accession>
+  <Hit_len>208</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>1.28065e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>67</Hsp_hit-from>
+      <Hsp_hit-to>112</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>66</Hit_num>
+  <Hit_id>gb|PHT25616.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25616</Hit_accession>
+  <Hit_len>200</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>1.30251e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>59</Hsp_hit-from>
+      <Hsp_hit-to>104</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>67</Hit_num>
+  <Hit_id>gb|PHT25642.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25642</Hit_accession>
+  <Hit_len>200</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>1.31659e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>59</Hsp_hit-from>
+      <Hsp_hit-to>104</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>68</Hit_num>
+  <Hit_id>gb|PHT44515.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT44515</Hit_accession>
+  <Hit_len>202</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>1.34368e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>61</Hsp_hit-from>
+      <Hsp_hit-to>106</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>69</Hit_num>
+  <Hit_id>gb|PHT25385.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25385</Hit_accession>
+  <Hit_len>190</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.1149</Hsp_bit-score>
+      <Hsp_score>209</Hsp_score>
+      <Hsp_evalue>1.36156e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>61</Hsp_hit-from>
+      <Hsp_hit-to>106</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>70</Hit_num>
+  <Hit_id>gb|PHT27045.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT27045</Hit_accession>
+  <Hit_len>205</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>1.36977e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>65</Hsp_hit-from>
+      <Hsp_hit-to>110</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+    <Hsp>
+      <Hsp_num>2</Hsp_num>
+      <Hsp_bit-score>59.6918</Hsp_bit-score>
+      <Hsp_score>143</Hsp_score>
+      <Hsp_evalue>1.16209e-08</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>163</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>29</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>27</Hsp_identity>
+      <Hsp_positive>28</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>29</Hsp_align-len>
+      <Hsp_qseq>MIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>MIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>71</Hit_num>
+  <Hit_id>gb|PHT25382.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25382</Hit_accession>
+  <Hit_len>202</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>1.37286e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>61</Hsp_hit-from>
+      <Hsp_hit-to>106</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>72</Hit_num>
+  <Hit_id>gb|PHT26057.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26057</Hit_accession>
+  <Hit_len>202</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>1.38769e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>61</Hsp_hit-from>
+      <Hsp_hit-to>106</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>73</Hit_num>
+  <Hit_id>gb|PHT25517.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25517</Hit_accession>
+  <Hit_len>202</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>1.40268e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>61</Hsp_hit-from>
+      <Hsp_hit-to>106</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>74</Hit_num>
+  <Hit_id>gb|PHT28917.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT28917</Hit_accession>
+  <Hit_len>200</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>1.4043e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>59</Hsp_hit-from>
+      <Hsp_hit-to>104</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>75</Hit_num>
+  <Hit_id>emb|VDM44529.1|</Hit_id>
+  <Hit_def>unnamed protein product [Toxocara canis]</Hit_def>
+  <Hit_accession>VDM44529</Hit_accession>
+  <Hit_len>128</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>83.5741</Hsp_bit-score>
+      <Hsp_score>205</Hsp_score>
+      <Hsp_evalue>1.40619e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>11</Hsp_hit-from>
+      <Hsp_hit-to>56</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>38</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSKSNVAMDAWLPQASYPCGS</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGSKSNVA +AWLP+ASYPCG+</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>76</Hit_num>
+  <Hit_id>gb|EDO25358.1|</Hit_id>
+  <Hit_def>predicted protein, partial [Nematostella vectensis]</Hit_def>
+  <Hit_accession>EDO25358</Hit_accession>
+  <Hit_len>59</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>81.6481</Hsp_bit-score>
+      <Hsp_score>200</Hsp_score>
+      <Hsp_evalue>1.4711e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>199</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>41</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>37</Hsp_identity>
+      <Hsp_positive>39</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>41</Hsp_align-len>
+      <Hsp_qseq>VNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VNNPTLGEFCFAMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VNNPTLG+FC AMIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>77</Hit_num>
+  <Hit_id>gb|PHT24953.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT24953</Hit_accession>
+  <Hit_len>200</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>1.48183e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>59</Hsp_hit-from>
+      <Hsp_hit-to>104</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>78</Hit_num>
+  <Hit_id>gb|PHT27076.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT27076</Hit_accession>
+  <Hit_len>233</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>1.6604e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>89</Hsp_hit-from>
+      <Hsp_hit-to>134</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>79</Hit_num>
+  <Hit_id>gb|PHT26106.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26106</Hit_accession>
+  <Hit_len>205</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>1.6797e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>64</Hsp_hit-from>
+      <Hsp_hit-to>109</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+    <Hsp>
+      <Hsp_num>2</Hsp_num>
+      <Hsp_bit-score>59.6918</Hsp_bit-score>
+      <Hsp_score>143</Hsp_score>
+      <Hsp_evalue>1.22453e-08</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>163</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>29</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>27</Hsp_identity>
+      <Hsp_positive>28</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>29</Hsp_align-len>
+      <Hsp_qseq>MIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>MIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>80</Hit_num>
+  <Hit_id>gb|PHT25772.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25772</Hit_accession>
+  <Hit_len>202</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.1149</Hsp_bit-score>
+      <Hsp_score>209</Hsp_score>
+      <Hsp_evalue>1.70192e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>61</Hsp_hit-from>
+      <Hsp_hit-to>106</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>81</Hit_num>
+  <Hit_id>gb|PHT27024.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT27024</Hit_accession>
+  <Hit_len>257</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.2705</Hsp_bit-score>
+      <Hsp_score>212</Hsp_score>
+      <Hsp_evalue>1.71883e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>116</Hsp_hit-from>
+      <Hsp_hit-to>161</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>82</Hit_num>
+  <Hit_id>gb|PHT26047.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26047</Hit_accession>
+  <Hit_len>212</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>1.77669e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>71</Hsp_hit-from>
+      <Hsp_hit-to>116</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>83</Hit_num>
+  <Hit_id>ref|XP_022739109.1|</Hit_id>
+  <Hit_def>uncharacterized protein LOC111291566 [Durio zibethinus]</Hit_def>
+  <Hit_accession>XP_022739109</Hit_accession>
+  <Hit_len>229</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>1.7903e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>22</Hsp_hit-from>
+      <Hsp_hit-to>67</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>84</Hit_num>
+  <Hit_id>ref|XP_005820293.1|</Hit_id>
+  <Hit_def>hypothetical protein GUITHDRAFT_55009, partial [Guillardia theta CCMP2712] &gt;gb|EKX33313.1| hypothetical protein GUITHDRAFT_55009, partial [Guillardia theta CCMP2712]</Hit_def>
+  <Hit_accession>XP_005820293</Hit_accession>
+  <Hit_len>54</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>81.2629</Hsp_bit-score>
+      <Hsp_score>199</Hsp_score>
+      <Hsp_evalue>1.95468e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>199</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>41</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>37</Hsp_identity>
+      <Hsp_positive>39</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>41</Hsp_align-len>
+      <Hsp_qseq>VNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VNNPTLGEFCFAMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VNNPTLG+FC AMIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>85</Hit_num>
+  <Hit_id>gb|PHT27590.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT27590</Hit_accession>
+  <Hit_len>216</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>2.07296e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>71</Hsp_hit-from>
+      <Hsp_hit-to>116</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>86</Hit_num>
+  <Hit_id>gb|PHT26583.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26583</Hit_accession>
+  <Hit_len>221</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>2.09715e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>114</Hsp_hit-from>
+      <Hsp_hit-to>159</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>38</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSQSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGS+SNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>87</Hit_num>
+  <Hit_id>gb|KRZ05645.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Trichinella pseudospiralis] &gt;gb|KRZ25108.1| Regulator of rDNA transcription protein 15 [Trichinella pseudospiralis] &gt;gb|KRZ36112.1| Regulator of rDNA transcription protein 15 [Trichinella pseudospiralis]</Hit_def>
+  <Hit_accession>KRZ05645</Hit_accession>
+  <Hit_len>277</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.6557</Hsp_bit-score>
+      <Hsp_score>213</Hsp_score>
+      <Hsp_evalue>2.1121e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>23</Hsp_hit-from>
+      <Hsp_hit-to>68</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSKSNVAMDAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGSKSNVA +AWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>88</Hit_num>
+  <Hit_id>gb|PHT26553.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26553</Hit_accession>
+  <Hit_len>212</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.1149</Hsp_bit-score>
+      <Hsp_score>209</Hsp_score>
+      <Hsp_evalue>2.13167e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>71</Hsp_hit-from>
+      <Hsp_hit-to>116</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>89</Hit_num>
+  <Hit_id>gb|PHT26107.1|</Hit_id>
+  <Hit_def>hypothetical protein CQW23_34281 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26107</Hit_accession>
+  <Hit_len>215</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>2.14434e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>74</Hsp_hit-from>
+      <Hsp_hit-to>119</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+    <Hsp>
+      <Hsp_num>2</Hsp_num>
+      <Hsp_bit-score>50.0618</Hsp_bit-score>
+      <Hsp_score>118</Hsp_score>
+      <Hsp_evalue>4.95168e-05</Hsp_evalue>
+      <Hsp_query-from>101</Hsp_query-from>
+      <Hsp_query-to>178</Hsp_query-to>
+      <Hsp_hit-from>133</Hsp_hit-from>
+      <Hsp_hit-to>158</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>22</Hsp_identity>
+      <Hsp_positive>23</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>26</Hsp_align-len>
+      <Hsp_qseq>DFCVAMIGRADIEGSKSNVATNAWLP</Hsp_qseq>
+      <Hsp_hseq>EFCFTMIGRADIEGSKSNVAMNAWLP</Hsp_hseq>
+      <Hsp_midline>+FC  MIGRADIEGSKSNVA NAWLP</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>90</Hit_num>
+  <Hit_id>gb|PHT27885.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT27885</Hit_accession>
+  <Hit_len>214</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.1149</Hsp_bit-score>
+      <Hsp_score>209</Hsp_score>
+      <Hsp_evalue>2.17105e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>59</Hsp_hit-from>
+      <Hsp_hit-to>104</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>91</Hit_num>
+  <Hit_id>gb|PHT26157.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT26157</Hit_accession>
+  <Hit_len>212</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.1149</Hsp_bit-score>
+      <Hsp_score>209</Hsp_score>
+      <Hsp_evalue>2.22501e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>71</Hsp_hit-from>
+      <Hsp_hit-to>116</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>92</Hit_num>
+  <Hit_id>ref|XP_009046196.1|</Hit_id>
+  <Hit_def>hypothetical protein LOTGIDRAFT_137887, partial [Lottia gigantea] &gt;ref|XP_009056831.1| hypothetical protein LOTGIDRAFT_145551, partial [Lottia gigantea] &gt;ref|XP_009056834.1| hypothetical protein LOTGIDRAFT_145547, partial [Lottia gigantea] &gt;ref|XP_009058573.1| hypothetical protein LOTGIDRAFT_145757, partial [Lottia gigantea] &gt;gb|ESO90738.1| hypothetical protein LOTGIDRAFT_145757, partial [Lottia gigantea] &gt;gb|ESO92480.1| hypothetical protein LOTGIDRAFT_145551, partial [Lottia gigantea] &gt;gb|ESO92483.1| hypothetical protein LOTGIDRAFT_145547, partial [Lottia gigantea] &gt;gb|ESP03146.1| hypothetical protein LOTGIDRAFT_137887, partial [Lottia gigantea]</Hit_def>
+  <Hit_accession>XP_009046196</Hit_accession>
+  <Hit_len>50</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>80.8777</Hsp_bit-score>
+      <Hsp_score>198</Hsp_score>
+      <Hsp_evalue>2.26633e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>199</Hsp_query-to>
+      <Hsp_hit-from>1</Hsp_hit-from>
+      <Hsp_hit-to>41</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>37</Hsp_identity>
+      <Hsp_positive>39</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>41</Hsp_align-len>
+      <Hsp_qseq>VNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VNNPTLGEFCFAMIGRADIEGSKSNVAKNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VNNPTLG+FC AMIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>93</Hit_num>
+  <Hit_id>gb|PHT24908.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT24908</Hit_accession>
+  <Hit_len>213</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.1149</Hsp_bit-score>
+      <Hsp_score>209</Hsp_score>
+      <Hsp_evalue>2.29415e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>72</Hsp_hit-from>
+      <Hsp_hit-to>117</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>94</Hit_num>
+  <Hit_id>gb|PHT25877.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25877</Hit_accession>
+  <Hit_len>241</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>2.29743e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>117</Hsp_hit-from>
+      <Hsp_hit-to>162</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>95</Hit_num>
+  <Hit_id>gb|KRY74653.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Trichinella pseudospiralis]</Hit_def>
+  <Hit_accession>KRY74653</Hit_accession>
+  <Hit_len>277</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>86.6557</Hsp_bit-score>
+      <Hsp_score>213</Hsp_score>
+      <Hsp_evalue>2.29752e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>23</Hsp_hit-from>
+      <Hsp_hit-to>68</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>42</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFAMIGRADIEGSKSNVAMDAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC AMIGRADIEGSKSNVA +AWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>96</Hit_num>
+  <Hit_id>gb|PHT24970.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT24970</Hit_accession>
+  <Hit_len>241</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>2.3468e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>117</Hsp_hit-from>
+      <Hsp_hit-to>162</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>97</Hit_num>
+  <Hit_id>gb|PHT24934.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT24934</Hit_accession>
+  <Hit_len>172</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>84.3445</Hsp_bit-score>
+      <Hsp_score>207</Hsp_score>
+      <Hsp_evalue>2.40404e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>31</Hsp_hit-from>
+      <Hsp_hit-to>76</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>38</Hsp_identity>
+      <Hsp_positive>40</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVTMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNV  NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>98</Hit_num>
+  <Hit_id>ref|XP_019425078.1|</Hit_id>
+  <Hit_def>PREDICTED: uncharacterized protein LOC109333954 [Lupinus angustifolius]</Hit_def>
+  <Hit_accession>XP_019425078</Hit_accession>
+  <Hit_len>236</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.5001</Hsp_bit-score>
+      <Hsp_score>210</Hsp_score>
+      <Hsp_evalue>2.41354e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>63</Hsp_hit-from>
+      <Hsp_hit-to>108</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>99</Hit_num>
+  <Hit_id>gb|PHT25424.1|</Hit_id>
+  <Hit_def>hypothetical protein CQW23_34947 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT25424</Hit_accession>
+  <Hit_len>258</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>2.61178e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>61</Hsp_hit-from>
+      <Hsp_hit-to>106</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>39</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADIEGSKSNVAMNAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRADIEGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>100</Hit_num>
+  <Hit_id>gb|PHT27150.1|</Hit_id>
+  <Hit_def>Regulator of rDNA transcription protein 15 [Capsicum baccatum]</Hit_def>
+  <Hit_accession>PHT27150</Hit_accession>
+  <Hit_len>258</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>85.8853</Hsp_bit-score>
+      <Hsp_score>211</Hsp_score>
+      <Hsp_evalue>2.72465e-18</Hsp_evalue>
+      <Hsp_query-from>77</Hsp_query-from>
+      <Hsp_query-to>214</Hsp_query-to>
+      <Hsp_hit-from>117</Hsp_hit-from>
+      <Hsp_hit-to>162</Hsp_hit-to>
+      <Hsp_query-frame>-2</Hsp_query-frame>
+      <Hsp_hit-frame>0</Hsp_hit-frame>
+      <Hsp_identity>38</Hsp_identity>
+      <Hsp_positive>41</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>46</Hsp_align-len>
+      <Hsp_qseq>VPCRWVNNPTLGDFCVAMIGRADIEGSKSNVATNAWLPRASYPCGN</Hsp_qseq>
+      <Hsp_hseq>VPYWWVNNPTLGEFCFTMIGRADLEGSKSNVAINAWLPQASYPCGN</Hsp_hseq>
+      <Hsp_midline>VP  WVNNPTLG+FC  MIGRAD+EGSKSNVA NAWLP+ASYPCGN</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>385187553</Statistics_db-num>
+      <Statistics_db-len>135225477075</Statistics_db-len>
+      <Statistics_hsp-len>0</Statistics_hsp-len>
+      <Statistics_eff-space>0</Statistics_eff-space>
+      <Statistics_kappa>0.041</Statistics_kappa>
+      <Statistics_lambda>0.267</Statistics_lambda>
+      <Statistics_entropy>0.14</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+</Iteration>
+</BlastOutput_iterations>
+</BlastOutput>

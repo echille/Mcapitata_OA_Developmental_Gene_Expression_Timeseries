@@ -1,0 +1,22 @@
+﻿SeqName,Description,Length,nHits,e-Value,simMean,contrast,direction
+TRINITY_DN13136_c1_g1,tubulin alpha chain,260,100,5.61E-30,99.94,LvAMB,up
+TRINITY_DN140660_c0_g1,tubulin alpha chain,237,100,1.14E-43,96.83,LvAMB,up
+TRINITY_DN210_c0_g2,H3 protein,351,100,2.88E-43,100,LvAMB,up
+TRINITY_DN220095_c0_g1,tubulin alpha chain,243,100,1.55E-31,100,LvAMB,up
+TRINITY_DN419_c1_g1,Regulator of rDNA transcription protein 15,215,100,4.31E-23,89.08,"XLvAMB, LvAMB",up
+TRINITY_DN94026_c0_g1,beta tubulin chain,270,100,6.96E-28,85.67,LvAMB,up
+TRINITY_DN339_c18_g1,Pre-mRNA-splicing factor ATP-dependent RNA helicase PRP16,244,1,3.56E-06,73.17,LvAMB,down
+TRINITY_DN120786_c0_g1,,318,,,,XLvAMB,up
+TRINITY_DN15490_c0_g1,coadhesin-like,238,100,6.06E-11,69.8,XLvAMB,up
+TRINITY_DN1625_c7_g1,predicted protein,235,99,7.14E-18,79.22,XLvAMB,up
+TRINITY_DN20158_c0_g2,COPB protein,253,83,9.16E-30,82.59,XLvAMB,up
+TRINITY_DN24005_c1_g1,predicted protein,604,100,1.69E-17,63.61,XLvAMB,up
+TRINITY_DN257502_c0_g1,Regulator of rDNA transcription protein 15,324,99,2.27E-35,87.29,XLvAMB,up
+TRINITY_DN2646_c0_g16,Regulator of rDNA transcription protein 15,1181,100,8.14E-94,88.65,XLvAMB,up
+TRINITY_DN26738_c2_g1,reverse transcriptase domain-containing protein,297,100,1.46E-28,75.83,XLvAMB,up
+TRINITY_DN307843_c0_g1,RRNA intron-encoded homing endonuclease,276,60,1.00E-09,61.09,XLvAMB,up
+TRINITY_DN34105_c2_g1,,217,,,,XLvAMB,up
+TRINITY_DN454_c0_g2,rRNA promoter binding,1103,100,1.35E-35,65.37,XLvAMB,up
+TRINITY_DN454_c1_g1,Regulator of rDNA transcription protein 15,764,100,4.05E-64,67.09,XLvAMB,up
+TRINITY_DN45797_c0_g2_i6,Hypothetical predicted protein,1056,100,3.03E-101,79.95,XLvAMB,up
+TRINITY_DN5759_c3_g1,putative domain-containing protein-like,366,73,3.32E-23,69.71,XLvAMB,up

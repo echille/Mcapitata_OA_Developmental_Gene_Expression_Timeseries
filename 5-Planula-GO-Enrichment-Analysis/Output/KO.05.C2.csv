@@ -1,0 +1,16 @@
+,category,over_represented_pvalue,under_represented_pvalue,numDEInCat,numInCat,ontology,term
+1,K22754,3.43E-06,0.999999841,7,13,KEGG,E3 ubiquitin-protein ligase RNF213 [EC:2.3.2.27]
+14,K17592,0.002614254,0.999526384,7,23,KEGG,sacsin
+41,K12389,0.007508461,0.999700349,2,31,KEGG,battenin
+89,K11699,0.035335495,0.997101485,2,11,KEGG,RNA-dependent RNA polymerase [EC:2.7.7.48]
+37,K12174,0.004069001,1,1,1,KEGG,Kip1 ubiquitination-promoting complex protein 2
+38,K07766,0.00545972,0.999990081,1,3,KEGG,diphosphoinositol-polyphosphate diphosphatase [EC:3.6.1.52]
+72,K11428,0.011012559,0.99996964,1,2,KEGG,[histone H4]-lysine20 N-methyltransferase SETD8 [EC:2.1.1.361]
+74,K03327,0.01390958,0.999935377,1,3,KEGG,"multidrug resistance protein, MATE family"
+77,K05480,0.017630584,0.999875302,1,5,KEGG,ectodysplasin-A
+82,K19521,0.018338824,0.999915495,1,2,KEGG,regulatory factor X 6
+84,K07204,0.018657504,0.999912519,1,2,KEGG,regulatory associated protein of mTOR
+86,K01283,0.021283515,0.999848192,1,3,KEGG,peptidyl-dipeptidase A [EC:3.4.15.1]
+100,K00505,0.036430171,0.999425557,1,7,KEGG,tyrosinase [EC:1.14.18.1]
+107,K07380,0.045399022,1,1,1,KEGG,contactin associated protein-like 2
+108,K11275,0.046234169,0.998951089,1,33,KEGG,histone H1/5
