@@ -151,7 +151,7 @@ allgenesfilt_PCA <- ggplot(gPCAdata_dev, aes(PC1, PC2, shape=time_point, color=t
   xlab(paste0("PC1: ",percentVar_dev[1],"% variance")) +
   ylab(paste0("PC2: ",percentVar_dev[2],"% variance")) +
   scale_shape_manual(values = c("Fertilized_egg"=1, "Cleavage"=10, "Prawn_chip"=5, "Early_gastrula"=6, "Planula"=19)) +
-  scale_color_manual(values = c("amb"="slateblue", "l"="indianred3", "xl"="deeppink4")) +
+  scale_color_manual(labels = c("pH 7.8", "pH 7.6","pH 7.3"), values = c("amb"="cadetblue", "l"="palevioletred", "xl"="indianred3")) +
   coord_fixed() +
   theme_bw() + #Set background color
   theme(panel.border = element_blank(), # Set border
@@ -163,7 +163,7 @@ allgenesfilt_PCA <- ggplot(gPCAdata_dev, aes(PC1, PC2, shape=time_point, color=t
         axis.text = element_text(size = 12)) #Axis text size
 allgenesfilt_PCA 
 
-#ggsave(file = "3-WGCNA/Output/Fig3-allgenesfilt-PCA.png", allgenesfilt_PCA, width = 7.5, height = 11/2, units = "in")
+ggsave(file = "3-WGCNA/Output/Fig3-allgenesfilt-PCA.png", allgenesfilt_PCA, width = 7.5, height = 11/2, units = "in")
 ```
 
 ### Compile WGCNA Dataset

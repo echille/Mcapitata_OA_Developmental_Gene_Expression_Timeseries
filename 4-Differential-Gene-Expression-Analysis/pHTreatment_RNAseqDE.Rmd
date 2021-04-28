@@ -29,6 +29,7 @@ library("ggplot2")
 library("goseq")
 library("gridExtra")
 library("VennDiagram")
+library("patchwork")
 ```
 
 Import the data files 
@@ -109,11 +110,11 @@ gvst_fe <- vst(gdds_fe, blind=FALSE) #apply a variance stabilizing transforamtio
 ```{r}
 gPCAdata_fe <- plotPCA(gvst_fe, intgroup = c("treatment"), returnData=TRUE)
 percentVar_fe <- round(100*attr(gPCAdata_fe, "percentVar")) #plot PCA of samples with all data
-ggplot(gPCAdata_fe, aes(PC1, PC2, color=treatment)) + 
+fePCA <- ggplot(gPCAdata_fe, aes(PC1, PC2, color=treatment)) + 
   geom_point(size=3) +
   xlab(paste0("PC1: ",percentVar_fe[1],"% variance")) +
   ylab(paste0("PC2: ",percentVar_fe[2],"% variance")) +
-  scale_color_manual(values = c(amb="slateblue", l="indianred3", xl="deeppink4")) +
+  scale_color_manual(labels = c("pH 7.8", "pH 7.6","pH 7.3"), values = c("amb"="cadetblue", "l"="palevioletred", "xl"="indianred3")) +
   coord_fixed() +
   theme_bw() + #Set background color
   theme(panel.border = element_blank(), # Set border
@@ -121,7 +122,7 @@ ggplot(gPCAdata_fe, aes(PC1, PC2, color=treatment)) +
                      #panel.grid.minor = element_blank(), #Set minor gridlines
                      axis.line = element_line(colour = "black"), #Set axes color
         plot.background=element_blank()) + #Set the plot background
-  theme(legend.position = ("none")) #set title attributes
+  theme(legend.position = ("none")); fePCA #set title attributes
 ```
 
 Well, it looks like the ambient treatments cluster together but the other treatments don't cluster.
@@ -214,19 +215,19 @@ head(assay(gvst_clvg), 3) #view transformed gene count data
 ```{r}
 gPCAdata_clvg <- plotPCA(gvst_clvg, intgroup = c("treatment"), returnData=TRUE)
 percentVar_clvg <- round(100*attr(gPCAdata_clvg, "percentVar")) #plot PCA of samples with all data
-ggplot(gPCAdata_clvg, aes(PC1, PC2, color=treatment)) + 
+clvgPCA <- ggplot(gPCAdata_clvg, aes(PC1, PC2, color=treatment)) + 
   geom_point(size=3) +
   xlab(paste0("PC1: ",percentVar_clvg[1],"% variance")) +
   ylab(paste0("PC2: ",percentVar_clvg[2],"% variance")) +
-  scale_color_manual(values = c(amb="slateblue", l="indianred3", xl="deeppink4")) +
+  scale_color_manual(labels = c("pH 7.8", "pH 7.6","pH 7.3"), values = c("amb"="cadetblue", "l"="palevioletred", "xl"="indianred3")) +
   coord_fixed() +
-    theme_bw() + #Set background color
+  theme_bw() + #Set background color
   theme(panel.border = element_blank(), # Set border
                      #panel.grid.major = element_blank(), #Set major gridlines
                      #panel.grid.minor = element_blank(), #Set minor gridlines
                      axis.line = element_line(colour = "black"), #Set axes color
         plot.background=element_blank()) + #Set the plot background
-  theme(legend.position = ("none")) #set title attributes
+  theme(legend.position = ("none")); clvgPCA #set title attributes
 ```
 
 It doesn't look like there is any clustering in the gene counts as a whole.
@@ -315,11 +316,11 @@ head(assay(gvst_pc), 3) #view transformed gene count data
 ```{r}
 gPCAdata_pc <- plotPCA(gvst_pc, intgroup = c("treatment"), returnData=TRUE)
 percentVar_pc <- round(100*attr(gPCAdata_pc, "percentVar")) #plot PCA of samples with all data
-ggplot(gPCAdata_pc, aes(PC1, PC2, color=treatment)) + 
+pcPCA <- ggplot(gPCAdata_pc, aes(PC1, PC2, color=treatment)) + 
   geom_point(size=3) +
   xlab(paste0("PC1: ",percentVar_pc[1],"% variance")) +
   ylab(paste0("PC2: ",percentVar_pc[2],"% variance")) +
-  scale_color_manual(values = c(amb="slateblue", l="indianred3", xl="deeppink4")) +
+  scale_color_manual(labels = c("pH 7.8", "pH 7.6","pH 7.3"), values = c("amb"="cadetblue", "l"="palevioletred", "xl"="indianred3")) +
   coord_fixed() +
     theme_bw() + #Set background color
   theme(panel.border = element_blank(), # Set border
@@ -327,7 +328,7 @@ ggplot(gPCAdata_pc, aes(PC1, PC2, color=treatment)) +
                      #panel.grid.minor = element_blank(), #Set minor gridlines
                      axis.line = element_line(colour = "black"), #Set axes color
         plot.background=element_blank()) + #Set the plot background
-  theme(legend.position = ("none")) #set title attributes
+  theme(legend.position = ("none")); pcPCA #set title attributes
 ```
 
 It doesn't look like there is much any clustering in the gene counts due to treatment as a whole.
@@ -416,11 +417,11 @@ head(assay(gvst_gsa), 3) #view transformed gene count data
 ```{r}
 gPCAdata_gsa <- plotPCA(gvst_gsa, intgroup = c("treatment"), returnData=TRUE)
 percentVar_gsa <- round(100*attr(gPCAdata_gsa, "percentVar")) #plot PCA of samples with all data
-ggplot(gPCAdata_gsa, aes(PC1, PC2, color=treatment)) + 
+gsaPCA <- ggplot(gPCAdata_gsa, aes(PC1, PC2, color=treatment)) + 
   geom_point(size=3) +
   xlab(paste0("PC1: ",percentVar_gsa[1],"% variance")) +
   ylab(paste0("PC2: ",percentVar_gsa[2],"% variance")) +
-  scale_color_manual(values = c(amb="slateblue", l="indianred3", xl="deeppink4")) +
+  scale_color_manual(labels = c("pH 7.8", "pH 7.6","pH 7.3"), values = c("amb"="cadetblue", "l"="palevioletred", "xl"="indianred3")) +
   coord_fixed() +
     theme_bw() + #Set background color
   theme(panel.border = element_blank(), # Set border
@@ -428,7 +429,7 @@ ggplot(gPCAdata_gsa, aes(PC1, PC2, color=treatment)) +
                      #panel.grid.minor = element_blank(), #Set minor gridlines
                      axis.line = element_line(colour = "black"), #Set axes color
         plot.background=element_blank()) + #Set the plot background
-  theme(legend.position = ("none")) #set title attributes
+  theme(legend.position = ("none")); gsaPCA #set title attributes
 ```
 
 It doesn't look like there is much any clustering in the gene counts as a whole.
@@ -522,11 +523,11 @@ head(assay(gvst_pln), 3) #view transformed gene count data
 ```{r}
 gPCAdata_pln <- plotPCA(gvst_pln, intgroup = c("treatment"), returnData=TRUE)
 percentVar_pln <- round(100*attr(gPCAdata_pln, "percentVar")) #plot PCA of samples with all data
-pln_pca <- ggplot(gPCAdata_pln, aes(PC1, PC2, color=treatment)) + 
+plnPCA <- ggplot(gPCAdata_pln, aes(PC1, PC2, color=treatment)) + 
   geom_point(size=3) +
   xlab(paste0("PC1: ",percentVar_pln[1],"% variance")) +
   ylab(paste0("PC2: ",percentVar_pln[2],"% variance")) +
-  scale_color_manual(values = c(amb="slateblue", l="indianred3", xl="deeppink4")) +
+  scale_color_manual(labels = c("pH 7.8", "pH 7.6","pH 7.3"), values = c("amb"="cadetblue", "l"="palevioletred", "xl"="indianred3")) +
   coord_fixed() +
   theme_bw() + #Set background color
   theme(panel.border = element_blank(), # Set border
@@ -536,9 +537,9 @@ pln_pca <- ggplot(gPCAdata_pln, aes(PC1, PC2, color=treatment)) +
         plot.background=element_blank(), #Set the plot background
         legend.position = ("none"), 
         axis.title = element_text(size = 14), #Axis title size
-        axis.text = element_text(size = 12)) ; pln_pca #Axis text size; view plot
+        axis.text = element_text(size = 12)) ; plnPCA #Axis text size; view plot
 
-ggsave(file = "4-Differential-Gene-Expression-Analysis/Output/Fig2-planula-PCA.png", pln_pca, width = 7.5/2, height = 11/2, units = "in")
+ggsave(file = "4-Differential-Gene-Expression-Analysis/Output/Fig2-planula-PCA.png", plnPCA, width = 7.5/2, height = 11/2, units = "in")
 ```
 
 There appears to be clustering by treatment, especially on the PC1 axis.
@@ -646,16 +647,22 @@ hm_ann_row$cluster <- gsub(1,"Cluster1",hm_ann_row$cluster)
 hm_ann_row$cluster <- gsub(2,"Cluster2",hm_ann_row$cluster)
 hm_ann_row <- as.matrix(hm_ann_row[rownames(matpln),])
 
-hm_ann_col <- HeatmapAnnotation(df=as.data.frame(colData(pln_DEGvst)[c("treatment")]), col = list(treatment=c(amb="slateblue", l="indianred3", xl="deeppink4"))) #make dataframe for column naming
+hmTreatment <- colData(pln_DEGvst)[c("treatment")]
+
+hmTreatment$treatment <- gsub("amb", "pH 7.8", hmTreatment$treatment) #replace AMB, l, and xl with pH 7.8, pH 7.6, and pH 7.3 for plotting
+hmTreatment$treatment <- gsub("xl", "pH 7.3", hmTreatment$treatment) #replace AMB, l, and xl with pH 7.8, pH 7.6, and pH 7.3 for plotting
+hmTreatment$treatment <- gsub("l", "pH 7.6", hmTreatment$treatment) #replace AMB, l, and xl with pH 7.8, pH 7.6, and pH 7.3 for plotting
+hmTreatment$treatment <- factor(hmTreatment$treatment, levels=c("pH 7.8", "pH 7.6", "pH 7.3"))
+
+hm_ann_col <- HeatmapAnnotation(df=hmTreatment, col = list(treatment=c("pH 7.8" ="cadetblue", "pH 7.6" ="palevioletred", "pH 7.3"  ="indianred3"))) #make dataframe for column naming
 
 pln_DEGheatmap <-  Heatmap(matpln, column_title = "Treatment", 
-        row_title = "DEGs", name = "expression",
+        name = "expression",
         show_row_names = FALSE, top_annotation = hm_ann_col, show_column_names = FALSE, row_dend_side = "left" ,
         column_split = 3, column_dend_height = unit(0.5, "in"),
-        km = 2, row_km_repeats = 100, 
+        km = 2, row_km_repeats = 100, row_title = c("Cluster1", "Cluster2"),
         row_gap = unit(2.5, "mm"), border = TRUE,
-        column_names_gp =  gpar(fontsize = 10)) +
-  Heatmap(hm_ann_row, name = "cluster", show_row_names = FALSE, width = unit(5, "mm"), col = c("#4682B4", "#B47846")); pln_DEGheatmap
+        column_names_gp =  gpar(fontsize = 10)); pln_DEGheatmap
 
 png(file = "4-Differential-Gene-Expression-Analysis/Output/OA-PLN_DEGheatmap.png")
 pln_DEGheatmap
@@ -690,7 +697,7 @@ venn.diagram(
     pln_DEGs_all_venn %>% filter(contrast=="Extreme Low vs Ambient") %>% subset(select=gene_id) %>% unlist() , 
     pln_DEGs_all_venn %>% filter(contrast=="Extreme Low vs Low") %>% subset(select=gene_id) %>% unlist()
     ),
-  category.names = c("Low vs Ambient" , "Extreme Low vs Ambient" , "Extreme Low vs Low"),
+  category.names = c("pH 7.6 vs pH 7.8" , "pH 7.3 vs pH 7.8" , "pH 7.3 vs pH 7.6"),
         filename = '4-Differential-Gene-Expression-Analysis/Output/venn_OA_pln_DEGs.png',
   output=TRUE,
         
@@ -716,4 +723,12 @@ venn.diagram(
         cat.fontfamily = "sans",
         rotation = 1
 )
+```
+
+Put together PCA plots for final and supplementary figures
+```{r}
+SFigX <- fePCA / clvgPCA / pcPCA / gsaPCA + plot_annotation(tag_levels = "a", tag_suffix = ")"); SFigX
+ggsave(file = "4-Differential-Gene-Expression-Analysis/Output/SFig-fe2gsa-PCA.png", SFigX, width = 7.5, height = 11, units = "in")
+# Fig3 <- allgenesfilt_PCA / plnPCA + plot_annotation(tag_levels = "a", tag_suffix = ")") #Must have allgenesfilt_PCA from WGCNA script in environment
+# ggsave(file = "Final_figures/Fig3.png", Fig3, width = 7.5, height = 9, units = "in")
 ```

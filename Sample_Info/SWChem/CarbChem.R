@@ -26,10 +26,11 @@ library(lme4) #version: 1.1-13 Date/Publication: 2017-04-19 Depends: R (>= 3.0.2
 library(blmeco) #version: 1.1 Date/Publication: 2015-08-22 Depends: R (>= 3.0.0), stats, MASS Imports: MuMIn, arm, lme4
 library(MuMIn) #version: 1.15.6 Date/Publication: 2016-01-07 Depends: R (>= 3.0.0) Imports: graphics, methods, Matrix, stats, stats4
 library(tidyverse)
+library(Rmisc)
 
 
 ##### DISCRETE pH CALCULATIONS #####
-path <-("Data/SWChem/pH_Calibration_Files/")
+path <-("Sample_Info/SWChem/pH_Calibration_Files/")
 file.names<-list.files(path = path, pattern = "csv$") #list all the file names in the folder to get only get the csv files
 pH.cals <- data.frame(matrix(NA, nrow=length(file.names), ncol=3, dimnames=list(file.names,c("Date", "Intercept", "Slope")))) #generate a 3 column dataframe with specific column names
 
@@ -51,7 +52,7 @@ R <- 8.31447215 #gas constant in J mol-1 K-1
 F <-96485.339924 #Faraday constant in coulombs mol-1
 
 #read in probe measurements of pH, temperature, and salinity from tanks
-daily <- read.csv("Data/SWChem/Daily_Temp_pH_Sal.csv", header=TRUE, sep=",", na.strings="NA") #load data with a header, separated by commas, with NA as NA
+daily <- read.csv("Sample_Info/SWChem/Daily_Temp_pH_Sal.csv", header=TRUE, sep=",", na.strings="NA") #load data with a header, separated by commas, with NA as NA
 
 #merge with Seawater chemistry file
 SW.chem <- merge(pH.cals, daily, by="Calib.Date")
@@ -64,7 +65,7 @@ SW.chem$pH.Total<-phTris+(mvTris/1000-SW.chem$pH.MV/1000)/(R*(SW.chem$Temperatur
 #SW.chem1$Sample.ID <- factor(SW.chem1$Sample.ID)
 
 ##### DISCRETE TA CALCULATIONS #####
-TA <- read.csv("Data/SWChem/Cumulative_TA_Output.csv", header=TRUE, sep=",", na.strings="NA")  #read in  TA results
+TA <- read.csv("Sample_Info/SWChem/Cumulative_TA_Output.csv", header=TRUE, sep=",", na.strings="NA")  #read in  TA results
 
 ##### SEAWATER CHEMISTRY ANALYSIS FOR DISCRETE MEASUREMENTS#####
 #Seawater chemistry table from simultaneous TA, pH, temperature and salinity measurements
@@ -85,7 +86,7 @@ carb.output <- carb.output[,-c(1,4,5,8,10:13,19)] #subset variables of interest
 carb.output <- cbind(SW.chem$Date,  SW.chem$Sample.ID,  SW.chem$Treatment, SW.chem$Period1, SW.chem$Type.x, carb.output) #combine the sample information with the seacarb output
 colnames(carb.output) <- c("Date",  "Sample.ID",  "Treatment", "Period1","Type",	"Salinity", "Temperature", "pH",	"CO2",	"pCO2","HCO3",	"CO3",	"DIC", "TA",	"Aragonite.Sat") #Rename columns to describe contents
 #carb.output$Tank <- substring(carb.output$Sample.ID, 10)
-write.table(carb.output, "Output/Seawater_chemistry_table_Output_All.csv", sep=",", row.names = FALSE) #save data
+write.table(carb.output, "Sample_Info/Seawater_chemistry_table_Output_All.csv", sep=",", row.names = FALSE) #save data
 
 carb.output <- carb.output[,c(3,6:15)]
 
@@ -93,4 +94,4 @@ chem.table.summary <- carb.output %>%
   group_by(Treatment) %>%
   summarise_each(funs(mean,sd,std.error))
 
-write.table(chem.table.summary, "Output/Seawater_chemistry_table_Output_Mean_SD_SEM.csv", sep=",", row.names = FALSE) #save data
+write.table(chem.table.summary, "Sample_Info/Seawater_chemistry_table_Output_Mean_SD_SEM.csv", sep=",", row.names = FALSE) #save data

@@ -85,7 +85,7 @@ Calculate stats for cleavage stage and treatment categories
 ```{r}
 ##Just treatment
 gathered_cleavage_counts$proportion <- (gathered_cleavage_counts$proportion)*100 #data had to be proportions for the statistical test but we want them to be plotted as percentages. We do that here.
-gathered_cleavage_counts <- rename(gathered_cleavage_counts, proportion = percent)
+gathered_cleavage_counts <- rename(gathered_cleavage_counts, c("proportion" = "percent"))
 
 #Mean for all treatments should be 25 because 100/4=25. Standard dev may vary.
 clvgstats <- select(gathered_cleavage_counts, treatment:percent)
@@ -157,21 +157,18 @@ show(treatmentstage.clvgstats)
 
 Calculate means at each stage 
 ```{r}
-mpc <- normalized_cleavage_counts %>%
-  group_by(treatment) %>% 
-  summarize("One Cell" = mean(percent_one_cell),
-            "Two Cells" = mean(percent_two_cell),
-            "Four Cells" = mean(percent_four_cell),
-            "> Four Cells" = mean(percent_greater_than_four_cell)) %>% 
-  gather(cleavage_stage, mean_percent_cleavage, -treatment, na.rm = TRUE, factor_key = TRUE)
-show(mpc)
+mpc <- summarySE(gathered_cleavage_counts, measurevar = "percent", groupvars = c("treatment", "cleavage_stage"))
 ```
 
 Plot mean_percent_cleavage
 ```{r}
 mpc$title <- "a) Cleavage"
+mpc$treatment <- gsub("AMB", "pH 7.8", mpc$treatment) #replace AMB, l, and xl with pH 7.8, pH 7.6, and pH 7.3 for plotting
+mpc$treatment <- gsub("xl", "pH 7.3", mpc$treatment) #replace AMB, l, and xl with pH 7.8, pH 7.6, and pH 7.3 for plotting
+mpc$treatment <- gsub("l", "pH 7.6", mpc$treatment) #replace AMB, l, and xl with pH 7.8, pH 7.6, and pH 7.3 for plotting
+mpc$treatment <- factor(mpc$treatment, levels=c("pH 7.8", "pH 7.6", "pH 7.3"))
 
-final_cell_cleavage <- ggplot(mpc, aes(fill=cleavage_stage, y = mean_percent_cleavage, x=treatment)) + 
+final_cell_cleavage <- ggplot(mpc, aes(fill=cleavage_stage, y = percent, x=treatment)) + 
   geom_bar(position ="stack", stat = "identity") +
   xlab("Treatment") + ylab("Proportion of Embryos at Each Cleavage Stage") + 
   scale_fill_brewer(name = "", labels = c("One Cell", "Two Cell", "Four Cell", "> Four Cell"), palette = "Paired") + #colour modification
@@ -241,8 +238,8 @@ Examine distribution of egg volume data
 egg_volume_boxplot <- ggplot(egg_volume, aes(y = volume, x=treatment)) +
   ylab(expression("Volume " (mm^3))) + xlab("Treatment") + # Set x and y axis labels
   ylim(0,0.13)+
-  geom_jitter(colour = "slateblue", alpha = 0.5) +
-  geom_boxplot(colour="slateblue", alpha=0) + 
+  geom_jitter(colour = "cadetblue", alpha = 0.5) +
+  geom_boxplot(colour="cadetblue", alpha=0) + 
   theme_bw() + #Set background color
   theme(panel.border = element_blank(), # Set border
                      panel.grid.major = element_blank(), #Set major gridlines
@@ -255,7 +252,7 @@ egg_volume_boxplot <- ggplot(egg_volume, aes(y = volume, x=treatment)) +
                      axis.text=element_text(size=12), #Set Y tick label size
                       plot.background=element_blank()) + #Set the plot background
   ggtitle("(b)") + #add a main title
-  scale_color_manual(values=c(AMB="slateblue", l="indianred3", xl="deeppink4")) + #set treatment colors
+  scale_color_manual(values=c(AMB="cadetblue", l="indianred3", xl="deeppink4")) + #set treatment colors
   theme(plot.title = element_text(face = 'bold', 
                                   size = 12, 
                                   hjust = 0),
@@ -345,7 +342,7 @@ fert_volume_t_boxplot <- ggplot(fert_volume, aes(x = treatment, y = volume, colo
   geom_jitter(alpha = 0.5) +
   geom_boxplot(alpha = 0) +
   theme_bw() + #Set background color
-  scale_color_manual(values=c(AMB="slateblue", l="indianred3", xl="deeppink4")) + #set treatment colors
+  scale_color_manual(values=c(AMB="cadetblue", l="indianred3", xl="deeppink4")) + #set treatment colors
   theme(panel.border = element_blank(), # Set border
                      panel.grid.major = element_blank(), #Set major gridlines
                      panel.grid.minor = element_blank(), #Set minor gridlines
@@ -354,7 +351,7 @@ fert_volume_t_boxplot <- ggplot(fert_volume, aes(x = treatment, y = volume, colo
                      axis.line = element_line(colour = "black"), #Set axes color
         plot.background=element_blank()) + #Set the plot background
   ggtitle("(c)") + #add a main title
-  scale_color_manual(values=c(AMB="slateblue", l="indianred3", xl="deeppink4")) + #set treatment colors
+  scale_color_manual(values=c(AMB="cadetblue", l="indianred3", xl="deeppink4")) + #set treatment colors
   theme(plot.title = element_text(face = 'bold', 
                                   size = 12, 
                                   hjust = 0),
@@ -550,7 +547,7 @@ gas_sqrt_volume_t_boxplot <- ggplot(gas_volume_sqrt, aes(x = treatment, y = (sqr
                      axis.line = element_line(colour = "black"), #Set axes color
         plot.background=element_blank()) + #Set the plot background
   ggtitle("(d)") + #add a main title
-  scale_color_manual(values=c(AMB="slateblue", l="indianred3", xl="deeppink4")) + #set treatment colors
+  scale_color_manual(values=c(AMB="cadetblue", l="indianred3", xl="deeppink4")) + #set treatment colors
   theme(plot.title = element_text(face = 'bold', 
                                   size = 12, 
                                   hjust = 0),
@@ -741,7 +738,7 @@ planulae_sqrt_volume_t_boxplot <- ggplot(planulae_volume_sqrt, aes(x = treatment
                      axis.line = element_line(colour = "black"), #Set axes color
         plot.background=element_blank()) + #Set the plot background
   ggtitle("(e)") + #add a main title
-  scale_color_manual(values=c(AMB="slateblue", l="indianred3", xl="deeppink4")) + #set treatment colors
+  scale_color_manual(values=c(AMB="cadetblue", l="indianred3", xl="deeppink4")) + #set treatment colors
   theme(plot.title = element_text(face = 'bold', 
                                   size = 12, 
                                   hjust = 0), 
@@ -870,6 +867,7 @@ final_plan_volume <- planulae_sqrt_volume_t_boxplot +
   annotate("text", x = 3.2, y = 0.105, label = "b")
 final_plan_volume
 ```
+
 ```{r}
 volume_dat <- bind_rows(egg_volume, fert_volume, gas_volume, planulae_volume)
 volume_dat$treatment <- replace_na(volume_dat$treatment, "AMB")
@@ -878,9 +876,14 @@ volume_dat$time_point <- gsub("Fertilized_embryos", "c) Fertilized Egg", volume_
 volume_dat$time_point <- gsub("Gastrulation", "d) Early Gastrula", volume_dat$time_point)
 volume_dat$time_point <- gsub("Planulae", "e) Planula", volume_dat$time_point)
 
+volume_dat$treatment <- gsub("AMB", "pH 7.8", volume_dat$treatment) #replace AMB, l, and xl with pH 7.8, pH 7.6, and pH 7.3 for plotting
+volume_dat$treatment <- gsub("xl", "pH 7.3", volume_dat$treatment) #replace AMB, l, and xl with pH 7.8, pH 7.6, and pH 7.3 for plotting
+volume_dat$treatment <- gsub("l", "pH 7.6", volume_dat$treatment) #replace AMB, l, and xl with pH 7.8, pH 7.6, and pH 7.3 for plotting
+volume_dat$treatment <- factor(volume_dat$treatment, levels=c("pH 7.8", "pH 7.6", "pH 7.3"))
+
 df <- ggplot(volume_dat, aes(x = treatment, y = volume, color = treatment)) + #Square the sqrt volume to make size visually comparable across life stages
   ylab(expression("Volume " (mm^3))) + xlab("Treatment") + #Label axes
-  ylim(0,0.1)+
+  ylim(0,0.1) +
   geom_jitter(alpha = 0.5) +
   geom_boxplot(alpha = 0) +
   facet_wrap(facets = vars(time_point), nrow = 2, ncol = 2, scales = "fixed") +
@@ -894,8 +897,25 @@ df <- ggplot(volume_dat, aes(x = treatment, y = volume, color = treatment)) + #S
         strip.text = element_text(size = 14, face = 'bold'), #set facet size
         legend.position = "none",
         plot.background=element_blank()) + #Set the plot background
-  scale_color_manual(values=c(AMB="slateblue", l="indianred3", xl="deeppink4")); df #set treatment colors
+  scale_color_manual(values=c("pH 7.8" ="cadetblue", "pH 7.6"="palevioletred", "pH 7.3"="indianred3")); df #set treatment colors
 ```
+Add annotations to plot
+```{r}
+ann_text.a <- data.frame(
+  treatment = c("pH 7.8", "pH 7.6", "pH 7.3", "pH 7.8", "pH 7.8"),
+  volume = c(0.075,0.075,0.075,0.09,0.09),
+  lab = c("a", "a", "a", "a", "a"),
+  time_point = factor(c("c) Fertilized Egg", "c) Fertilized Egg", "c) Fertilized Egg", "d) Early Gastrula", "e) Planula"),levels = c("b) Unfertilized Egg","c) Fertilized Egg","d) Early Gastrula", "e) Planula")))
+ann_text.b <- data.frame(
+  treatment = c("pH 7.6", "pH 7.3", "pH 7.6", "pH 7.3"),
+  volume = c(0.09,0.09,0.09,0.09),
+  lab = c("b", "b", "b", "b"),
+  time_point = factor(c("d) Early Gastrula", "d) Early Gastrula", "e) Planula", "e) Planula"),levels = c("b) Unfertilized Egg","c) Fertilized Egg","d) Early Gastrula", "e) Planula")))
+df <- df + geom_text(data = ann_text.a,label = "a", color = "black", hjust = 5) + geom_text(data = ann_text.b,label = "b", color = "black", hjust   = 5) 
+```
+
+
+Get summary stats for methods section.
 ```{r}
 summarySE(volume_dat, measurevar = "volume", groupvars = c("time_point", "treatment"))
 ```
