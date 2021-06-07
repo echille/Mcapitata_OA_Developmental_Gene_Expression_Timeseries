@@ -255,27 +255,56 @@ ggsave("Final_figures/Fig5.png", fig5, width = 20, height = 20, units = c("in"))
 ```
 
 ## Make supplemental table summarizing GO enrichment
+
+Must do separately for C1 (u)p and C2 (down) so we don't get duplicate gene entries.
 ```{r}
 DF_GOhm <- bind_rows(GO.BP, GO.MF)
 head(DF_GOhm)
+
+#Separate up and down
+DF_GOhm_U <- filter(DF_GOhm, dir=="C1 (Up)")
+DF_GOhm_D <- filter(DF_GOhm, dir=="C2 (Down)")
 ```
 
-
-Make dataframe of GO results for clustering and heatmap. Using R script from Mass Lab. Needs columns "experiment" where we will put cluster information, "term", "percentDEInCat", and "gene" with all the DE genes associated with that GO term.
+Make dataframe of GO results for clustering and heatmap. 
 ```{r}
 #add gene_IDs. To get gene_IDs we will merge with the GO.terms DF.
 GOgenes <- data.frame(gene_id=GO.terms$gene_id, category=GO.terms$GO.ID) #First have to make the "by" column the same for both
-GOdf <- left_join(DF_GOhm, GOgenes, by="category" ) #join the DFs
-GOdf$gene_id <- as.character(GOdf$gene_id) #make gene ID a character so we can collasp our many near-identical columns
-GOdf <- GOdf %>% #collapse and have gene IDs for a particular term in a single row as a comma-sep list. 
+#GOgenes$gene_id <- as.character(GOgenes$gene_id)
+```
+
+Using R script from Mass Lab. Needs columns "experiment" where we will put cluster information, "term", "percentDEInCat", and "gene" with all the DE genes associated with that GO term.
+```{r}
+#DO UP (C1)
+GOgenes_U <- filter(GOgenes, gene_id%in%clust1$gene_id)
+GOdf_U <- left_join(DF_GOhm_U, GOgenes_U, by="category" ) #join the DFs
+GOdf_U$gene_id <- as.character(GOdf_U$gene_id) #make gene ID a character so we can collapse our many near-identical columns
+GOdf_U <- GOdf_U %>% #collapse and have gene IDs for a particular term in a single row as a comma-sep list. 
   filter(gene_id%in%DEGclust$gene_id) %>% 
   group_by(ontology, slim_term, slim_cat, category, term, over_represented_pvalue, numDEInCat, numInCat, dir) %>%
   summarise(genes = toString(gene_id)) %>% #rename collapsed gene_ID column "gene"
   ungroup()
+```
+```{r}
+#DO DOWN (C2)
+GOgenes_D <- filter(GOgenes, gene_id%in%clust2$gene_id)
+GOdf_D <- left_join(DF_GOhm_D, GOgenes_D, by="category" ) #join the DFs
+GOdf_D$gene_id <- as.character(GOdf_D$gene_id) #make gene ID a character so we can collapse our many near-identical columns
+GOdf_D <- GOdf_D %>% #collapse and have gene IDs for a particular term in a single row as a comma-sep list. 
+  filter(gene_id%in%DEGclust$gene_id) %>% 
+  group_by(ontology, slim_term, slim_cat, category, term, over_represented_pvalue, numDEInCat, numInCat, dir) %>%
+  summarise(genes = toString(gene_id)) %>% #rename collapsed gene_ID column "gene"
+  ungroup()
+```
+
+Bind rows for up and down and save!
+```{r}
+GOdf <- bind_rows(GOdf_U, GOdf_D)
 head(GOdf)
 str(GOdf)
 write.csv(GOdf, file = "5-Planula-GO-Enrichment-Analysis/Output/GOenrichmentsummary.csv", row.names = FALSE)
 ```
+
 
 ## Kegg enrichment analysis
 
@@ -304,26 +333,14 @@ head(KO.terms)
 
 colnames(KO.terms) <- c("gene_id", "GO.ID")
 #Bind KO and GO references
-GO.terms <- bind_rows(GO.terms, KO.terms)
-```
-
-Obtain KO terms for each cluster of DEGs to be used for the KEGG Mapper [(link)](https://www.genome.jp/kegg/mapper.html)
-```{r}
-koC1 <- filter(KO.terms, gene_id%in%clust1$gene_id) #Filter for gene IDs in cluster1
-koC2 <- filter(KO.terms, gene_id%in%clust2$gene_id) #Filter for gene IDs in cluster2
-dim(koC1)
-dim(koC2)
-
-write.table(koC1, "5-Planula-GO-Enrichment-Analysis/Output/koC1.KEGG_mapper_input.txt", quote=FALSE,col.names=FALSE,row.names=FALSE,sep="\t") #TO BE USED FOR KEGG Mapper https://www.genome.jp/kegg/mapper.html.
-
-write.table(koC2, "5-Planula-GO-Enrichment-Analysis/Output/koC2.KEGG_mapper_input.txt", quote=FALSE,col.names=FALSE,row.names=FALSE,sep="\t") #TO BE USED FOR KEGG Mapper https://www.genome.jp/kegg/mapper.html.
+GOKO.terms <- bind_rows(GO.terms, KO.terms)
 ```
 
 Perform Kegg enrichment with goseq package
 ```{r}
 #Perform goseq
-KOwall.C1 <- goseq(pwf.C1, GOref$gene_id, gene2cat=GO.terms, test.cats=c("KEGG"), method="Wallenius", use_genes_without_cat=TRUE)
-KOwall.C2 <- goseq(pwf.C2, GOref$gene_id, gene2cat=GO.terms, test.cats=c("KEGG"), method="Wallenius", use_genes_without_cat=TRUE)
+KOwall.C1 <- goseq(pwf.C1, GOref$gene_id, gene2cat=GOKO.terms, test.cats=c("KEGG"), method="Wallenius", use_genes_without_cat=TRUE)
+KOwall.C2 <- goseq(pwf.C2, GOref$gene_id, gene2cat=GOKO.terms, test.cats=c("KEGG"), method="Wallenius", use_genes_without_cat=TRUE)
 ```
 
 Replace NAs with "KEGG" and extract KO terms from results
@@ -368,4 +385,52 @@ Write output KEGG enrichment files
 ```{r}
 write.csv(C1.KO.05, file = "5-Planula-GO-Enrichment-Analysis/Output/KO.05.C1.csv")
 write.csv(C2.KO.05, file = "5-Planula-GO-Enrichment-Analysis/Output/KO.05.C2.csv")
+```
+
+## Make supplemental table summarizing KO enrichment
+
+Must do separately for C1 (u)p and C2 (down) so we don't get duplicate gene entries. Add dir info
+```{r}
+#Add dir info
+C1.KO.05$dir <- "C1 (Up)"
+C2.KO.05$dir <- "C2 (Down)"
+```
+
+Make dataframe of GO results for clustering and heatmap. 
+```{r}
+#add gene_IDs. To get gene_IDs we will merge with the GO.terms DF.
+GOKOgenes <- data.frame(gene_id=GOKO.terms$gene_id, category=GOKO.terms$GO.ID) #First have to make the "by" column the same for both
+#GOgenes$gene_id <- as.character(GOgenes$gene_id)
+```
+
+Using R script from Mass Lab. Needs columns "experiment" where we will put cluster information, "term", "percentDEInCat", and "gene" with all the DE genes associated with that GO term.
+```{r}
+#DO UP (C1)
+KOgenes_U <- filter(GOKOgenes, gene_id%in%clust1$gene_id)
+KOdf_U <- left_join(C1.KO.05, KOgenes_U, by="category" ) #join the DFs
+KOdf_U$gene_id <- as.character(KOdf_U$gene_id) #make gene ID a character so we can collapse our many near-identical columns
+KOdf_U <- KOdf_U %>% #collapse and have gene IDs for a particular term in a single row as a comma-sep list. 
+  filter(gene_id%in%DEGclust$gene_id) %>% 
+  group_by(ontology, category, term, over_represented_pvalue, numDEInCat, numInCat, dir) %>%
+  summarise(genes = toString(gene_id)) %>% #rename collapsed gene_ID column "gene"
+  ungroup()
+```
+```{r}
+#DO DOWN (C2)
+KOgenes_D <- filter(GOKOgenes, gene_id%in%clust2$gene_id)
+KOdf_D <- left_join(C1.KO.05, KOgenes_D, by="category" ) #join the DFs
+KOdf_D$gene_id <- as.character(KOdf_D$gene_id) #make gene ID a character so we can collapse our many near-identical columns
+KOdf_D <- KOdf_D %>% #collapse and have gene IDs for a particular term in a single row as a comma-sep list. 
+  filter(gene_id%in%DEGclust$gene_id) %>% 
+  group_by(ontology, category, term, over_represented_pvalue, numDEInCat, numInCat, dir) %>%
+  summarise(genes = toString(gene_id)) %>% #rename collapsed gene_ID column "gene"
+  ungroup()
+```
+
+Bind rows for up and down and save!
+```{r}
+KOdf <- bind_rows(KOdf_U, KOdf_D)
+head(KOdf)
+str(KOdf)
+write.csv(KOdf, file = "5-Planula-GO-Enrichment-Analysis/Output/KOenrichmentsummary.csv", row.names = FALSE)
 ```

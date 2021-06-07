@@ -1,16 +1,16 @@
-,category,over_represented_pvalue,under_represented_pvalue,numDEInCat,numInCat,ontology,term
-1,K22754,3.43E-06,0.999999841,7,13,KEGG,E3 ubiquitin-protein ligase RNF213 [EC:2.3.2.27]
-14,K17592,0.002614254,0.999526384,7,23,KEGG,sacsin
-41,K12389,0.007508461,0.999700349,2,31,KEGG,battenin
-89,K11699,0.035335495,0.997101485,2,11,KEGG,RNA-dependent RNA polymerase [EC:2.7.7.48]
-37,K12174,0.004069001,1,1,1,KEGG,Kip1 ubiquitination-promoting complex protein 2
-38,K07766,0.00545972,0.999990081,1,3,KEGG,diphosphoinositol-polyphosphate diphosphatase [EC:3.6.1.52]
-72,K11428,0.011012559,0.99996964,1,2,KEGG,[histone H4]-lysine20 N-methyltransferase SETD8 [EC:2.1.1.361]
-74,K03327,0.01390958,0.999935377,1,3,KEGG,"multidrug resistance protein, MATE family"
-77,K05480,0.017630584,0.999875302,1,5,KEGG,ectodysplasin-A
-82,K19521,0.018338824,0.999915495,1,2,KEGG,regulatory factor X 6
-84,K07204,0.018657504,0.999912519,1,2,KEGG,regulatory associated protein of mTOR
-86,K01283,0.021283515,0.999848192,1,3,KEGG,peptidyl-dipeptidase A [EC:3.4.15.1]
-100,K00505,0.036430171,0.999425557,1,7,KEGG,tyrosinase [EC:1.14.18.1]
-107,K07380,0.045399022,1,1,1,KEGG,contactin associated protein-like 2
-108,K11275,0.046234169,0.998951089,1,33,KEGG,histone H1/5
+"","category","over_represented_pvalue","under_represented_pvalue","numDEInCat","numInCat","ontology","term"
+"1","K22754",3.42804106643506e-06,0.999999840829107,7,13,"KEGG","E3 ubiquitin-protein ligase RNF213 [EC:2.3.2.27]"
+"14","K17592",0.00261425445555894,0.999526383896138,7,23,"KEGG","sacsin"
+"37","K12174",0.00406900117552958,1,1,1,"KEGG","Kip1 ubiquitination-promoting complex protein 2"
+"38","K07766",0.00545971981358419,0.999990081386445,1,3,"KEGG","diphosphoinositol-polyphosphate diphosphatase [EC:3.6.1.52]"
+"41","K12389",0.00750846125382576,0.999700349377114,2,31,"KEGG","battenin"
+"72","K11428",0.0110125592392764,0.999969640190555,1,2,"KEGG","[histone H4]-lysine20 N-methyltransferase SETD8 [EC:2.1.1.361]"
+"74","K03327",0.0139095797158519,0.999935376918962,1,3,"KEGG","multidrug resistance protein, MATE family"
+"77","K05480",0.0176305839535272,0.999875302049253,1,5,"KEGG","ectodysplasin-A"
+"82","K19521",0.0183388235938368,0.999915495307184,1,2,"KEGG","regulatory factor X 6"
+"84","K07204",0.0186575039932161,0.999912518657744,1,2,"KEGG","regulatory associated protein of mTOR"
+"86","K01283",0.0212835151560631,0.999848192202746,1,3,"KEGG","peptidyl-dipeptidase A [EC:3.4.15.1]"
+"89","K11699",0.0353354952868972,0.997101485056588,2,11,"KEGG","RNA-dependent RNA polymerase [EC:2.7.7.48]"
+"100","K00505",0.0364301709682648,0.999425556974437,1,7,"KEGG","tyrosinase [EC:1.14.18.1]"
+"107","K07380",0.0453990217453581,1,1,1,"KEGG","contactin associated protein-like 2"
+"108","K11275",0.0462341691087829,0.998951089447989,1,33,"KEGG","histone H1/5"

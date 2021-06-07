@@ -1,80 +1,80 @@
-,category,over_represented_pvalue,under_represented_pvalue,numDEInCat,numInCat,ontology,term
-1,K11275,1.08E-20,1,13,33,KEGG,histone H1/5
-34,K04802,3.58E-05,1,2,2,KEGG,proliferating cell nuclear antigen
-36,K17306,3.59E-05,1,2,2,KEGG,armadillo repeat-containing protein 1
-38,K11254,0.000110165,0.999999777,2,3,KEGG,histone H4
-41,K07917,0.00011136,0.999999774,2,3,KEGG,Ras-related protein Rab-30
-44,K22453,0.00011439,0.999999764,2,3,KEGG,trefoil factor 2
-48,K05765,0.000116668,0.999999757,2,3,KEGG,cofilin
-51,K11252,0.000168365,0.999999404,2,4,KEGG,histone H2B
-55,K19511,0.000200625,0.99999902,2,6,KEGG,peroxidase [EC:1.11.1.7]
-61,K10345,0.000215348,0.999999138,2,4,KEGG,SPRY domain-containing SOCS box protein 3
-65,K19766,0.000219891,0.99999911,2,4,KEGG,heat shock protein Hsp-16.1/Hsp-16.11
-69,K12194,0.000221413,0.999999101,2,4,KEGG,charged multivesicular body protein 4
-73,K07374,0.001915441,0.999965154,2,12,KEGG,tubulin alpha
-85,K03320,0.002429554,0.99994903,2,14,KEGG,"ammonium transporter, Amt family"
-124,K15015,0.006866134,0.999742644,2,23,KEGG,solute carrier family 32 (vesicular inhibitory amino acid transporter)
-188,K08187,0.015018362,0.99913284,2,36,KEGG,"MFS transporter, MCT family, solute carrier family 16 (monocarboxylic acid transporters), member 10"
-99,K08866,0.003362192,1,1,1,KEGG,serine/threonine-protein kinase TTK/MPS1 [EC:2.7.12.1]
-100,K16757,0.005320736,1,1,1,KEGG,coiled-coil domain-containing protein 77
-101,K10348,0.00550846,1,1,1,KEGG,LRR-repeat protein 1
-102,K00526,0.005643447,1,1,1,KEGG,ribonucleoside-diphosphate reductase beta chain [EC:1.17.4.1]
-103,K10808,0.005643447,1,1,1,KEGG,ribonucleoside-diphosphate reductase subunit M2 [EC:1.17.4.1]
-104,K17579,0.005650366,1,1,1,KEGG,protein phosphatase 1 regulatory subunit 42
-105,K08057,0.005714266,1,1,1,KEGG,calreticulin
-106,K04482,0.005784292,1,1,1,KEGG,DNA repair protein RAD51
-107,K11514,0.005790456,1,1,1,KEGG,Borealin
-108,K08865,0.005876266,1,1,1,KEGG,PDZ-binding kinase [EC:2.7.12.2]
-109,K19757,0.005961118,1,1,1,KEGG,radial spoke head protein 9
-110,K11500,0.005971589,1,1,1,KEGG,centromere protein H
-111,K14167,0.006101186,1,1,1,KEGG,cyclin-dependent kinase inhibitor 3 [EC:3.1.3.16 3.1.3.48]
-112,K10734,0.006128406,1,1,1,KEGG,GINS complex subunit 3
-113,K10418,0.00615494,1,1,1,KEGG,dynein light chain LC8-type
-114,K10732,0.00617012,1,1,1,KEGG,GINS complex subunit 1
-115,K11549,0.006172271,1,1,1,KEGG,"kinetochore protein Spc24, animal type"
-116,K10733,0.006191446,1,1,1,KEGG,GINS complex subunit 2
-117,K11696,0.00624307,1,1,1,KEGG,centromere-localized protein 2
-118,K06688,0.006245088,1,1,1,KEGG,ubiquitin-conjugating enzyme E2 C [EC:2.3.2.23]
-119,K13960,0.006259129,1,1,1,KEGG,ubiquitin-conjugating enzyme E2 T [EC:2.3.2.23]
-120,K23313,0.006310013,1,1,1,KEGG,CST complex subunit TEN1
-121,K19765,0.006387091,1,1,1,KEGG,heat shock factor-binding protein 1
-147,K16342,0.008124046,0.999983486,1,2,KEGG,cytosolic phospholipase A2 [EC:3.1.1.4]
-149,K23166,0.00892959,0.999980041,1,2,KEGG,optic atrophy 3 protein
-151,K10401,0.009252297,0.99997144,1,3,KEGG,kinesin family member 18/19
-154,K11428,0.009771283,0.999976091,1,2,KEGG,[histone H4]-lysine20 N-methyltransferase SETD8 [EC:2.1.1.361]
-156,K01637,0.010944418,0.999969987,1,2,KEGG,isocitrate lyase [EC:4.1.3.1]
-158,K20790,0.011735391,0.999965478,1,2,KEGG,nucleoside diphosphate kinase homolog 5
-160,K00560,0.011741472,0.999965442,1,2,KEGG,thymidylate synthase [EC:2.1.1.45]
-162,K10744,0.011787542,0.99996517,1,2,KEGG,ribonuclease H2 subunit B
-164,K08059,0.012137667,0.999963064,1,2,KEGG,"interferon, gamma-inducible protein 30"
-166,K23151,0.012146906,0.999963007,1,2,KEGG,methyltransferase-like protein 23 [EC:2.1.1.-]
-168,K14789,0.012178927,0.999962811,1,2,KEGG,nucleolar protein 6
-170,K07945,0.012257758,0.999962327,1,2,KEGG,ADP-ribosylation factor-like protein 4
-172,K14815,0.012331059,0.999961873,1,2,KEGG,mRNA turnover protein 4
-174,K20793,0.012386274,0.99996153,1,2,KEGG,N-alpha-acetyltransferase 50 [EC:2.3.1.258]
-176,K14324,0.012406789,0.999961402,1,2,KEGG,histone deacetylase complex subunit SAP18
-178,K04797,0.012449275,0.999961137,1,2,KEGG,prefoldin alpha subunit
-180,K10412,0.012622084,0.999960047,1,2,KEGG,"dynein light chain 4, axonemal"
-182,K00419,0.012797309,0.999958926,1,2,KEGG,ubiquinol-cytochrome c reductase subunit 9
-184,K24032,0.01455099,0.999920373,1,4,KEGG,SH3 and PX domain-containing protein 2
-224,K03283,0.0175825,0.999883589,1,4,KEGG,heat shock 70kDa protein 1/2/6/8
-228,K17780,0.019063169,0.99987822,1,3,KEGG,mitochondrial import inner membrane translocase subunit TIM8
-231,K02219,0.019064975,0.999878197,1,3,KEGG,cyclin-dependent kinase regulatory subunit CKS1
-234,K00784,0.019319575,0.999859348,1,4,KEGG,ribonuclease Z [EC:3.1.26.11]
-238,K09381,0.021175263,0.999830897,1,4,KEGG,paired box protein 3/7
-242,K13706,0.023555561,0.999790531,1,4,KEGG,abhydrolase domain-containing protein 14
-246,K04513,0.024437826,0.999774462,1,4,KEGG,"Ras homolog gene family, member A"
-250,K07975,0.024472413,0.999773819,1,4,KEGG,"Rho family, other"
-254,K16585,0.024473866,0.999773792,1,4,KEGG,HAUS augmin-like complex subunit 2
-258,K14443,0.024498182,0.99977334,1,4,KEGG,protein Tob/BTG
-262,K16743,0.024566055,0.999756982,1,5,KEGG,abnormal spindle-like microcephaly-associated protein
-267,K12757,0.024613498,0.99977119,1,4,KEGG,myosin regulatory light chain 12
-271,K18171,0.025150943,0.999761034,1,4,KEGG,COX assembly mitochondrial protein 1
-275,K09627,0.028287843,0.999677278,1,5,KEGG,serine protease 23 [EC:3.4.21.-]
-280,K00940,0.029568844,0.999647203,1,5,KEGG,nucleoside-diphosphate kinase [EC:2.7.4.6]
-285,K03574,0.029652969,0.99964518,1,5,KEGG,8-oxo-dGTP diphosphatase [EC:3.6.1.55]
-290,K19755,0.030054145,0.999635455,1,5,KEGG,radial spoke head protein 1
-295,K07937,0.030563012,0.999622927,1,5,KEGG,ADP-ribosylation factor 1/2
-299,K14611,0.033000722,0.999528806,1,7,KEGG,"solute carrier family 23 (nucleobase transporter), member 1"
-306,K04565,0.040893407,0.999247673,1,9,KEGG,"superoxide dismutase, Cu-Zn family [EC:1.15.1.1]"
-315,K20097,0.046878132,0.999024351,1,8,KEGG,FK506-binding protein-like
+"","category","over_represented_pvalue","under_represented_pvalue","numDEInCat","numInCat","ontology","term"
+"1","K11275",1.07829053461891e-20,1,13,33,"KEGG","histone H1/5"
+"34","K04802",3.58220952843149e-05,1,2,2,"KEGG","proliferating cell nuclear antigen"
+"36","K17306",3.58515803913064e-05,1,2,2,"KEGG","armadillo repeat-containing protein 1"
+"38","K11254",0.000110164615470821,0.999999777199906,2,3,"KEGG","histone H4"
+"41","K07917",0.000111360181312406,0.99999977355564,2,3,"KEGG","Ras-related protein Rab-30"
+"44","K22453",0.000114389849040872,0.999999764232431,2,3,"KEGG","trefoil factor 2"
+"48","K05765",0.000116667741769688,0.999999757140026,2,3,"KEGG","cofilin"
+"51","K11252",0.000168364613885974,0.999999404349092,2,4,"KEGG","histone H2B"
+"55","K19511",0.000200624678179587,0.999999020158687,2,6,"KEGG","peroxidase [EC:1.11.1.7]"
+"61","K10345",0.000215348406577049,0.999999137596681,2,4,"KEGG","SPRY domain-containing SOCS box protein 3"
+"65","K19766",0.000219890754284176,0.99999911009623,2,4,"KEGG","heat shock protein Hsp-16.1/Hsp-16.11"
+"69","K12194",0.000221412630982164,0.999999100817766,2,4,"KEGG","charged multivesicular body protein 4"
+"73","K07374",0.00191544075438783,0.999965154297011,2,12,"KEGG","tubulin alpha"
+"85","K03320",0.00242955422761397,0.999949030163595,2,14,"KEGG","ammonium transporter, Amt family"
+"99","K08866",0.00336219243712188,1,1,1,"KEGG","serine/threonine-protein kinase TTK/MPS1 [EC:2.7.12.1]"
+"100","K16757",0.00532073561119366,1,1,1,"KEGG","coiled-coil domain-containing protein 77"
+"101","K10348",0.00550846029517035,1,1,1,"KEGG","LRR-repeat protein 1"
+"102","K00526",0.00564344685603395,1,1,1,"KEGG","ribonucleoside-diphosphate reductase beta chain [EC:1.17.4.1]"
+"103","K10808",0.00564344685603395,1,1,1,"KEGG","ribonucleoside-diphosphate reductase subunit M2 [EC:1.17.4.1]"
+"104","K17579",0.00565036577468717,1,1,1,"KEGG","protein phosphatase 1 regulatory subunit 42"
+"105","K08057",0.00571426605049427,1,1,1,"KEGG","calreticulin"
+"106","K04482",0.00578429160842313,1,1,1,"KEGG","DNA repair protein RAD51"
+"107","K11514",0.00579045573621547,1,1,1,"KEGG","Borealin"
+"108","K08865",0.00587626601581296,1,1,1,"KEGG","PDZ-binding kinase [EC:2.7.12.2]"
+"109","K19757",0.00596111836688503,1,1,1,"KEGG","radial spoke head protein 9"
+"110","K11500",0.00597158908891391,1,1,1,"KEGG","centromere protein H"
+"111","K14167",0.00610118582197623,1,1,1,"KEGG","cyclin-dependent kinase inhibitor 3 [EC:3.1.3.16 3.1.3.48]"
+"112","K10734",0.00612840600641994,1,1,1,"KEGG","GINS complex subunit 3"
+"113","K10418",0.00615494034064709,1,1,1,"KEGG","dynein light chain LC8-type"
+"114","K10732",0.00617012015730261,1,1,1,"KEGG","GINS complex subunit 1"
+"115","K11549",0.00617227145056222,1,1,1,"KEGG","kinetochore protein Spc24, animal type"
+"116","K10733",0.00619144575208029,1,1,1,"KEGG","GINS complex subunit 2"
+"117","K11696",0.00624306957495752,1,1,1,"KEGG","centromere-localized protein 2"
+"118","K06688",0.00624508843257073,1,1,1,"KEGG","ubiquitin-conjugating enzyme E2 C [EC:2.3.2.23]"
+"119","K13960",0.00625912930044125,1,1,1,"KEGG","ubiquitin-conjugating enzyme E2 T [EC:2.3.2.23]"
+"120","K23313",0.00631001335551884,1,1,1,"KEGG","CST complex subunit TEN1"
+"121","K19765",0.00638709062766224,1,1,1,"KEGG","heat shock factor-binding protein 1"
+"124","K15015",0.00686613371611597,0.999742643757913,2,23,"KEGG","solute carrier family 32 (vesicular inhibitory amino acid transporter)"
+"147","K16342",0.00812404616023199,0.999983486128626,1,2,"KEGG","cytosolic phospholipase A2 [EC:3.1.1.4]"
+"149","K23166",0.00892958964017664,0.999980040771361,1,2,"KEGG","optic atrophy 3 protein"
+"151","K10401",0.00925229710253887,0.999971439589432,1,3,"KEGG","kinesin family member 18/19"
+"154","K11428",0.00977128300673264,0.999976090604657,1,2,"KEGG","[histone H4]-lysine20 N-methyltransferase SETD8 [EC:2.1.1.361]"
+"156","K01637",0.0109444183335801,0.999969987073209,1,2,"KEGG","isocitrate lyase [EC:4.1.3.1]"
+"158","K20790",0.0117353912893253,0.999965478320107,1,2,"KEGG","nucleoside diphosphate kinase homolog 5"
+"160","K00560",0.0117414723592941,0.999965442427453,1,2,"KEGG","thymidylate synthase [EC:2.1.1.45]"
+"162","K10744",0.0117875422648558,0.999965169896909,1,2,"KEGG","ribonuclease H2 subunit B"
+"164","K08059",0.0121376667696429,0.999963063510253,1,2,"KEGG","interferon, gamma-inducible protein 30"
+"166","K23151",0.0121469061294675,0.999963007082691,1,2,"KEGG","methyltransferase-like protein 23 [EC:2.1.1.-]"
+"168","K14789",0.012178926528915,0.999962811189107,1,2,"KEGG","nucleolar protein 6"
+"170","K07945",0.0122577575826622,0.999962326700368,1,2,"KEGG","ADP-ribosylation factor-like protein 4"
+"172","K14815",0.0123310593487353,0.999961873363239,1,2,"KEGG","mRNA turnover protein 4"
+"174","K20793",0.0123862736869708,0.999961530086851,1,2,"KEGG","N-alpha-acetyltransferase 50 [EC:2.3.1.258]"
+"176","K14324",0.0124067886638506,0.999961402147494,1,2,"KEGG","histone deacetylase complex subunit SAP18"
+"178","K04797",0.0124492746242458,0.999961136508908,1,2,"KEGG","prefoldin alpha subunit"
+"180","K10412",0.0126220841766448,0.999960046588866,1,2,"KEGG","dynein light chain 4, axonemal"
+"182","K00419",0.0127973094621846,0.999958925942686,1,2,"KEGG","ubiquinol-cytochrome c reductase subunit 9"
+"184","K24032",0.0145509896530726,0.999920372962662,1,4,"KEGG","SH3 and PX domain-containing protein 2"
+"188","K08187",0.0150183621811712,0.999132839932315,2,36,"KEGG","MFS transporter, MCT family, solute carrier family 16 (monocarboxylic acid transporters), member 10"
+"224","K03283",0.017582500202438,0.999883589153123,1,4,"KEGG","heat shock 70kDa protein 1/2/6/8"
+"228","K17780",0.0190631685738493,0.999878220280996,1,3,"KEGG","mitochondrial import inner membrane translocase subunit TIM8"
+"231","K02219",0.0190649748790212,0.999878197102281,1,3,"KEGG","cyclin-dependent kinase regulatory subunit CKS1"
+"234","K00784",0.0193195750738349,0.999859347692041,1,4,"KEGG","ribonuclease Z [EC:3.1.26.11]"
+"238","K09381",0.0211752625437438,0.999830897071922,1,4,"KEGG","paired box protein 3/7"
+"242","K13706",0.0235555614709341,0.999790531106889,1,4,"KEGG","abhydrolase domain-containing protein 14"
+"246","K04513",0.0244378256289106,0.999774461501718,1,4,"KEGG","Ras homolog gene family, member A"
+"250","K07975",0.0244724131987486,0.999773819299533,1,4,"KEGG","Rho family, other"
+"254","K16585",0.0244738664790969,0.99977379229566,1,4,"KEGG","HAUS augmin-like complex subunit 2"
+"258","K14443",0.0244981823089495,0.99977334023375,1,4,"KEGG","protein Tob/BTG"
+"262","K16743",0.0245660548726496,0.999756982020624,1,5,"KEGG","abnormal spindle-like microcephaly-associated protein"
+"267","K12757",0.0246134975851261,0.999771190168597,1,4,"KEGG","myosin regulatory light chain 12"
+"271","K18171",0.0251509427132452,0.999761034129866,1,4,"KEGG","COX assembly mitochondrial protein 1"
+"275","K09627",0.0282878434417877,0.999677278317397,1,5,"KEGG","serine protease 23 [EC:3.4.21.-]"
+"280","K00940",0.029568843562586,0.999647202883606,1,5,"KEGG","nucleoside-diphosphate kinase [EC:2.7.4.6]"
+"285","K03574",0.0296529689127842,0.999645180332302,1,5,"KEGG","8-oxo-dGTP diphosphatase [EC:3.6.1.55]"
+"290","K19755",0.0300541446418241,0.99963545472061,1,5,"KEGG","radial spoke head protein 1"
+"295","K07937",0.0305630116294201,0.999622926821454,1,5,"KEGG","ADP-ribosylation factor 1/2"
+"299","K14611",0.0330007216617357,0.999528805707776,1,7,"KEGG","solute carrier family 23 (nucleobase transporter), member 1"
+"306","K04565",0.0408934074847283,0.999247673256542,1,9,"KEGG","superoxide dismutase, Cu-Zn family [EC:1.15.1.1]"
+"315","K20097",0.0468781323733461,0.999024351290922,1,8,"KEGG","FK506-binding protein-like"
