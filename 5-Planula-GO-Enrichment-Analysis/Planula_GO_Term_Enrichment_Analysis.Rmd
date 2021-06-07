@@ -418,7 +418,7 @@ KOdf_U <- KOdf_U %>% #collapse and have gene IDs for a particular term in a sing
 ```{r}
 #DO DOWN (C2)
 KOgenes_D <- filter(GOKOgenes, gene_id%in%clust2$gene_id)
-KOdf_D <- left_join(C1.KO.05, KOgenes_D, by="category" ) #join the DFs
+KOdf_D <- left_join(C2.KO.05, KOgenes_D, by="category" ) #join the DFs
 KOdf_D$gene_id <- as.character(KOdf_D$gene_id) #make gene ID a character so we can collapse our many near-identical columns
 KOdf_D <- KOdf_D %>% #collapse and have gene IDs for a particular term in a single row as a comma-sep list. 
   filter(gene_id%in%DEGclust$gene_id) %>% 
