@@ -18,7 +18,6 @@
 "KEGG","K06688","ubiquitin-conjugating enzyme E2 C [EC:2.3.2.23]",0.00624508843257073,1,1,"C1 (Up)","g44802"
 "KEGG","K07374","tubulin alpha",0.00191544075438783,2,12,"C1 (Up)","g36881, g36885"
 "KEGG","K07917","Ras-related protein Rab-30",0.000111360181312406,2,3,"C1 (Up)","g24134, g63658"
-"KEGG","K07937","ADP-ribosylation factor 1/2",0.0305630116294201,1,5,"C1 (Up)","g18095"
 "KEGG","K07945","ADP-ribosylation factor-like protein 4",0.0122577575826622,1,2,"C1 (Up)","g18095"
 "KEGG","K07975","Rho family, other",0.0244724131987486,1,4,"C1 (Up)","g63296"
 "KEGG","K08057","calreticulin",0.00571426605049427,1,1,"C1 (Up)","g59987"

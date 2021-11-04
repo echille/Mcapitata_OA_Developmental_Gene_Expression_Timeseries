@@ -7,6 +7,7 @@ output: html_document
 
 Load necessary libraries
 ```{r}
+rm(list = ls()) #clear environment
 library(goseq)
 library(tidyverse)
 library(GSEABase)
@@ -326,7 +327,8 @@ head(KFS.KO)
 tail(KFS.KO)
 
 #bind all KO results
-KO.terms <- bind_rows(IPS.KO, KFS.KO)
+#KO.terms <- bind_rows(IPS.KO, KFS.KO)
+KO.terms <- KFS.KO
 KO.terms <- unique(KO.terms)
 str(KO.terms)
 head(KO.terms)
@@ -415,6 +417,7 @@ KOdf_U <- KOdf_U %>% #collapse and have gene IDs for a particular term in a sing
   summarise(genes = toString(gene_id)) %>% #rename collapsed gene_ID column "gene"
   ungroup()
 ```
+
 ```{r}
 #DO DOWN (C2)
 KOgenes_D <- filter(GOKOgenes, gene_id%in%clust2$gene_id)
@@ -434,3 +437,47 @@ head(KOdf)
 str(KOdf)
 write.csv(KOdf, file = "5-Planula-GO-Enrichment-Analysis/Output/KOenrichmentsummary.csv", row.names = FALSE)
 ```
+
+Testing overlap of KO goseq results with original Mcap annotation
+```{r}
+#KOdfwithIPS <- KOdf
+
+#nrow(IPS.KO)
+#nrow(KOdf)
+# nrow(KOdfwithIPS)
+# intersect(KOdf$category, IPS.KO$ko)
+# intersect(IPS.KO$ko, KOdf$category)
+
+# KOdf
+# KOdfwithIPS
+# all(KOdf$category==KOdfwithIPS$category)
+# all(KOdf$over_represented_pvalue==KOdfwithIPS$over_represented_pvalue)
+# all(KOdf$numDEInCat==KOdfwithIPS$numDEInCat)
+# all(KOdf$numInCat==KOdfwithIPS$numInCat)
+# all(KOdf$dir==KOdfwithIPS$dir)
+# all(KOdf$genes==KOdfwithIPS$genes)
+
+# setdiff(KOdf$category,KOdfwithIPS$category)
+# setdiff(KOdf$over_represented_pvalue,KOdfwithIPS$over_represented_pvalue)
+# setdiff(KOdf$numDEInCat,KOdfwithIPS$numDEInCat)
+# setdiff(KOdf$numInCat,KOdfwithIPS$numInCat)
+# setdiff(KOdf$dir,KOdfwithIPS$dir)
+# setdiff(KOdf$genes,KOdfwithIPS$genes)
+
+# setdiff(KOdfwithIPS$category,KOdf$category)
+# setdiff(KOdfwithIPS$over_represented_pvalue,KOdf$over_represented_pvalue)
+# setdiff(KOdfwithIPS$numDEInCat,KOdf$numDEInCat)
+# setdiff(KOdfwithIPS$numInCat,KOdf$numInCat)
+# setdiff(KOdfwithIPS$dir,KOdf$dir)
+# setdiff(KOdfwithIPS$genes,KOdf$genes)
+
+# KOdfwithIPS.noK07937 <- filter(KOdfwithIPS, category!="K07937")
+# all(KOdf$category==KOdfwithIPS.noK07937$category)
+# all(KOdf$over_represented_pvalue==KOdfwithIPS.noK07937$over_represented_pvalue)
+# all(KOdf$numDEInCat==KOdfwithIPS.noK07937$numDEInCat)
+# all(KOdf$numInCat==KOdfwithIPS.noK07937$numInCat)
+# all(KOdf$dir==KOdfwithIPS.noK07937$dir)
+# all(KOdf$genes==KOdfwithIPS.noK07937$genes)
+```
+
+
