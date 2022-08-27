@@ -163,7 +163,7 @@ allgenesfilt_PCA <- ggplot(gPCAdata_dev, aes(PC1, PC2, shape=time_point, color=t
         axis.text = element_text(size = 12)) #Axis text size
 allgenesfilt_PCA 
 
-ggsave(file = "3-WGCNA/Output/Fig3-allgenesfilt-PCA.png", allgenesfilt_PCA, width = 7.5, height = 11/2, units = "in")
+# ggsave(file = "3-WGCNA/Output/Fig3-allgenesfilt-PCA.png", allgenesfilt_PCA, width = 7.5, height = 11/2, units = "in")
 ```
 
 ### Compile WGCNA Dataset

@@ -729,6 +729,6 @@ Put together PCA plots for final and supplementary figures
 ```{r}
 SFigX <- fePCA / clvgPCA / pcPCA / gsaPCA + plot_annotation(tag_levels = "a", tag_suffix = ")"); SFigX
 ggsave(file = "4-Differential-Gene-Expression-Analysis/Output/SFig-fe2gsa-PCA.png", SFigX, width = 7.5, height = 11, units = "in")
-# Fig3 <- allgenesfilt_PCA / plnPCA + plot_annotation(tag_levels = "a", tag_suffix = ")") #Must have allgenesfilt_PCA from WGCNA script in environment
-# ggsave(file = "Final_figures/Fig3.png", Fig3, width = 7.5, height = 9, units = "in")
+Fig3 <- allgenesfilt_PCA / plnPCA + plot_annotation(tag_levels = "a", tag_suffix = ")") #Must have allgenesfilt_PCA from WGCNA script in environment
+ggsave(file = "Final_figures/Fig3.pdf", Fig3, width = 7.5, height = 9, units = "in")
 ```

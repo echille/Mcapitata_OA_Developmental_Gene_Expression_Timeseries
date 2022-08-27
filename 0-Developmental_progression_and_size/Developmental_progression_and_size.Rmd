@@ -49,6 +49,21 @@ total_counts_per_sample <- raw_data %>%
 show(total_counts_per_sample)
 ```
 
+Testing for sample size effect
+```{r}
+sample_size_anova_treatment <- aov(total_counts_per_sample ~ treatment, data = total_counts_per_sample)
+summary(sample_size_anova_treatment)
+sample_size_anova_onecell <- aov(total_counts_per_sample ~ One_cell, data = total_counts_per_sample)
+summary(sample_size_anova_onecell)
+sample_size_anova_twocell <- aov(total_counts_per_sample ~ Two_cell, data = total_counts_per_sample)
+summary(sample_size_anova_twocell)
+sample_size_anova_fourcell <- aov(total_counts_per_sample ~ Four_cell, data = total_counts_per_sample)
+summary(sample_size_anova_fourcell)
+sample_size_anova_greaterthanfourcell <- aov(total_counts_per_sample ~ Greater_than_4_cell, data = total_counts_per_sample)
+summary(sample_size_anova_greaterthanfourcell)
+```
+
+
 Calculate % at each stage
 ```{r}
 normalized_cleavage_counts <- total_counts_per_sample %>%
