@@ -212,31 +212,31 @@ There don't look to be any outliers, so we will move on with business as usual.
 
 The soft thresholding power (β) is the number to which the co-expression similarity is raised to calculate adjacency. The function pickSoftThreshold performs a network topology analysis. The user chooses a set of candidate powers, however the default parameters are suitable values.
 ```{r, message=FALSE, warning=FALSE}
-# # Choose a set of soft-thresholding powers
-# powers <- c(seq(from = 1, to=19, by=2), c(21:30)) #Create a string of numbers from 1 through 10, and even numbers from 10 through 20
-# 
-# # Call the network topology analysis function
-# sft <-pickSoftThreshold(datExpr, powerVector = powers, verbose = 5)
+# Choose a set of soft-thresholding powers
+powers <- c(seq(from = 1, to=19, by=2), c(21:30)) #Create a string of numbers from 1 through 10, and even numbers from 10 through 20
+
+# Call the network topology analysis function
+sft <-pickSoftThreshold(datExpr, powerVector = powers, verbose = 5)
 ```
 
 Plot the results.
 ```{r}
-# sizeGrWindow(9, 5)
-# par(mfrow = c(1,2));
-# cex1 = 0.9;
-# # # Scale-free topology fit index as a function of the soft-thresholding power
-# plot(sft$fitIndices[,1], -sign(sft$fitIndices[,3])*sft$fitIndices[,2],
-#      xlab="Soft Threshold (power)",ylab="Scale Free Topology Model Fit,signed R^2",type="n",
-#     main = paste("Scale independence"));
-# text(sft$fitIndices[,1], -sign(sft$fitIndices[,3])*sft$fitIndices[,2],
-#     labels=powers,cex=cex1,col="red");
-# # # this line corresponds to using an R^2 cut-off
-# abline(h=0.9,col="red")
-# # # Mean connectivity as a function of the soft-thresholding power
-# plot(sft$fitIndices[,1], sft$fitIndices[,5],
-#     xlab="Soft Threshold (power)",ylab="Mean Connectivity", type="n",
-#     main = paste("Mean connectivity"))
-# text(sft$fitIndices[,1], sft$fitIndices[,5], labels=powers, cex=cex1,col="red")
+sizeGrWindow(9, 5)
+par(mfrow = c(1,2));
+cex1 = 0.9;
+# # Scale-free topology fit index as a function of the soft-thresholding power
+plot(sft$fitIndices[,1], -sign(sft$fitIndices[,3])*sft$fitIndices[,2],
+     xlab="Soft Threshold (power)",ylab="Scale Free Topology Model Fit,signed R^2",type="n",
+    main = paste("Scale independence"));
+text(sft$fitIndices[,1], -sign(sft$fitIndices[,3])*sft$fitIndices[,2],
+    labels=powers,cex=cex1,col="red");
+# # this line corresponds to using an R^2 cut-off
+abline(h=0.9,col="red")
+# # Mean connectivity as a function of the soft-thresholding power
+plot(sft$fitIndices[,1], sft$fitIndices[,5],
+    xlab="Soft Threshold (power)",ylab="Mean Connectivity", type="n",
+    main = paste("Mean connectivity"))
+text(sft$fitIndices[,1], sft$fitIndices[,5], labels=powers, cex=cex1,col="red")
 ```
 I used a scale-free topology fit index **R^2 of 0.9**. This lowest recommended R^2 by Langfelder and Horvath is 0.8. I chose 0.9 because we want to use the smallest soft thresholding power that maximizes with model fit. It appears that our **soft thresholding power is 13** because it is the lowest power before the R^2=0.8 threshold that maximizes with model fit.
 
@@ -262,7 +262,7 @@ Co-expression similarity and adjacency, using the soft thresholding power 13 and
 # setwd(WGCNA_dev);
 # library(WGCNA) #Load the WGCNA package
 # options(stringsAsFactors = FALSE) #The following setting is important, do not omit.
-# enableWGCNAThreads() #Allow multi-threading within WGCNA. 
+# enableWGCNAThreads() #Allow multi-threading within WGCNA.
 # 
 # #Load the data saved in the first part
 # adjTOM <- load(file="datExpr.RData")
